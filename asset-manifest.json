@@ -1,23 +1,35 @@
 {
   "files": {
     "main.css": "/Petlove/static/css/main.cd2e038f.css",
-    "main.js": "/Petlove/static/js/main.4258474e.js",
+    "main.js": "/Petlove/static/js/main.e748116c.js",
+    "static/js/332.2b42b124.chunk.js": "/Petlove/static/js/332.2b42b124.chunk.js",
     "static/js/257.7dbab080.chunk.js": "/Petlove/static/js/257.7dbab080.chunk.js",
     "static/js/390.281dfdff.chunk.js": "/Petlove/static/js/390.281dfdff.chunk.js",
     "static/js/55.4ba5e3fb.chunk.js": "/Petlove/static/js/55.4ba5e3fb.chunk.js",
-    "static/js/845.4001332d.chunk.js": "/Petlove/static/js/845.4001332d.chunk.js",
+    "static/js/485.677babcf.chunk.js": "/Petlove/static/js/485.677babcf.chunk.js",
     "static/js/419.939edf5f.chunk.js": "/Petlove/static/js/419.939edf5f.chunk.js",
+    "static/media/MainDesktop3.jpg": "/Petlove/static/media/MainDesktop3.702e21dd4e8d9fe8c02e.jpg",
+    "static/media/MainTablet3.jpg": "/Petlove/static/media/MainTablet3.bb0daaabe69986557d23.jpg",
+    "static/media/MainDesktop2.jpg": "/Petlove/static/media/MainDesktop2.29e8ed6597dd5d6cb44d.jpg",
+    "static/media/MainMobile3.jpg": "/Petlove/static/media/MainMobile3.afb9158ce8dddced78c0.jpg",
+    "static/media/MainTablet2.jpg": "/Petlove/static/media/MainTablet2.a076cc48ad542e3ed9fd.jpg",
+    "static/media/MainMobile2.jpg": "/Petlove/static/media/MainMobile2.31f6758c9598c1489470.jpg",
+    "static/media/MainDesktop1.jpg": "/Petlove/static/media/MainDesktop1.6f570a2265e3712ed4e2.jpg",
+    "static/media/MainTablet1.jpg": "/Petlove/static/media/MainTablet1.7a8958716ad0196f3ba4.jpg",
+    "static/media/sprite.svg": "/Petlove/static/media/sprite.0985246e17fed6bfb96bce747d919666.svg",
+    "static/media/MainMobile1.jpg": "/Petlove/static/media/MainMobile1.60fdf66ce9dc60a36afd.jpg",
     "index.html": "/Petlove/index.html",
     "main.cd2e038f.css.map": "/Petlove/static/css/main.cd2e038f.css.map",
-    "main.4258474e.js.map": "/Petlove/static/js/main.4258474e.js.map",
+    "main.e748116c.js.map": "/Petlove/static/js/main.e748116c.js.map",
+    "332.2b42b124.chunk.js.map": "/Petlove/static/js/332.2b42b124.chunk.js.map",
     "257.7dbab080.chunk.js.map": "/Petlove/static/js/257.7dbab080.chunk.js.map",
     "390.281dfdff.chunk.js.map": "/Petlove/static/js/390.281dfdff.chunk.js.map",
     "55.4ba5e3fb.chunk.js.map": "/Petlove/static/js/55.4ba5e3fb.chunk.js.map",
-    "845.4001332d.chunk.js.map": "/Petlove/static/js/845.4001332d.chunk.js.map",
+    "485.677babcf.chunk.js.map": "/Petlove/static/js/485.677babcf.chunk.js.map",
     "419.939edf5f.chunk.js.map": "/Petlove/static/js/419.939edf5f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cd2e038f.css",
-    "static/js/main.4258474e.js"
+    "static/js/main.e748116c.js"
   ]
 }
