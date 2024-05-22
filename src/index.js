@@ -16,7 +16,6 @@ const theme = {
     rose: '#FFF4DF',
     white: '#FFFFFF',
     red: 'rgba(239, 36, 71, 1)',
-
   },
 
   spacing: value => `${value * 5}px`,
