@@ -23,7 +23,6 @@ return (
             <Text>Choosing a pet for your home is a choice that is meant to enrich your life with immeasurable joy and tenderness.</Text>
         </ContainerDiscription>
        
->
           <picture>
         <source
           media="(min-width: 1280px)"

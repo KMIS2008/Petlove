@@ -58,7 +58,7 @@ export default function Main() {
           `}
         />
         <img
-          src={MainMobile1} // Default image in case none of the media queries match
+          src={MainMobile1} 
           srcSet={`
             ${MainMobile1} 1x,
             ${MainMobile2} 2x,

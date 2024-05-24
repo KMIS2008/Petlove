@@ -8,12 +8,13 @@ border-radius: 0 0 30px 30px;
 
 @media (min-width: 768px) {
     border-radius: 0 0 60px 60px;
+
 }
 
-@media (min-width: 1260px) {
+@media (min-width: 1280px) {
     display: flex;
     justify-content: space-between;
-    padding: 60px 60px 20px 60px;
+    padding: 60px 60px 20px 64px;
     
 }
 `
