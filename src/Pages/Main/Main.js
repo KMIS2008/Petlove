@@ -17,7 +17,7 @@ export default function Main() {
     return (
         <ContainerMain>
             <Svg onClick={() => navigator('home')}>
-               <use xlinkHref={sprite + '#icon-logo-1'} />
+               <use xlinkHref={sprite + '#icon-logo'} />
             </Svg>
 
             <picture>

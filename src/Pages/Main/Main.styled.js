@@ -9,6 +9,7 @@ display: flex;
 
 export const Svg = styled.svg`  
 position: absolute;
+cursor: pointer;
 
 width: 190px;
 height: 50px;
