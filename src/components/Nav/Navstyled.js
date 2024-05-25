@@ -14,9 +14,20 @@ letter-spacing: -0.03em;
 text-align: lcenter;
 
 border-radius: 30px;
-border: 1px solid #26262626;
+border: 1px solid ${props => (props.$isHome ? '#262626' : '#FFFFFF')}; 
+color: ${props => (props.$isHome ? '#262626' : '#FFFFFF')}; 
+cursor: pointer;
 
 &:hover{
     border: 1px solid ${p=>p.theme.colors.yellow};
 }
+`
+
+
+export const Container = styled.div`
+/* @media (min-width: 768px) {
+
+    display: block;
+   
+  } */
 `

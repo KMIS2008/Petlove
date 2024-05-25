@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const ContainerButton = styled.div`
-display: flex;
-gap: 10px;
+
+
 `
 
 export const ButtonLogin = styled.button`
   display: inline-block;
+  margin-right: 10px;
   width: 119px;
   height: 50px;
 

@@ -1,26 +1,25 @@
 import sprite from '../../images/sprite.svg';
-import { useNavigate } from 'react-router-dom';
 import { AuthNav } from 'components/AuthNav/AuthNav';
+import { Nav } from 'components/Nav/Nav';
+import { BurgerMenuContainer, CloseIcon} from './BurgerMenu.styled';
+import { useLocation } from 'react-router-dom';
 
 
-export const BurgerMenu=()=>{
-    const navigator = useNavigate(); 
-
+export const BurgerMenu=({ onClose })=>{
+    const location = useLocation();
+    const isHome = location.pathname === '/home';
 
     return(
-        <>
-            <svg>
+        <BurgerMenuContainer $isHome={isHome}>
+            <CloseIcon onClick={onClose}>
                 <use xlinkHref={sprite + '#icon-x'}/>
-            </svg> 
-            <nav>
-                <button type='button' onClick={() => navigator('news')}>News</button>
-                <button type='button' onClick={() => navigator('home')}>Find pet</button>
-                <button type='button' onClick={() => navigator('friends')}>Our friends</button>
-            </nav>   
+            </CloseIcon> 
 
-            <AuthNav/> 
-
-        </>
+            <Nav/>
+ 
+            <AuthNav/>   
+         
+        </BurgerMenuContainer>
 
     )
 }

@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import React, { useState, useEffect} from 'react';
 import sprite from '../../images/sprite.svg';
 import {Nav} from '../Nav/Nav';
+import {BurgerMenu} from '../BurgerMenu/BurgerMenu';
 
 
 export function AppBar(){
@@ -16,6 +17,11 @@ export function AppBar(){
 
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [isTablet, setisTablet] = useState(window.innerWidth < 1280);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleOpen =()=>{
+      setIsOpen (!isOpen)
+    }
 
     useEffect(() => {
         const handleResize = () => {
@@ -41,7 +47,8 @@ export function AppBar(){
 
 
     return(
-        <Header $isHome={isHome}>
+
+      <Header $isHome={isHome}>
             <Logo/>
             {isLoggedIn && <UserMenu/>}
 
@@ -50,11 +57,14 @@ export function AppBar(){
             <ContainerNav>
               {!isMobile&&   <AuthNav $isHome={isHome}/>}
 
-              {isTablet && <Svg>
+              {isTablet && <Svg onClick={handleOpen}>
                 <use xlinkHref={sprite + (isHome ? '#icon-menu-01' : '#icon-menu-2')}/>
                </Svg> }               
             </ContainerNav>
             
+              {isOpen && isTablet && <BurgerMenu onClose={handleOpen} />}
         </Header>
+   
+        
     )
 }
