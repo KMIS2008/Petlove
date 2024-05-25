@@ -19,3 +19,14 @@ export const Header = styled.header`
 
 }
 `
+
+export const ContainerNav = styled.div`
+display: flex;
+gap: 10px;
+align-items: center;
+`;
+
+export const Svg = styled.svg`
+width: 32px;
+height: 32px;
+`;
