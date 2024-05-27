@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/Petlove/static/css/main.cd2e038f.css",
-    "main.js": "/Petlove/static/js/main.f3b47c8e.js",
+    "main.js": "/Petlove/static/js/main.9ce4f5fb.js",
     "static/js/208.7c6cfb38.chunk.js": "/Petlove/static/js/208.7c6cfb38.chunk.js",
     "static/js/754.83878f31.chunk.js": "/Petlove/static/js/754.83878f31.chunk.js",
     "static/js/390.281dfdff.chunk.js": "/Petlove/static/js/390.281dfdff.chunk.js",
-    "static/js/249.05379133.chunk.js": "/Petlove/static/js/249.05379133.chunk.js",
+    "static/js/249.f54ba880.chunk.js": "/Petlove/static/js/249.f54ba880.chunk.js",
     "static/js/485.677babcf.chunk.js": "/Petlove/static/js/485.677babcf.chunk.js",
     "static/js/727.8dbce941.chunk.js": "/Petlove/static/js/727.8dbce941.chunk.js",
     "static/js/542.546a8c61.chunk.js": "/Petlove/static/js/542.546a8c61.chunk.js",
@@ -39,11 +39,11 @@
     "static/media/DogTablet1.jpg": "/Petlove/static/media/DogTablet1.3e47fb70dbaa23f2f814.jpg",
     "index.html": "/Petlove/index.html",
     "main.cd2e038f.css.map": "/Petlove/static/css/main.cd2e038f.css.map",
-    "main.f3b47c8e.js.map": "/Petlove/static/js/main.f3b47c8e.js.map",
+    "main.9ce4f5fb.js.map": "/Petlove/static/js/main.9ce4f5fb.js.map",
     "208.7c6cfb38.chunk.js.map": "/Petlove/static/js/208.7c6cfb38.chunk.js.map",
     "754.83878f31.chunk.js.map": "/Petlove/static/js/754.83878f31.chunk.js.map",
     "390.281dfdff.chunk.js.map": "/Petlove/static/js/390.281dfdff.chunk.js.map",
-    "249.05379133.chunk.js.map": "/Petlove/static/js/249.05379133.chunk.js.map",
+    "249.f54ba880.chunk.js.map": "/Petlove/static/js/249.f54ba880.chunk.js.map",
     "485.677babcf.chunk.js.map": "/Petlove/static/js/485.677babcf.chunk.js.map",
     "727.8dbce941.chunk.js.map": "/Petlove/static/js/727.8dbce941.chunk.js.map",
     "542.546a8c61.chunk.js.map": "/Petlove/static/js/542.546a8c61.chunk.js.map",
@@ -51,6 +51,6 @@
   },
   "entrypoints": [
     "static/css/main.cd2e038f.css",
-    "static/js/main.f3b47c8e.js"
+    "static/js/main.9ce4f5fb.js"
   ]
 }
