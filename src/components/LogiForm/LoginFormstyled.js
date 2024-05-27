@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+const shouldForwardProp = (prop) => !['$isError'].includes(prop);
 
 export const Form = styled.form`
   display: flex;
@@ -12,32 +13,37 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
 `;
-
-export const InputContainer = styled.div`
+export const InputContainer = styled.div.withConfig({ shouldForwardProp })`
   position: relative;
   width: 100%;
-  margin-bottom: 20px;
+  border: ${props => props.$isError ? '1px solid red' : '1px solid #26262626'};
 `;
 
-export const Input = styled.input`
+// export const InputContainer = styled.div`
+//   position: relative;
+//   width: 100%;
+//   margin-bottom: 20px;
+// `;
+
+export const Input = styled.input.attrs({ type: 'text' })`
   margin: 0 auto;
   text-align: left;
   width: 100%;
   height: 42px;
   padding: 12px;
   border-radius: 30px;
-  border: 2px solid ${({ isError, isSuccess }) => (isError ? 'red' : isSuccess ? 'green' : '#26262626')};
+  border: 1px solid ${({ $isError, $isSuccess }) => ($isError ? 'red' : $isSuccess ? 'green' : '#08AA83')};
   outline: none;
   font-size: 14px;
   color: #333;
   &::placeholder {
-    color: #aaa;
+    color: rgba(38, 38, 38, 0.5);
   }
 `;
 
 export const ButtonEye = styled.button`
   position: absolute;
-  top: 20%;
+  top: 30%;
   right: 10px;
   border: none;
   background: none;
@@ -77,8 +83,19 @@ export const Button = styled.button`
 export const ValidationIcon = styled.div`
   position: absolute;
   right: 30px;
-  top: 50%;
+  top: 45%;
   transform: translateY(-50%);
+`;
+
+export const SuccessMessage = styled.p`
+  margin-left: 10px;
+  font-family: Manrope;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  text-align: left;
+  color: #08AA83;
 `;
 
 

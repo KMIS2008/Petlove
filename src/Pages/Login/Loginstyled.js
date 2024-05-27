@@ -39,31 +39,3 @@ export const Span=styled.span`
 color: ${p=>p.theme.colors.yellow};
 cursor: pointer;
 `
-
-
-const shouldForwardProp = (prop) => !['isError'].includes(prop);
-
-// Используем shouldForwardProp в компоненте styled для управления передачей свойств в DOM
-export const Input = styled.input.attrs({ type: 'text' })`
-  // Ваши стили для инпута
-`;
-
-
-
-export const Error = styled.p`
-  font-family: Manrope;
-  font-size: 10px;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
-  text-align: left;
-  color: #EF2447; 
-`;
-
-
-// Этот компонент может принимать свойство isError, которое будет передано в DOM
-export const InputContainer = styled.div.withConfig({ shouldForwardProp })`
-  position: relative;
-  width: 100%;
-  border: ${props => props.isError ? '1px solid red' : '1px solid #26262626'};
-`;

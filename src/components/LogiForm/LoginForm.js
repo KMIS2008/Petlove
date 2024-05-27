@@ -5,11 +5,12 @@ import React, { useState } from 'react';
 import { FiEyeOff, FiEye, FiCheck, FiX } from 'react-icons/fi';
 import { useDispatch } from "react-redux";
 import { logIn } from "redux/auth/operations";
-import { Form, Input, ButtonEye, Container, Error, Button, InputContainer, ValidationIcon } from './LoginFormstyled';
+import { Form, Input, ButtonEye, Container, Error, Button, InputContainer,
+         ValidationIcon, SuccessMessage } from './LoginFormstyled';
 
 const SignupSchema = Yup.object().shape({
     email: Yup.string().email("Email must contain @")
-              .matches(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,'Invalid email format')
+              .matches(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,'Enter a valid Email')
               .required('Required'),
     password: Yup.string().min(7, "Password must contain at least 7 symbols").required('Required'),
 });
@@ -48,17 +49,24 @@ export const LoginForm = () => {
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
             <InputContainer>
-                <Input
+            <Input
                     type="email"
                     id="email"
                     placeholder="Email"
-                    {...register('email')}
-                    isError={!!errors.email}
-                    isSuccess={!errors.email && touchedFields.email}
+                    {...register('email', {
+                        required: 'Required',
+                        pattern: {
+                            value: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+                            message: 'Enter a valid Email',
+                        },
+                    })}
+                    $isError={!!errors.email}
+                    $isSuccess={!errors.email && touchedFields.email}
                 />
-                {errors.email && <ValidationIcon><FiX color="red" /></ValidationIcon>}
+                {errors.email && <ValidationIcon><FiX color="#EF2447" /></ValidationIcon>}
                 {!errors.email && touchedFields.email && <ValidationIcon><FiCheck color="#08AA83" /></ValidationIcon>}
                 {errors.email && <Error>{errors.email.message}</Error>}
+                {!errors.email && touchedFields.email && <SuccessMessage>Email is secure</SuccessMessage>}
             </InputContainer>
 
             <Container>
@@ -68,12 +76,13 @@ export const LoginForm = () => {
                         id="password"
                         placeholder="Password"
                         {...register('password')}
-                        isError={!!errors.password}
-                        isSuccess={!errors.password && touchedFields.password}
+                        $isError={!!errors.password}
+                        $isSuccess={!errors.password && touchedFields.password}
                     />
-                    {errors.password && <ValidationIcon><FiX color="red" /></ValidationIcon>}
+                    {errors.password && <ValidationIcon><FiX color="#EF2447" /></ValidationIcon>}
                     {!errors.password && touchedFields.password && <ValidationIcon><FiCheck color="#08AA83"/></ValidationIcon>}
                     {errors.password && <Error>{errors.password.message}</Error>}
+                    {!errors.password && touchedFields.password && <SuccessMessage>Password is secure</SuccessMessage>}
                 </InputContainer>
                 <ButtonEye type="button" onClick={() => setVisibility(!visibility)}>
                     {visibility ? (
