@@ -15,9 +15,9 @@ export const BurgerMenu=({ onClose })=>{
                 <use xlinkHref={sprite + '#icon-x'}/>
             </CloseIcon> 
 
-            <Nav/>
+            <Nav onClose={onClose}/>
  
-            <AuthNav/>   
+            <AuthNav onClose={onClose}/>   
          
         </BurgerMenuContainer>
 

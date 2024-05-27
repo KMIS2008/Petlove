@@ -4,8 +4,11 @@ export const Container = styled.div`
 padding:0 ${p=>p.theme.spacing(4)};
 
 @media (min-width: 768px) {
+margin: 0 auto;
 display: flex;
 flex-direction: column;
+justify-content: center;
+width: 424px;
 }
 `
 export const Text = styled.p`

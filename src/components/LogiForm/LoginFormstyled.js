@@ -19,11 +19,6 @@ export const InputContainer = styled.div.withConfig({ shouldForwardProp })`
   border: ${props => props.$isError ? '1px solid red' : '1px solid #26262626'};
 `;
 
-// export const InputContainer = styled.div`
-//   position: relative;
-//   width: 100%;
-//   margin-bottom: 20px;
-// `;
 
 export const Input = styled.input.attrs({ type: 'text' })`
   margin: 0 auto;
@@ -78,6 +73,10 @@ export const Button = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   border: none;
+
+  @media (min-width: 768px) {
+    margin-top: 50px;
+  }
 `;
 
 export const ValidationIcon = styled.div`
@@ -99,20 +98,3 @@ export const SuccessMessage = styled.p`
 `;
 
 
-   /* margin-top: 10px;
-   background-color: ${p=>p.theme.colors.darkblue};
-   border: 3px solid ${p=>p.theme.colors.gray};
-   border-radius: 5px;
-   color: ${p=>p.theme.colors.rose};
-   flex-grow: 1;
-   font-family: SFProText-Regular, Helvetica, Arial, sans-serif;
-   font-size: 15px;
-   height: 36px;
-   line-height: 20px;
-   min-width: 180px; 
-   padding: 0 15px; */
-   /* cursor: pointer; */
-
- /* &:hover {
-  background-color: ${p=>p.theme.colors.gray};
-  cursor: pointer;} */
