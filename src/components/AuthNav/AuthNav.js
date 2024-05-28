@@ -2,17 +2,21 @@ import { ContainerButton, ButtonLogin,ButtonRegistration } from "./AuthNavstyled
 import { useNavigate } from 'react-router-dom';
 
 
-export const AuthNav=({$isHome, onClose})=>{
+export const AuthNav=({$isHome, onClose, isOpen})=>{
     const navigator = useNavigate(); 
 
     const handleLoginClick = () => {
         navigator('login');
-        onClose();
+        if (isOpen) {
+            onClose();
+        }
     };
 
     const handleRegisterClick = () => {
         navigator('register');
-        onClose();
+        if (isOpen) {
+            onClose();
+        }
     };
 
     return (

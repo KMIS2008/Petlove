@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const ContainerLogin = styled.div`
+
+@media (min-width: 1280px) {
+display: flex;
+gap:116px
+}
+`
+
 export const Container = styled.div`
 padding:0 ${p=>p.theme.spacing(4)};
 

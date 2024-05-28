@@ -3,24 +3,30 @@ import {Button, Container} from './Navstyled';
 import { useLocation } from 'react-router-dom';
 
 
-export const Nav=({onClose})=>{
+export const Nav=({onClose, isOpen})=>{
     const navigator = useNavigate(); 
     const location = useLocation();
     const isHome = location.pathname === '/home';
 
     const handleNewsClick = () => {
-        navigator('news');
-        onClose();
+        navigator('news');     
+        if (isOpen) {
+            onClose();
+        }
     };
 
     const handdleNoticesClick=()=>{
-        navigator('notices');
-        onClose();
+        navigator('notices');     
+        if (isOpen) {
+            onClose();
+        }
     }
 
     const handleFriendsClick=()=>{
         navigator('friends');
-        onClose();
+        if (isOpen) {
+            onClose();
+        }
     }
 
     return(

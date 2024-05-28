@@ -1,9 +1,9 @@
 import {TitleLogin} from './title.styled';
 
-export const Title =()=>{
+export const Title =({name})=>{
     return(
       
-        <TitleLogin>Log in</TitleLogin>
+        <TitleLogin>{name}</TitleLogin>
     
     )
 }

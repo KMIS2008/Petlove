@@ -11,7 +11,7 @@ const setAuthHeader = token => {
     axios.defaults.headers.common.Authorization = '';
   };
 
-export const register = createAsyncThunk(
+export const registr = createAsyncThunk(
     'auth/register',
     async (credentials, thunkAPI) => {
       try {

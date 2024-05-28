@@ -14,13 +14,30 @@ letter-spacing: -0.03em;
 text-align: lcenter;
 
 border-radius: 30px;
-border: 1px solid ${props => (props.$isHome ? '#262626' : '#FFFFFF')}; 
-color: ${props => (props.$isHome ? '#262626' : '#FFFFFF')}; 
+
+
+
+border: 1px solid ${props => (props.$isHome ? '#FFFFFF' : '#262626')}; 
+color: ${props => (props.$isHome ? '#FFFFFF' : '#262626')}; 
+
 cursor: pointer;
+transition: all 0.3s ease;
 
 &:hover{
     border: 1px solid ${p=>p.theme.colors.yellow};
 }
+/* 
+
+background-color: ${({ $isHome }) => ($isHome ? 'yellow' : 'white')};
+  border: 2px solid ${({ $isHome }) => ($isHome ? 'white' : 'black')};
+  color: ${({ $isHome }) => ($isHome ? 'black' : 'black')};
+  
+
+  &:hover {
+    background-color: ${({ $isHome }) => ($isHome ? 'white' : 'yellow')};
+    color: ${({ $isHome }) => ($isHome ? 'black' : 'black')};
+    border: 2px solid ${({ $isHome }) => ($isHome ? 'black' : 'white')}; */
+
 `
 
 
