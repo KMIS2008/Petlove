@@ -34,6 +34,11 @@ export const Input = styled.input.attrs()`
   &::placeholder {
     color: rgba(38, 38, 38, 0.5);
   }
+
+
+  &:hover {
+    border: 1px solid ${p => p.theme.colors.yellow};
+  }
 `;
 
 export const ButtonEye = styled.button`
