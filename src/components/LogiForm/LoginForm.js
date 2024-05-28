@@ -27,7 +27,6 @@ export const LoginForm = () => {
 
     const dispatch = useDispatch();
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    const [visibility, setVisibility] = useState(false);
     const [error, setError] = useState('');
 
     const onSubmit = async (data, e) => {
@@ -84,13 +83,14 @@ export const LoginForm = () => {
                     {errors.password && <Error>{errors.password.message}</Error>}
                     {!errors.password && touchedFields.password && <SuccessMessage>Password is secure</SuccessMessage>}
                 </InputContainer>
-                <ButtonEye type="button" onClick={() => setVisibility(!visibility)}>
-                    {visibility ? (
-                        <FiEye stroke="#f6b83d" onClick={handlePassword} />
+                <ButtonEye type="button" onClick={handlePassword}>
+                    {isPasswordVisible ? (
+                        <FiEye stroke="#f6b83d" />
                     ) : (
-                        <FiEyeOff stroke="#f6b83d" onClick={handlePassword} />
+                        <FiEyeOff stroke="#f6b83d" />
                     )}
                 </ButtonEye>
+
             </Container>
 
             <Button type="submit" disabled={isSubmitting}>Log In</Button>

@@ -1,6 +1,6 @@
 import { AuthNav } from "components/AuthNav/AuthNav";
 import { Logo } from "components/Logo/Logo";
-import { UserMenu } from "components/UserMenu/UserMenu";
+import { UserNav } from "../UserNav/UserNav";
 import { useAuth } from "redux/hook/useAuth";
 import { Header, ContainerNav, Svg } from "./AppBarstyled";
 import { useLocation } from 'react-router-dom';
@@ -50,12 +50,12 @@ export function AppBar(){
 
       <Header $isHome={isHome}>
             <Logo/>
-            {isLoggedIn && <UserMenu/>}
 
             {!isTablet && <Nav/>}
 
             <ContainerNav>
-              {!isMobile&&   <AuthNav $isHome={isHome}/>}
+              {!isMobile && isLoggedIn && <UserNav $isHome={isHome}/>}
+              {!isMobile && !isLoggedIn &&< AuthNav $isHome={isHome}/> }
 
               {isTablet && <Svg onClick={handleOpen}>
                 <use xlinkHref={sprite + (isHome ? '#icon-menu-01' : '#icon-menu-2')}/>

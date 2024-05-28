@@ -20,7 +20,7 @@ export const InputContainer = styled.div.withConfig({ shouldForwardProp })`
 `;
 
 
-export const Input = styled.input.attrs({ type: 'text' })`
+export const Input = styled.input.attrs()`
   margin: 0 auto;
   text-align: left;
   width: 100%;
