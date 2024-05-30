@@ -37,10 +37,10 @@ export const RegistrationForm = () => {
     const [error, setError] = useState('');
 
     const onSubmit = async (data, e) => {
-        const { name, email, password, confirm } = data;
+        const { name, email, password} = data;
         e.preventDefault();
         try {
-            await dispatch(registr({ name, email, password, confirm }));
+            await dispatch(registr({ name, email, password}));
 
             reset();
         } catch (error) {

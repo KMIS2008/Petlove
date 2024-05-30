@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import {newsReducer} from './newsSlice';
 import {filterReduser} from './filterSlice';
 import {contactReduser} from './contactSlice';
 import { authReducer } from "./auth/authSlice";
@@ -16,8 +17,6 @@ import {
 } from 'redux-persist';
 
 
-
-
 const authPersistConfig = {
   key: 'auth',
   storage,
@@ -27,6 +26,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    news: newsReducer,
     contact: contactReduser,
     filter: filterReduser,
   },
@@ -36,6 +36,7 @@ export const store = configureStore({
     serializableCheck: {
       ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
+    immutableCheck: false,
   }),
 });
 
