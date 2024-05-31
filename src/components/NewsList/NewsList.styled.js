@@ -7,7 +7,7 @@ list-style: none;
 @media (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;
-    gap: ${p=>p.theme.spacing(3)};
+    gap: ${p=>p.theme.spacing(4)};
 }
 
 `

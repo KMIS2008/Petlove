@@ -2,23 +2,30 @@ import styled from "styled-components";
 import { NavLink } from 'react-router-dom';
 
 export const ContainerItem = styled.li`
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+
+width: 335px;
+margin: 0 auto;
+
+@media (min-width: 768) {
 flex: 0 1 calc(50% - 8px); 
 box-sizing: border-box;
-width: 335px;
-
-margin: 0 auto;
+width: 340px;
+}
 
 @media (min-width: 1280) {
     width: 361px;
     flex:0 1 calc(33.33% - 8px)
 }
-
 `
 
 export const Img = styled.img`
 display: block;
-width: 335px;
-height: 190px;
+width: 100%;
+/* width: 335px;
+height: 190px; */
 margin-bottom: ${p=>p.theme.spacing(4)};
 border-radius: 15px;
 
@@ -28,7 +35,6 @@ border-radius: 15px;
 }
 @media (min-width: 1280px) {
     width: 361px;
-    
 }
 `
 
