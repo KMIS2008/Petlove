@@ -6,15 +6,16 @@ import { useEffect, useState } from "react";
 import {fetchnews} from '../../redux/operations';
 import { useDispatch, useSelector } from "react-redux";
 import {selectorNews} from '../../redux/selects';
+import {Pagination} from '../../components/Pagination/Pagination';
 
 export default function News(){
     const dispatch = useDispatch();
-    // const [ispageNumber, setIsPageNumber] = useState(1);
+    const [ispageNumber, setIsPageNumber] = useState(1);
     const news = useSelector(selectorNews);
     
 
     useEffect(()=>{
-        dispatch(fetchnews(1))
+        dispatch(fetchnews(ispageNumber))
     })
 
 return (
@@ -24,7 +25,8 @@ return (
        <SearchField/> 
           
     </Container>
-    <NewsList news={news.results}/>   
+    <NewsList news={news.results}/>  
+    <Pagination/> 
 </div>
 )
 }

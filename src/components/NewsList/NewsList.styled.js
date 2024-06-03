@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const List = styled.ul`
 list-style: none;
 
-
 @media (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;
@@ -11,8 +10,6 @@ list-style: none;
     flex: 0 1 calc(50% - 8px); 
 box-sizing: border-box;
 }
-
-
 
 @media (min-width: 1280) {
 
