@@ -11,7 +11,6 @@ gap: 6px;
 
 export const Button = styled.button`
 display: block;
-margin: 0 auto;
 width: 40px;
 height: 40px;
 border-radius: 50%;
@@ -35,7 +34,6 @@ color: #262626;
 `
 export const ButtonNext = styled.button`
 display: block;
-margin: 0 auto;
 width: 40px;
 height: 40px;
 border-radius: 50%;

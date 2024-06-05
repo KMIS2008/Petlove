@@ -4,6 +4,7 @@ import { createSlice} from '@reduxjs/toolkit';
 
 const allNews ={
     news:[],
+    totalPages: null,
     isLoading: false,
     error: false, 
 }
@@ -15,6 +16,7 @@ const handlFulfilled = (state, action)=>{
     state.news = action.payload;
     state.isLoading = false;
     state.error = null;
+    state.totalPages = action.payload.totalPages;
  }
 
 const handlReject =(state, action)=>{

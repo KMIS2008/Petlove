@@ -12,21 +12,25 @@ export default function News(){
     const dispatch = useDispatch();
     const [ispageNumber, setIsPageNumber] = useState(1);
     const news = useSelector(selectorNews);
-    
+
+    const handleChangeNewPage=(number)=>{
+        setIsPageNumber(number)
+    }
 
     useEffect(()=>{
         dispatch(fetchnews(ispageNumber))
-    })
+     
+    },[dispatch, ispageNumber])
+
 
 return (
 <div>
     <Container>
        <Title name={'News'}/>
        <SearchField/> 
-          
     </Container>
     <NewsList news={news.results}/>  
-    <Pagination/> 
+    <Pagination handleChangeNewPage={handleChangeNewPage} currentPage={ispageNumber}/> 
 </div>
 )
 }

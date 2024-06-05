@@ -6,7 +6,7 @@ const NEWS_URL= '/news';
 export const fetchnews = createAsyncThunk('news', async(pageNumber, thunkAPI)=>{
     try {
         // const response = await axios.get('/news');
-        const response = await axios.get(`${NEWS_URL}?page=${pageNumber}&per_page= 6`);
+        const response = await axios.get(`${NEWS_URL}?page=${pageNumber}&limit=6`);
         return response.data;
         
     } catch (e){
