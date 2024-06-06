@@ -1,4 +1,4 @@
-import {fetchnews} from './operations';
+import {fetchnews, fetchNewsByKeyword} from './operations';
 import { createSlice} from '@reduxjs/toolkit';
 
 
@@ -13,7 +13,7 @@ const handlPending = (state)=> {
     state.isLoading = true}
 
 const handlFulfilled = (state, action)=>{
-    state.news = action.payload;
+    state.news = action.payload.results;
     state.isLoading = false;
     state.error = null;
     state.totalPages = action.payload.totalPages;
@@ -33,6 +33,9 @@ const newsSlice = createSlice({
         builder.addCase(fetchnews.pending, handlPending)
         .addCase(fetchnews.fulfilled, handlFulfilled)
         .addCase(fetchnews.rejected, handlReject)
+        .addCase(fetchNewsByKeyword.fulfilled, handlFulfilled)
+        .addCase(fetchNewsByKeyword.pending, handlPending)
+        .addCase(fetchNewsByKeyword.rejected, handlReject)
        }
 })
 

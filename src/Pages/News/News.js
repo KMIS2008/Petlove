@@ -13,24 +13,33 @@ export default function News(){
     const [ispageNumber, setIsPageNumber] = useState(1);
     const news = useSelector(selectorNews);
 
+    // const [searchKeyword, setSearchKeyword] = useState('');
+
     const handleChangeNewPage=(number)=>{
-        setIsPageNumber(number)
+        setIsPageNumber(number);
+        // dispatch(fetchnews({ pageNumber: number, keyword: searchKeyword }));
     }
 
     useEffect(()=>{
-        dispatch(fetchnews(ispageNumber))
+        dispatch(fetchnews( ispageNumber))
      
     },[dispatch, ispageNumber])
+
+    // const handleSearch = (keyword) => {
+    //     setSearchKeyword(keyword);
+    //     setIsPageNumber(1); 
+    //     dispatch(fetchnews({ pageNumber: 1, keyword }));
+    // };
 
 
 return (
 <div>
     <Container>
        <Title name={'News'}/>
-       <SearchField/> 
+       <SearchField pageNumber={ispageNumber} setpageNumber={setIsPageNumber}/> 
     </Container>
-    <NewsList news={news.results}/>  
-    <Pagination handleChangeNewPage={handleChangeNewPage} currentPage={ispageNumber}/> 
+    <NewsList news={news}/>  
+    <Pagination handleChangeNewPage={handleChangeNewPage} currentPage={ispageNumber} /> 
 </div>
 )
 }

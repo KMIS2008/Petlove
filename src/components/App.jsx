@@ -16,6 +16,7 @@ const Home = lazy(()=> import('Pages/Home/Home'));
 const Reistr = lazy(()=> import('Pages/Registr/Registr'));
 const Login = lazy(()=> import ('Pages/Login/Login'));
 const News = lazy(()=> import ('Pages/News/News'));
+const Notices = lazy(()=> import ('Pages/Notices/Notices'));
 const ContactsPage = lazy(()=> import ('Pages/ContactsPage/ContactsPage'))
 
 
@@ -43,6 +44,7 @@ const ContactsPage = lazy(()=> import ('Pages/ContactsPage/ContactsPage'))
               <Route path = "login" element ={<RestrictedRoute redirectTo="/contacts" component={<Login/>} />}/>
               <Route path = "contacts" element ={ <PrivateRoute redirectTo="/login" component={<ContactsPage />} />}/>
               <Route path="news" element={<News/>}/>
+              <Route path="notices" element={<Notices/>}/>
               <Route path="*" element={<Home/>} />
             </Route>
           </Routes>

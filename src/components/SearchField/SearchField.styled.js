@@ -33,7 +33,7 @@ color: rgba(38, 38, 38, 0.5);
   }
 `
 
-export const Container = styled.div`
+export const Container = styled.form`
 position: relative;
 `
 
