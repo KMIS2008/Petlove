@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import sprite from '../../images/sprite.svg';
 import {Container, Input, Svg, SvgReset} from './SearchField.styled';
-import {fetchNewsByKeyword} from '../../redux/operations';
 import { useDispatch } from 'react-redux';
 
-export const SearchField =({pageNumber, setpageNumber})=>{
+export const SearchField =({fetch})=>{
   const dispatch =  useDispatch();
     const [searchValue, setSearchValue] = useState('');
 
@@ -14,21 +13,19 @@ export const SearchField =({pageNumber, setpageNumber})=>{
 
     const handleResetClick = () => {
         setSearchValue('');
-    
     };
 
     const handleSubmit = (evt) => {
       evt.preventDefault();
-      setpageNumber(1);
-      dispatch(fetchNewsByKeyword({ keyword: searchValue, pageNumber: 1 }));
-      setSearchValue('');
+      dispatch(fetch({ keyword: searchValue, pageNumber: 1}));
+      handleResetClick();
   };
 
-  useEffect(() => {
-      if (searchValue) {
-          dispatch(fetchNewsByKeyword({ keyword: searchValue, pageNumber }));
-      }
-  }, [dispatch, searchValue, pageNumber]);
+//   useEffect(() => {
+//       if (searchValue) {
+//           dispatch(fetchNewsByKeyword({ keyword: searchValue, pageNumber:1 }));
+//       }
+//   }, [dispatch, searchValue]);
 
 
     return(
@@ -45,10 +42,10 @@ export const SearchField =({pageNumber, setpageNumber})=>{
               </Svg  >           
            </button>
 
-            <SvgReset onClick = {handleResetClick}>
+           {searchValue  &&   <SvgReset onClick = {handleResetClick}>
                 <use xlinkHref={sprite + '#icon-x'}/>
-            </SvgReset> 
-        
+            </SvgReset> }
+
         </Container>
     )
 }

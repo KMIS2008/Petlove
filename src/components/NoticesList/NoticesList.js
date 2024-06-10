@@ -1,13 +1,16 @@
-import {NoticesItem} from '../NewsItem/NewsItem';
+import {NoticesItem} from '../NoticesItem/NoticesItem';
+import {Container} from './NoticeList.styled';
 
 
 export const NoticesList=({notices})=>{
+
     return (
-        <ul>
+        <Container>
+
             {notices?.map(iterm=>( 
             <NoticesItem key={iterm._id} notice={iterm}/>
         ))}
         
-        </ul>
+        </Container>
     )
 }

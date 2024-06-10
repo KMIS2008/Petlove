@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const List = styled.ul`
+
+export const Container = styled.ul`
+
 list-style: none;
 
 display: grid;
@@ -14,5 +16,5 @@ display: grid;
     @media (min-width: 1280px) {
         grid-template-columns: 1fr 1fr 1fr;  /* 3 изображения на строку */
     }
-
 `
+

@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import {newsReducer} from './newsSlice';
 import {filterReduser} from './filterSlice';
 import {contactReduser} from './contactSlice';
+import {noticesReducer} from './noticesSlice';
 import { authReducer } from "./auth/authSlice";
 import storage from 'redux-persist/lib/storage';
 
@@ -27,6 +28,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     news: newsReducer,
+    notices: noticesReducer,
     contact: contactReduser,
     filter: filterReduser,
   },

@@ -6,6 +6,8 @@ import { createSelector } from "@reduxjs/toolkit";
   export const selectError=state=>state.contact.error;
   export const selectorNews=state=>state.news.news;
   export const selectorTotalPages=state=>state.news.totalPages;
+  export const selectorTotPages=state=>state.notices.totalPages;
+  export const selectorNotices=state=>state.notices.notices;
 
 
   export const selectVisibleContacts = createSelector(

@@ -13,6 +13,7 @@ margin: 0 auto;
 flex: 0 1 calc(50% - 8px); 
 box-sizing: border-box;
 width: 340px;
+
 }
 
 @media (min-width: 1280) {
@@ -24,8 +25,6 @@ width: 340px;
 export const Img = styled.img`
 display: block;
 width: 100%;
-/* width: 335px;
-height: 190px; */
 margin-bottom: ${p=>p.theme.spacing(4)};
 border-radius: 15px;
 

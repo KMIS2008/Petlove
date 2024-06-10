@@ -1,42 +1,48 @@
 import sprite from '../../images/sprite.svg';
-import {Button} from './NoticeItrm.styled';
+import {Button,Title, Img, ContainerList, ContainerTitle, ContainerPopulate,
+        Rating, TitleTable, ContainerButton, ContainerItem
+} from './NoticeItrm.styled';
  
 export const NoticesItem=({notice})=>{
-    const[imgURL,title, popularity, comment, name, birthday, species, category]=notice;
+
+    const {imgURL ,title, popularity, comment, name, birthday, species, category}=notice;
+
     return(
-        <li>
-           <img src={imgURL} alt={title}/>
-           <div>
-              <h3>{title}</h3>
-              <div>
-                 <svg>
+        <ContainerItem>
+            <Img src= {imgURL} alt={title}/>
+           <ContainerTitle>
+              <Title>{title}</Title>
+              <ContainerPopulate>
+                 <svg width={16} height={16}>
                     <use xlinkHref={sprite + '#icon-star'} />
                  </svg>      
-                 <p>{popularity}</p>          
-              </div>
-            <ul>
+                 <Rating>{popularity}</Rating>          
+              </ContainerPopulate>
+            </ContainerTitle>  
+
+            <ContainerList>
+
                 <li>
-                    <p>Name</p>
+                    <TitleTable>Name</TitleTable>
                     <p>{name}</p>
                 </li>
                 <li>
-                    <p>Birthday</p>
+                    <TitleTable>Birthday</TitleTable>
                     <p>{birthday}</p>
                 </li>
                 <li>
-                    <p>Species</p>
+                    <TitleTable>Species</TitleTable>
                     <p>{species}</p>
                 </li>
                 <li>
-                    <p>Category</p>
+                    <TitleTable>Category</TitleTable>
                     <p>{category}</p>
                 </li>
                  
-            </ul>
+            </ContainerList>
             
-           </div>
            <p>{comment}</p>
-           <div>
+           <ContainerButton>
                <Button type='button'>Learn more</Button>
                <button>
                    <svg width={18} height={18}>
@@ -44,8 +50,8 @@ export const NoticesItem=({notice})=>{
                    </svg>                
                </button>
 
-           </div>
+           </ContainerButton>
         
-        </li>
+        </ContainerItem>
     )
 }
