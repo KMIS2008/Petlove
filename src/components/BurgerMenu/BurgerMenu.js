@@ -27,7 +27,7 @@ export const BurgerMenu=({ onClose })=>{
             
             {isLoggedIn && <UserNav isOpen={true} onClose= {onClose}/>}
  
-            {!isLoggedIn && <AuthNav isOpen={true} onClose= {onClose}/> } 
+            {!isLoggedIn && <AuthNav grid={true} isOpen={true} onClose= {onClose}/> } 
          
         </BurgerMenuContainer>
 

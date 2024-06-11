@@ -2,7 +2,7 @@ import { ContainerButton, ButtonLogin,ButtonRegistration } from "./AuthNavstyled
 import { useNavigate } from 'react-router-dom';
 
 
-export const AuthNav=({$isHome, onClose, isOpen})=>{
+export const AuthNav=({$isHome, onClose, isOpen, grid})=>{
     const navigator = useNavigate(); 
 
     const handleLoginClick = () => {
@@ -22,7 +22,7 @@ export const AuthNav=({$isHome, onClose, isOpen})=>{
     return (
          <div>
   
-             <ContainerButton >
+             <ContainerButton $grid={grid}>
                  <ButtonLogin $isHome={$isHome} type='button' 
                      onClick={handleLoginClick}>Login</ButtonLogin>   
 

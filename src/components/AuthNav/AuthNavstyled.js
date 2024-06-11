@@ -1,8 +1,16 @@
 import styled from "styled-components";
 
 export const ContainerButton = styled.div`
+  display: ${({ $grid }) => ($grid ? 'grid' : 'flex')};
+  grid-template-columns: ${({ $grid }) => ($grid ? '1fr' : 'none')};
+  gap: ${({ $grid }) => ($grid ? '16px' : '0')};
+  justify-items: center;
+  flex-direction: ${({ $grid }) => ($grid ? 'initial' : 'row')};
+  
 
-
+  @media (min-width: 768px) {
+    display: flex
+  }
 `
 
 export const ButtonLogin = styled.button`

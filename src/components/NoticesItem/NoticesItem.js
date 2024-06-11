@@ -3,18 +3,22 @@ import {Button,Title, Img, ContainerList, ContainerTitle, ContainerPopulate,
         Rating, TitleTable, Comment, ContainerButton, ContainerItem, ButtonSVG
 } from './NoticeItrm.styled';
 import {ModalAttention} from '../ModalAttention/ModalAttention';
+import {ModalNotice} from '../ModalNotice/ModalNotice';
 import { useState } from 'react';
  
 export const NoticesItem=({notice})=>{
 
-    const {imgURL ,title, popularity, comment, name, birthday, species, category}=notice;
+    const {imgURL ,title, popularity, comment, name, birthday, species, category, sex}=notice;
     const [isOpenModalAttention, setIsOpenModalAttention ] =useState(false);
+    const [isOpenModalNotice, setIsOpenModalNotice ] =useState(false);
 
     const openModalAttention=()=>{
         setIsOpenModalAttention(true);
     }
 
-
+    const openModalNotice=()=>{
+        setIsOpenModalNotice(true);
+    }
 
     return(
         <ContainerItem>
@@ -40,6 +44,10 @@ export const NoticesItem=({notice})=>{
                     <p>{birthday}</p>
                 </li>
                 <li>
+                    <TitleTable>Sex</TitleTable>
+                    <p>{sex}</p>
+                </li>
+                <li>
                     <TitleTable>Species</TitleTable>
                     <p>{species}</p>
                 </li>
@@ -54,7 +62,8 @@ export const NoticesItem=({notice})=>{
            <ContainerButton>
             
                <Button type='button' onClick={openModalAttention}>Learn more</Button>
-               <ButtonSVG>
+               
+               <ButtonSVG onClick={openModalNotice}>
                    <svg width={18} height={18}>
                       <use xlinkHref={sprite + '#icon-heart'} />
                    </svg>                
@@ -63,6 +72,7 @@ export const NoticesItem=({notice})=>{
            </ContainerButton>
 
            <ModalAttention isOpenModalAttention={isOpenModalAttention} setIsOpenModalAttention={setIsOpenModalAttention}/>
+           <ModalNotice notice={notice} isOpenModalNotice={isOpenModalNotice} setIsOpenModalNotice={setIsOpenModalNotice}/>
         
         </ContainerItem>
     )
