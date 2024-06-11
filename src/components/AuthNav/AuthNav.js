@@ -6,14 +6,14 @@ export const AuthNav=({$isHome, onClose, isOpen})=>{
     const navigator = useNavigate(); 
 
     const handleLoginClick = () => {
-        navigator('login');
+        navigator('/login');
         if (isOpen) {
             onClose();
         }
     };
 
     const handleRegisterClick = () => {
-        navigator('register');
+        navigator('/register');
         if (isOpen) {
             onClose();
         }

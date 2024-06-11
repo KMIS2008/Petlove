@@ -2,10 +2,19 @@ import sprite from '../../images/sprite.svg';
 import {Button,Title, Img, ContainerList, ContainerTitle, ContainerPopulate,
         Rating, TitleTable, Comment, ContainerButton, ContainerItem, ButtonSVG
 } from './NoticeItrm.styled';
+import {ModalAttention} from '../ModalAttention/ModalAttention';
+import { useState } from 'react';
  
 export const NoticesItem=({notice})=>{
 
     const {imgURL ,title, popularity, comment, name, birthday, species, category}=notice;
+    const [isOpenModalAttention, setIsOpenModalAttention ] =useState(false);
+
+    const openModalAttention=()=>{
+        setIsOpenModalAttention(true);
+    }
+
+
 
     return(
         <ContainerItem>
@@ -44,7 +53,7 @@ export const NoticesItem=({notice})=>{
            <Comment>{comment}</Comment>
            <ContainerButton>
             
-               <Button type='button'>Learn more</Button>
+               <Button type='button' onClick={openModalAttention}>Learn more</Button>
                <ButtonSVG>
                    <svg width={18} height={18}>
                       <use xlinkHref={sprite + '#icon-heart'} />
@@ -52,6 +61,8 @@ export const NoticesItem=({notice})=>{
                </ButtonSVG>
 
            </ContainerButton>
+
+           <ModalAttention isOpenModalAttention={isOpenModalAttention} setIsOpenModalAttention={setIsOpenModalAttention}/>
         
         </ContainerItem>
     )
