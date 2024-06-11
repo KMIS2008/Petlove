@@ -72,6 +72,7 @@ color: #262626;
 `
 
 export const Comment= styled.p`
+margin-bottom: 16px;
 font-family: Manrope;
 font-size: 14px;
 font-weight: 500;
@@ -101,5 +102,21 @@ font-weight: 500;
 line-height: 1,29px;
 letter-spacing: -0.03em;
 text-align: center;
-background: ${p=>p.theme.colors.white};
+color: ${p=>p.theme.colors.white};
 `
+
+export const ButtonSVG = styled.button`
+width: 46ppx;
+height: 46px;
+padding: 14px;
+gap: 10px;
+border-radius: 30px;
+background-color: #FFF4DF;
+
+&:hover{
+    background-color: #FBE7C1;
+}
+
+`
+
+

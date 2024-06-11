@@ -1,6 +1,6 @@
 import sprite from '../../images/sprite.svg';
 import {Button,Title, Img, ContainerList, ContainerTitle, ContainerPopulate,
-        Rating, TitleTable, ContainerButton, ContainerItem
+        Rating, TitleTable, Comment, ContainerButton, ContainerItem, ButtonSVG
 } from './NoticeItrm.styled';
  
 export const NoticesItem=({notice})=>{
@@ -41,14 +41,15 @@ export const NoticesItem=({notice})=>{
                  
             </ContainerList>
             
-           <p>{comment}</p>
+           <Comment>{comment}</Comment>
            <ContainerButton>
+            
                <Button type='button'>Learn more</Button>
-               <button>
+               <ButtonSVG>
                    <svg width={18} height={18}>
                       <use xlinkHref={sprite + '#icon-heart'} />
                    </svg>                
-               </button>
+               </ButtonSVG>
 
            </ContainerButton>
         

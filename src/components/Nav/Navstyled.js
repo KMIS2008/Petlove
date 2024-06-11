@@ -15,36 +15,26 @@ text-align: lcenter;
 
 border-radius: 30px;
 
+/* border: 1px solid ${props => (props.$isStyle ? '#262626' : '#FFFFFF')}; 
+color: ${props => (props.$isStyle ? '#262626' : '#FFFFFF')};  */
 
+/* border: 1px solid '#FFFFFF'; 
+color: '#FFFFFF';  */
 
 border: 1px solid ${props => (props.$isHome ? '#FFFFFF' : '#262626')}; 
 color: ${props => (props.$isHome ? '#FFFFFF' : '#262626')}; 
 
-cursor: pointer;
 transition: all 0.3s ease;
 
 &:hover{
     border: 1px solid ${p=>p.theme.colors.yellow};
 }
-/* 
-
-background-color: ${({ $isHome }) => ($isHome ? 'yellow' : 'white')};
-  border: 2px solid ${({ $isHome }) => ($isHome ? 'white' : 'black')};
-  color: ${({ $isHome }) => ($isHome ? 'black' : 'black')};
-  
-
-  &:hover {
-    background-color: ${({ $isHome }) => ($isHome ? 'white' : 'yellow')};
-    color: ${({ $isHome }) => ($isHome ? 'black' : 'black')};
-    border: 2px solid ${({ $isHome }) => ($isHome ? 'black' : 'white')}; */
-
 `
 
-
 export const Container = styled.div`
-/* @media (min-width: 768px) {
 
-    display: block;
-   
-  } */
+display: ${({ $grid }) => ($grid ? 'grid' : 'row')};
+  grid-template-columns: ${({ $grid }) => ($grid ? ' 1fr' : 'none')};
+  gap: ${({ $grid }) => ($grid ? '16px' : '0')};
+
 `

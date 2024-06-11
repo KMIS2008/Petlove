@@ -1,11 +1,11 @@
 import { Title } from "components/Title/Title";
-import { SearchField } from "components/SearchField/SearchField";
 import { Pagination } from "components/Pagination/Pagination";
 import {fetchnotices, fetchnoticesByKeyword} from '../../redux/operations';
 import {NoticesList} from '../../components/NoticesList/NoticesList';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {selectorNotices} from '../../redux/selects';
+import {NoticesFilters} from '../../components/NoticesFilters/NoticesFilters';
 
 export default function Notices(){
     const dispatch=useDispatch();
@@ -22,7 +22,7 @@ export default function Notices(){
     return(
         <>
         <Title name="Find your favorite pet"/>
-        <SearchField fetch={fetchnoticesByKeyword}/>
+        <NoticesFilters fetch={fetchnoticesByKeyword}/>
         <NoticesList notices={notices}/>
         <Pagination handleChangeNewPage={handleChangeNewPage} currentPage={isPageNumber}/>
 

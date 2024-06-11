@@ -14,12 +14,17 @@ export const BurgerMenu=({ onClose })=>{
 
     return(
         <BurgerMenuContainer $isHome={isHome}>
-            <CloseIcon onClick={onClose}>
+            {isHome?  
+            (  <CloseIcon onClick={onClose}>
                 <use xlinkHref={sprite + '#icon-x'}/>
-            </CloseIcon> 
+            </CloseIcon> )
+            :
+            (<CloseIcon onClick={onClose}>
+                <use xlinkHref={sprite + '#icon-x-1'}/>
+            </CloseIcon> )}
 
-            <Nav isOpen={true} onClose= {onClose}/>
-
+            <Nav  grid={true}  isOpen={true} onClose= {onClose} />
+            
             {isLoggedIn && <UserNav isOpen={true} onClose= {onClose}/>}
  
             {!isLoggedIn && <AuthNav isOpen={true} onClose= {onClose}/> } 

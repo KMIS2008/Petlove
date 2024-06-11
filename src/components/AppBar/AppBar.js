@@ -51,7 +51,7 @@ export function AppBar(){
       <Header $isHome={isHome}>
             <Logo/>
 
-            {!isTablet && <Nav/>}
+            {!isTablet && <Nav isHome={isHome}/>}
 
             <ContainerNav>
               {!isMobile && isLoggedIn && <UserNav $isHome={isHome}/>}

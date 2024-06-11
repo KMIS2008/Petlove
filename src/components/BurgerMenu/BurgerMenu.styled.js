@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const BurgerMenuContainer = styled.div`
+
   position: fixed;
   margin: 0 auto;
   padding: 236px 0 28px 0;
@@ -28,6 +29,7 @@ export const BurgerMenuContainer = styled.div`
 }
 `;
 
+
 export const CloseIcon = styled.svg`
   position: absolute;
   top: 28px;
@@ -35,4 +37,8 @@ export const CloseIcon = styled.svg`
   width: 32px;
   height: 32px;
   cursor: pointer;
+`;
+
+export const ContainerNav = styled.div`
+margin: 0 auto;
 `;

@@ -14,5 +14,4 @@ display: grid;
     @media (min-width: 1280px) {
         grid-template-columns: 1fr 1fr 1fr;  /* 3 изображения на строку */
     }
-
 `
