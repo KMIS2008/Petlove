@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Petlove/static/css/main.cd2e038f.css",
-    "main.js": "/Petlove/static/js/main.d2d0900f.js",
+    "main.js": "/Petlove/static/js/main.7c499db3.js",
     "static/js/208.7c6e4ba5.chunk.js": "/Petlove/static/js/208.7c6e4ba5.chunk.js",
     "static/js/754.8dc3b771.chunk.js": "/Petlove/static/js/754.8dc3b771.chunk.js",
     "static/js/510.dc4d8b53.chunk.js": "/Petlove/static/js/510.dc4d8b53.chunk.js",
     "static/js/935.3eedc0c7.chunk.js": "/Petlove/static/js/935.3eedc0c7.chunk.js",
     "static/js/469.40219ec1.chunk.js": "/Petlove/static/js/469.40219ec1.chunk.js",
-    "static/js/447.e922f29f.chunk.js": "/Petlove/static/js/447.e922f29f.chunk.js",
+    "static/js/447.2f598f27.chunk.js": "/Petlove/static/js/447.2f598f27.chunk.js",
     "static/js/93.c3926656.chunk.js": "/Petlove/static/js/93.c3926656.chunk.js",
     "static/js/727.a922aeb2.chunk.js": "/Petlove/static/js/727.a922aeb2.chunk.js",
     "static/js/588.53f414a3.chunk.js": "/Petlove/static/js/588.53f414a3.chunk.js",
@@ -51,13 +51,13 @@
     "static/media/CatTable1.jpg": "/Petlove/static/media/CatTable1.3a5427497e9da43b8395.jpg",
     "index.html": "/Petlove/index.html",
     "main.cd2e038f.css.map": "/Petlove/static/css/main.cd2e038f.css.map",
-    "main.d2d0900f.js.map": "/Petlove/static/js/main.d2d0900f.js.map",
+    "main.7c499db3.js.map": "/Petlove/static/js/main.7c499db3.js.map",
     "208.7c6e4ba5.chunk.js.map": "/Petlove/static/js/208.7c6e4ba5.chunk.js.map",
     "754.8dc3b771.chunk.js.map": "/Petlove/static/js/754.8dc3b771.chunk.js.map",
     "510.dc4d8b53.chunk.js.map": "/Petlove/static/js/510.dc4d8b53.chunk.js.map",
     "935.3eedc0c7.chunk.js.map": "/Petlove/static/js/935.3eedc0c7.chunk.js.map",
     "469.40219ec1.chunk.js.map": "/Petlove/static/js/469.40219ec1.chunk.js.map",
-    "447.e922f29f.chunk.js.map": "/Petlove/static/js/447.e922f29f.chunk.js.map",
+    "447.2f598f27.chunk.js.map": "/Petlove/static/js/447.2f598f27.chunk.js.map",
     "93.c3926656.chunk.js.map": "/Petlove/static/js/93.c3926656.chunk.js.map",
     "727.a922aeb2.chunk.js.map": "/Petlove/static/js/727.a922aeb2.chunk.js.map",
     "588.53f414a3.chunk.js.map": "/Petlove/static/js/588.53f414a3.chunk.js.map",
@@ -67,6 +67,6 @@
   },
   "entrypoints": [
     "static/css/main.cd2e038f.css",
-    "static/js/main.d2d0900f.js"
+    "static/js/main.7c499db3.js"
   ]
 }
