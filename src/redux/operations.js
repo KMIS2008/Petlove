@@ -6,7 +6,6 @@ const Notices_URL='/notices';
 
 export const fetchnews = createAsyncThunk('news/allNews', async(pageNumber, thunkAPI)=>{
     try {
-        // const response = await axios.get('/news');
         const response = await axios.get(`${NEWS_URL}?page=${pageNumber}&limit=6`);
         return response.data;
         
@@ -41,6 +40,8 @@ export const fetchnoticesByKeyword = createAsyncThunk('notices/keyword', async({
         return thunkAPI.rejectWithValue(e.message)
     }
 })
+
+
 
 // axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 

@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+position: relative;
+@media (min-width: 768px) {
+    width: 230px;
+    
+  }
+`
 export const Input = styled.input`
 margin-bottom: ${p=>p.theme.spacing(3)};
 padding-left : ${p=>p.theme.spacing(3)};
@@ -31,10 +38,12 @@ color: rgba(38, 38, 38, 0.5);
     width: 230px;
     height: 48px;
   }
-`
 
-export const Container = styled.form`
-position: relative;
+  @media (min-width: 1280px) {
+   margin-bottom:0;
+  }
+
+  
 `
 
 export const Svg = styled.svg`
