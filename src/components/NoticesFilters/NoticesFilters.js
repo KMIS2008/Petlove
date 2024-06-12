@@ -1,5 +1,6 @@
-import {Container, ContainerSelect, CustomSelect, CustomSelectType,
-        Option, ContainerSvg, Svg, SvgReset} from './NoticesFilters.styled';
+import {Container,ContainerTabletSelect, ContainerSelect, CustomSelect, CustomSelectType,
+        Option, ContainerSvg, Svg, SvgReset, Straight,
+        RadioGroup, RadioButtonLabel, RadioButton} from './NoticesFilters.styled';
 import { SearchField } from "components/SearchField/SearchField";
 import Select from 'react-select';
 import { Formik, Form} from 'formik';
@@ -11,14 +12,13 @@ import sprite from '../../images/sprite.svg';
 axios.defaults.baseURL = "https://petlove.b.goit.study/api";
 
 
-// import Select from 'react-select';
-
 export const NoticesFilters=({fetch})=>{
      // const dispatch = useDispatch();
     const [iscategories, setCategories] = useState([]);
     const [isgenders, setGenders] = useState([]);
     const [ispetTypes, setPetTypes] = useState([]);
     const [islocations, setLocations] = useState([]);
+    const [selectedLocation, setSelectedLocation] = useState(null);
 
     // const getFilter = () => {
     //   return {
@@ -43,9 +43,10 @@ export const NoticesFilters=({fetch})=>{
   };
 
   const handleResetClick = () => {
-    setLocations('');
-};
+   
 
+    setSelectedLocation(null);
+};
          
       useEffect(() => {
         const fetchData = async () => {
@@ -102,7 +103,6 @@ export const NoticesFilters=({fetch})=>{
           color: state.isSelected ? '#fff' : '#26262699',
           backgroundColor: state.isSelected ? '#262626' : '#fff',
           '&:hover': {
-            // backgroundColor: '#f0f0f0',
             color: '#262626',
           },
         }),
@@ -158,7 +158,8 @@ export const NoticesFilters=({fetch})=>{
 {({ resetForm, setFieldValue }) => (
         <Form>
           <Container>
-    
+        
+            <ContainerTabletSelect>    
                 <SearchField name="search" fetch={fetch}/> 
              <ContainerSelect>
 
@@ -198,7 +199,10 @@ export const NoticesFilters=({fetch})=>{
                 styles={customStyles}
                 formatOptionLabel={formatOptionLabel}
                 options={locationOptions}
-                onChange={(option) => setFieldValue('location', option.value)}
+                onChange={(option) => {
+                  setSelectedLocation(option);
+                  setFieldValue('location', option.value);
+                }}
                   /> 
                   
           <button type='submit'>
@@ -207,42 +211,39 @@ export const NoticesFilters=({fetch})=>{
               </Svg  >           
            </button>
 
-           {islocations  &&   <SvgReset onClick = {handleResetClick}>
+           {selectedLocation   &&   <SvgReset onClick = {handleResetClick}>
                 <use xlinkHref={sprite + '#icon-x'}/>
             </SvgReset> }
 
             </ContainerSvg>
-    
+           </ContainerTabletSelect>   
+
+
+            <Straight></Straight>
+
+            <RadioGroup role="group" aria-labelledby="sort-group">
+               <RadioButton type="radio" name="sort" value="popularity" id="popularity" />
+                  <RadioButtonLabel htmlFor="popularity">Popular</RadioButtonLabel>
+
+               <RadioButton type="radio" name="sort" value="unpopularity" id="unpopularity" />
+                  <RadioButtonLabel htmlFor="unpopularity">Unpopular</RadioButtonLabel>
+
+                <RadioButton type="radio" name="sort" value="lowprice" id="lowprice" />
+                  <RadioButtonLabel htmlFor="lowprice">Cheap</RadioButtonLabel>
+
+                <RadioButton type="radio" name="sort" value="highprice" id="highprice" />
+                  <RadioButtonLabel htmlFor="highprice">Expensive</RadioButtonLabel>
+            </RadioGroup>
+
           </Container> 
           </Form>
       )}
         </Formik>
 )
 }
-// export const NoticesFilters=({fetch})=>{
-//    
-            
+      
 //             <SearchField fetch={fetch}/>
         
-//                     <SearchField setFieldValue={(value) => setFieldValue('search', value)} />
+//      <SearchField setFieldValue={(value) => setFieldValue('search', value)} />
                     
                     
-//                     <div role="group" aria-labelledby="sort-group">
-//                         <label>
-//                             <Field type="radio" name="sort" value="popularity" />
-//                             Popularity
-//                         </label>
-//                         <label>
-//                             <Field type="radio" name="sort" value="price" />
-//                             Price
-//                         </label>
-//                     </div>
-
-
-//                 </Container>
-//             </Form>
-//         )}
-//     </Formik>
-
-//     )
-// }

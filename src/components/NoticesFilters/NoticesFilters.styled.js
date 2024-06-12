@@ -6,7 +6,10 @@ margin-bottom: ${p=>p.theme.spacing(10)};
 padding: ${p=>p.theme.spacing(4)};
 border-radius: 30px;
 background-color: #FFF4DF;
+`
 
+
+export const ContainerTabletSelect = styled.div`
 @media (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;
@@ -17,13 +20,7 @@ background-color: #FFF4DF;
 
      @media (min-width: 1280px) {
       flex-wrap: nowrap;
-      /* flex-basis: calc(25% - 10px);  */
     } 
-`
-export const ContainerTabletSelect = styled.div`
-@media (min-width: 768px) {
-    display: flex;
-}
 `
 
 export const ContainerSelect = styled.div`
@@ -122,9 +119,6 @@ align-items: center;
   height: 48px;
   margin-top: 0;
 }
-
-
-
 `
 
 export const Svg = styled.svg`
@@ -148,3 +142,50 @@ height: 18px;
 cursor: pointer;
 fill: currentColor;
 `
+
+export const Straight = styled.div`
+margin-top: ${(p) => p.theme.spacing(2)};
+margin-bottom: ${(p) => p.theme.spacing(4)};
+width: 100%;
+border: 1px solid #2626261A;
+`
+
+export const RadioGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
+
+export const RadioButtonLabel = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: ${(p) => p.theme.colors.white};
+  cursor: pointer;
+
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1,29;
+  letter-spacing: -0.03em;
+  text-align: center;
+
+  color: #262626;
+
+  &:hover {
+    background-color: ${(p) => p.theme.colors.yellow};
+    color:${(p) => p.theme.colors.white};
+  }
+`;
+
+export const RadioButton = styled(Field)`
+  display: none;
+
+  &:checked + ${RadioButtonLabel} {
+    background-color: #262626;
+    color: white;
+  }
+`;
