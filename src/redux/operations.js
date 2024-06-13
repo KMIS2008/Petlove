@@ -32,9 +32,9 @@ export const fetchnotices = createAsyncThunk('notices', async(pageNumber, thunkA
     }
 })
 
-export const fetchnoticesByKeyword = createAsyncThunk('notices/keyword', async({keyword, pageNumber}, thunkAPI)=>{
+export const fetchnoticesByKeyword = createAsyncThunk('notices/keywordNotice', async({keyword, pageNumber}, thunkAPI)=>{
     try {
-        const response = await axios.get(`${Notices_URL}?keyword=${keyword}$page=${pageNumber}&limit=6`);
+        const response = await axios.get(`${Notices_URL}?keyword=${keyword}&page=${pageNumber}&limit=6`);
         return response.data;
     } catch (e){
         return thunkAPI.rejectWithValue(e.message)

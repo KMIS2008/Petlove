@@ -143,6 +143,17 @@ cursor: pointer;
 fill: currentColor;
 `
 
+export const Reset = styled.svg`
+position: absolute;
+top: 25%;
+right: 5px;
+
+width: 18px;
+height: 18px;
+cursor: pointer;
+fill: currentColor;
+`
+
 export const Straight = styled.div`
 margin-top: ${(p) => p.theme.spacing(2)};
 margin-bottom: ${(p) => p.theme.spacing(4)};
@@ -157,10 +168,11 @@ export const RadioGroup = styled.div`
 `;
 
 export const RadioButtonLabel = styled.label`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 10px 30px;
   border: none;
   border-radius: 30px;
   background-color: ${(p) => p.theme.colors.white};
@@ -171,7 +183,7 @@ export const RadioButtonLabel = styled.label`
   font-weight: 500;
   line-height: 1,29;
   letter-spacing: -0.03em;
-  text-align: center;
+  text-align: left;
 
   color: #262626;
 
@@ -182,10 +194,11 @@ export const RadioButtonLabel = styled.label`
 `;
 
 export const RadioButton = styled(Field)`
+ 
   display: none;
 
   &:checked + ${RadioButtonLabel} {
-    background-color: #262626;
-    color: white;
+    background-color: ${(p) => p.theme.colors.yellow};
+    color: ${(p) => p.theme.colors.white};
   }
 `;

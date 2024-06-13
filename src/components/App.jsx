@@ -17,7 +17,8 @@ const Reistr = lazy(()=> import('Pages/Registr/Registr'));
 const Login = lazy(()=> import ('Pages/Login/Login'));
 const News = lazy(()=> import ('Pages/News/News'));
 const Notices = lazy(()=> import ('Pages/Notices/Notices'));
-const ContactsPage = lazy(()=> import ('Pages/ContactsPage/ContactsPage'))
+const AddPet = lazy(()=> import ('Pages/AddPet/AddPet'));
+const ContactsPage = lazy(()=> import ('Pages/ContactsPage/ContactsPage'));
 
 
     export const App =()=> {
@@ -45,6 +46,7 @@ const ContactsPage = lazy(()=> import ('Pages/ContactsPage/ContactsPage'))
               <Route path = "contacts" element ={ <PrivateRoute redirectTo="/login" component={<ContactsPage />} />}/>
               <Route path="news" element={<News/>}/>
               <Route path="notices" element={<Notices/>}/>
+              <Route path="add-pet" element={<AddPet/>}/>
               <Route path="*" element={<Home/>} />
             </Route>
           </Routes>

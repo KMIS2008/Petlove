@@ -1,5 +1,5 @@
 import {Container,ContainerTabletSelect, ContainerSelect, CustomSelect, CustomSelectType,
-        Option, ContainerSvg, Svg, SvgReset, Straight,
+        Option, ContainerSvg, Svg, SvgReset, Reset, Straight,
         RadioGroup, RadioButtonLabel, RadioButton} from './NoticesFilters.styled';
 import { SearchField } from "components/SearchField/SearchField";
 import Select from 'react-select';
@@ -19,6 +19,7 @@ export const NoticesFilters=({fetch})=>{
     const [ispetTypes, setPetTypes] = useState([]);
     const [islocations, setLocations] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState(null);
+    const [selectedSort, setSelectedSort] = useState(null);
 
     // const getFilter = () => {
     //   return {
@@ -34,18 +35,18 @@ export const NoticesFilters=({fetch})=>{
   //     return dispatch(addFilter({...getFilter(), categories: e.target.value}))
   // }
 
-  const handleCategoriesChange = (e) => {
-    setCategories(e.target.value);
-  };
+  // const handleCategoriesChange = (e) => {
+  //   setCategories(e.target.value);
+  // };
 
-  const handleGendersChange = (e) => {
-    setGenders(e.target.value);
-  };
+  // const handleGendersChange = (e) => {
+  //   setGenders(e.target.value);
+  // };
 
-  const handleResetClick = () => {
-   
-
+  const handleResetClick = (resetForm) => {
+    resetForm();
     setSelectedLocation(null);
+    setSelectedSort(null); 
 };
          
       useEffect(() => {
@@ -160,10 +161,10 @@ export const NoticesFilters=({fetch})=>{
           <Container>
         
             <ContainerTabletSelect>    
-                <SearchField name="search" fetch={fetch}/> 
+                <SearchField name="search" fetch={fetch} setFieldValue={(value) => setFieldValue('search', value)}/> 
              <ContainerSelect>
 
-              <CustomSelect as="select" id = "category" name="category" onChange={handleCategoriesChange}>
+              <CustomSelect as="select" id = "category" name="category" >
                  <Option value="">Category</Option>
                   {iscategories.map(category => (
                             <Option  key={nanoid()} value={category}>
@@ -171,7 +172,7 @@ export const NoticesFilters=({fetch})=>{
                             </Option>
                         ))}
               </CustomSelect>
-              <CustomSelect as="select" name="gender" onChange={handleGendersChange}>
+              <CustomSelect as="select" name="gender" >
                   <Option value="">By gender</Option>
                         {isgenders.map((gender) => (
                              <Option key={nanoid()} value={gender}>
@@ -209,30 +210,76 @@ export const NoticesFilters=({fetch})=>{
              <Svg >
                 <use xlinkHref={sprite + '#icon-search'}/>
               </Svg  >           
-           </button>
+           </button >
 
-           {selectedLocation   &&   <SvgReset onClick = {handleResetClick}>
+           {selectedLocation   &&   <SvgReset onClick = {() => handleResetClick(resetForm)}>
                 <use xlinkHref={sprite + '#icon-x'}/>
             </SvgReset> }
 
             </ContainerSvg>
            </ContainerTabletSelect>   
 
-
             <Straight></Straight>
 
             <RadioGroup role="group" aria-labelledby="sort-group">
-               <RadioButton type="radio" name="sort" value="popularity" id="popularity" />
-                  <RadioButtonLabel htmlFor="popularity">Popular</RadioButtonLabel>
+               <RadioButton type="radio" 
+                            name="sort" 
+                            value="popularity" 
+                            id="popularity" 
+                            onChange={() => setSelectedSort('popularity')}
+                            checked={selectedSort === 'popularity'}/>
+                  <RadioButtonLabel htmlFor="popularity">
+                    Popular
+                    {selectedSort === 'popularity' && (
+                  <Reset onClick={() => handleResetClick(resetForm)}>
+                    <use xlinkHref={sprite + '#icon-x-1'} />
+                  </Reset>
+                )}</RadioButtonLabel>
 
-               <RadioButton type="radio" name="sort" value="unpopularity" id="unpopularity" />
-                  <RadioButtonLabel htmlFor="unpopularity">Unpopular</RadioButtonLabel>
+               <RadioButton type="radio" 
+                            name="sort" 
+                            value="unpopularity" 
+                            id="unpopularity" 
+                            onChange={() => setSelectedSort('unpopularity')}
+                            checked={selectedSort === 'unpopularity'}/>
+                  <RadioButtonLabel htmlFor="unpopularity">
+                    Unpopular
+                    {selectedSort === 'unpopularity' && (
+                  <Reset onClick={() => handleResetClick(resetForm)}>
+                    <use xlinkHref={sprite + '#icon-x-1'} />
+                  </Reset>
+                )}
+                  </RadioButtonLabel>
 
-                <RadioButton type="radio" name="sort" value="lowprice" id="lowprice" />
-                  <RadioButtonLabel htmlFor="lowprice">Cheap</RadioButtonLabel>
+                <RadioButton type="radio" 
+                             name="sort" 
+                             value="lowprice" 
+                             id="lowprice" 
+                             onChange={() => setSelectedSort('lowprice')}
+                             checked={selectedSort === 'lowprice'}/>
+                  <RadioButtonLabel htmlFor="lowprice">
+                    Cheap
+                    {selectedSort === 'lowprice' && (
+                    <Reset onClick={() => handleResetClick(resetForm)}>
+                      <use xlinkHref={sprite + '#icon-x-1'} />
+                    </Reset>
+                    )}
+                  </RadioButtonLabel>
 
-                <RadioButton type="radio" name="sort" value="highprice" id="highprice" />
-                  <RadioButtonLabel htmlFor="highprice">Expensive</RadioButtonLabel>
+                <RadioButton type="radio" 
+                             name="sort" 
+                             value="highprice" 
+                             id="highprice" 
+                             onChange={() => setSelectedSort('highprice')}
+                             checked={selectedSort === 'highprice'}/>
+                  <RadioButtonLabel htmlFor="highprice">
+                    Expensive
+                    {selectedSort === 'highprice' && (
+                    <Reset onClick={() => handleResetClick(resetForm)}>
+                      <use xlinkHref={sprite + '#icon-x-1'} />
+                    </Reset>
+                    )}
+                  </RadioButtonLabel>
             </RadioGroup>
 
           </Container> 
