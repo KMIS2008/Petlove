@@ -68,6 +68,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const Input = styled.input`
+width: 100%;
   margin-bottom: 5px;
   padding: 9px 20px;
   gap: 10px;
@@ -82,7 +83,6 @@ export const Input = styled.input`
   &:hover {
     border: 1px solid ${p => p.theme.colors.yellow};
   }
-
 `;
 
 
@@ -90,7 +90,7 @@ export const ButtonLoad = styled.button`
 display: flex;
 justify-content: center;
 align-items: center;
-width: 100%;
+width: 50%;
 height: 36px;
 padding: 10px;
 gap: 5px;
@@ -123,5 +123,76 @@ export const SuccessMessage = styled.p`
   color: #08AA83;
 `;
 
+export const WrapperSelect = styled.div`
+position: relative;
+ width: 100%;
+`;
+
+export const SvgCalendar = styled.svg`
+position: absolute;
+top: 25%;
+right: 10px;
+
+`;
+
+export const WrapperButton = styled.div`
+display: flex;
+gap: ${p => p.theme.spacing(2)};
+justify-content: end;
+`;
+
+export const Button = styled.button`
+width: 100px;
+height: 42px;
+padding: 12px 34px 12px 34px;
+gap: 10px;
+border-radius: 30px;
+background: #2626260D;
+
+font-family: Manrope;
+font-size: 14px;
+font-weight: 700;
+line-height: 1,29;
+letter-spacing: -0.03em;
+color: #262626;
+
+&:hover {
+  background-color: ${p => p.theme.colors.yellow};
+  color: ${p => p.theme.colors.white};
+}
+`;
+
+
+
+
+// export const Select = styled.select`
+//   margin-bottom: 5px;
+//   padding: 9px 20px;
+//   gap: 10px;
+//   width: 100%;
+//   border-radius: 30px;
+//   border: 1px solid #26262626 ;
+//   /* ${props => {
+//      if (props.$isError === true) {return '#08AA83'};
+//      if (props.$isError=== false) {return '#EF2447'};
+   
+
+//   }}; */
+//   outline: none;
+
+//   &::placeholder {
+//     color: #26262680; 
+//   }
+// `;
+
+// export const Option = styled.option`
+//    color: #26262699;
+//    border: 1px solid #26262626;
+//    color: ${props => (props.value === '' ? '#26262680' : '#26262699')}; 
+
+//    &:first-child {
+//     color: #26262680; 
+//   }
+// `;
 
 
