@@ -86,7 +86,7 @@ export const AddPetForm =()=>{
     
       
         const onSubmit = async (data, e) => {
-            const {female, male, multiple, imgUrl, name,  birthday, species} = data;
+            // const {female, male, multiple, imgUrl, name,  birthday, species} = data;
             e.preventDefault();
             try {
                 // await dispatch(logIn({ email, password }));
@@ -95,11 +95,12 @@ export const AddPetForm =()=>{
             } catch (errors) {
                 // navigator('/profile');
     
-                NotificationManager.errors('Error message', 'Click me!', 5000, () => {
+                NotificationManager.error('Error message', 'Click me!', 5000, () => {
                   alert('callback');
                 });
             }
         };
+
     
         const handleBack=()=>{
            // navigator('/profile');

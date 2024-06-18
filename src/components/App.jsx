@@ -19,6 +19,8 @@ const News = lazy(()=> import ('Pages/News/News'));
 const Notices = lazy(()=> import ('Pages/Notices/Notices'));
 const AddPet = lazy(()=> import ('Pages/AddPet/AddPet'));
 const ContactsPage = lazy(()=> import ('Pages/ContactsPage/ContactsPage'));
+const ErrorPage = lazy(()=> import ('Pages/ErrorPage/ErrorPage'));
+
 
 
     export const App =()=> {
@@ -47,7 +49,7 @@ const ContactsPage = lazy(()=> import ('Pages/ContactsPage/ContactsPage'));
               <Route path="news" element={<News/>}/>
               <Route path="notices" element={<Notices/>}/>
               <Route path="add-pet" element={<AddPet/>}/>
-              <Route path="*" element={<Home/>} />
+              <Route path="*" element={<ErrorPage/>} />
             </Route>
           </Routes>
           </Suspense>
