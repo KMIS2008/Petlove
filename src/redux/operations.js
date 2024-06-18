@@ -42,15 +42,14 @@ export const fetchnoticesByKeyword = createAsyncThunk('notices/keywordNotice', a
     }
 })
 
-export const fetchFriends = createAsyncThunk('friends', async(_, thunkAPI)=>{
+export const fetchFriends = createAsyncThunk('friends', async (_, thunkAPI) => {
     try {
         const response = await axios.get(`${Friends_URL}`);
         return response.data;
-    } catch (e){
-        return thunkAPI.rejectWithValue(e.message)
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e.message);
     }
-})
-
+});
 
 
 // axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
