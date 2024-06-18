@@ -8,7 +8,7 @@ export const Header = styled.header`
   padding: 16px 20px;
   margin: 0 auto;
   border-radius: 30px 30px 0 0;
-  background-color: ${props => (props.$isHome ? '#F6B83D' : '#FFFFFF')}; 
+  background-color: ${props => (props.$isHome ? '#F6B83D' : '#F9F9F9')}; 
 
   @media (min-width: 768px) {
     padding: 16px 32px;

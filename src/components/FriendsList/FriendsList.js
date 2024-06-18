@@ -1,13 +1,13 @@
 import { FriendsItem } from "../FriendsItem/FriendsItem";
-
+import {Contater} from './FriendsList.styled';
 
 export const FriendsList =({friends})=>{
 
     return (
-        <ul>
+        <Contater>
             {friends?.map(friend=>(
                 <FriendsItem key={friend._id} friend={friend}/>
             ))}
-        </ul>
+        </Contater>
     )
 }
