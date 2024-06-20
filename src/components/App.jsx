@@ -21,6 +21,7 @@ const AddPet = lazy(()=> import ('Pages/AddPet/AddPet'));
 const ContactsPage = lazy(()=> import ('Pages/ContactsPage/ContactsPage'));
 const ErrorPage = lazy(()=> import ('Pages/ErrorPage/ErrorPage'));
 const FriendPage = lazy(()=> import ('Pages/Friends/Friends'));
+const Profile = lazy(()=> import ('Pages/Profile/Profile'));
 
 
     export const App =()=> {
@@ -44,12 +45,13 @@ const FriendPage = lazy(()=> import ('Pages/Friends/Friends'));
             <Route path = "/" element = {<AppLayout/>}>
               <Route path="home" element={<Home/>}/>
               <Route path="register" element = { <RestrictedRoute redirectTo="/login" component={<Reistr />} />}/>
-              <Route path = "login" element ={<RestrictedRoute redirectTo="/contacts" component={<Login/>} />}/>
-              <Route path = "contacts" element ={ <PrivateRoute redirectTo="/login" component={<ContactsPage />} />}/>
+              <Route path = "login" element ={<RestrictedRoute redirectTo="/profile" component={<Login/>} />}/>
+              {/* <Route path = "contacts" element ={ <PrivateRoute redirectTo="/login" component={<ContactsPage />} />}/> */}
               <Route path="news" element={<News/>}/>
               <Route path="notices" element={<Notices/>}/>
               <Route path="add-pet" element={<AddPet/>}/>
               <Route path="friends" element={<FriendPage/>}/>
+              <Route path="profile" element={ <PrivateRoute redirectTo="/login" component={<Profile/>} />}/>
               <Route path="*" element={<ErrorPage/>} />
             </Route>
           </Routes>

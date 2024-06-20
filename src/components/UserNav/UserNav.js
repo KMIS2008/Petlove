@@ -1,21 +1,15 @@
-import { useDispatch } from "react-redux";
-import { logOut } from "redux/auth/operations";
-import { ButtonLogout } from './UserNav.styled';
+import {  ContainerLogout } from './UserNav.styled';
+
+import {UserBar} from '../UserBar/UserBar';
+import {LogOutBtn} from '../LogOutBtn/LogOutBtn';
 
 
-export const UserNav=({isOpen, onClose})=>{
-  const dispatch = useDispatch();
+export const UserNav=({isOpen = false, onClose = () => {}, isFromBurgerMenu = false } )=>{
 
-  const handlLogout =()=>{
-    dispatch(logOut())
-    if(isOpen){
-        onClose()
-    }
-  }
 return (
-    <div>
-       
-       <ButtonLogout type="button" onClick={handlLogout}>Logout</ButtonLogout>
-    </div>
+    <ContainerLogout>  
+      <LogOutBtn isOpen={isOpen} onClose={onClose}/>
+      {!isFromBurgerMenu && <UserBar />}
+    </ContainerLogout>
 )
 }

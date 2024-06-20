@@ -8,6 +8,7 @@ import React, { useState, useEffect} from 'react';
 import sprite from '../../images/sprite.svg';
 import {Nav} from '../Nav/Nav';
 import {BurgerMenu} from '../BurgerMenu/BurgerMenu';
+import { UserBar } from "components/UserBar/UserBar";
 
 
 export function AppBar(){
@@ -45,7 +46,6 @@ export function AppBar(){
         };
       }, []);
 
-
     return(
 
       <Header $isHome={isHome}>
@@ -54,7 +54,8 @@ export function AppBar(){
             {!isTablet && <Nav isHome={isHome}/>}
 
             <ContainerNav>
-              {!isMobile && isLoggedIn && <UserNav $isHome={isHome}/>}
+              {!isMobile && isLoggedIn && <UserNav $isHome={isHome} />}
+              {isMobile&& isLoggedIn && <UserBar/>}
               {!isMobile && !isLoggedIn &&< AuthNav $isHome={isHome}/> }
 
               {isTablet && <Svg onClick={handleOpen}>

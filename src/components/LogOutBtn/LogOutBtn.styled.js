@@ -25,8 +25,3 @@ export const ButtonLogout = styled.button`
     background-color: ${props => (props.$isHome ? '#FFF4DF' : '#F9B020')}; 
   }
 `
-
-export const ContainerLogout = styled.div`
-display: flex;
-gap: 8px;
-`

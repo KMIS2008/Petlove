@@ -15,10 +15,6 @@ export default function FriendPage(){
     },[dispatch]
     )
 
-    // useEffect(() => {
-    //     console.log("Friends data: ", isFriends);
-    // }, [isFriends]);
-
     return(
         <Container>
              <Title name={'Our friends'}/>

@@ -10,7 +10,6 @@ Modal.setAppElement('#modal');
 export const ModalNotice = ({ isOpenModalNotice, setIsOpenModalNotice, notice }) => {
     const {imgURL ,title, popularity, comment, name, birthday, species, sex}=notice;
 
-
     const customStyles = {
       overlay: {
         backgroundColor: "rgba(38, 38, 38, 0.3)",
@@ -70,8 +69,6 @@ export const ModalNotice = ({ isOpenModalNotice, setIsOpenModalNotice, notice })
             <Svg>Sell</Svg>            
            </ContainerImg>
      
-
-
            <Title>{title}</Title>
 
            <ContainerPopulate>

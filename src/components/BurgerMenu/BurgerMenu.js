@@ -7,10 +7,12 @@ import { useAuth } from "redux/hook/useAuth";
 import { UserNav } from 'components/UserNav/UserNav';
 
 
+
 export const BurgerMenu=({ onClose })=>{
     const location = useLocation();
     const isHome = location.pathname === '/home';
     const {isLoggedIn} = useAuth();
+
 
     return(
         <BurgerMenuContainer $isHome={isHome}>
@@ -25,9 +27,11 @@ export const BurgerMenu=({ onClose })=>{
 
             <Nav  grid={true}  isOpen={true} onClose= {onClose} />
             
-            {isLoggedIn && <UserNav isOpen={true} onClose= {onClose}/>}
+            {isLoggedIn && <UserNav isOpen={true} onClose={onClose} isFromBurgerMenu={true}/>}
  
             {!isLoggedIn && <AuthNav grid={true} isOpen={true} onClose= {onClose}/> } 
+
+
          
         </BurgerMenuContainer>
 
