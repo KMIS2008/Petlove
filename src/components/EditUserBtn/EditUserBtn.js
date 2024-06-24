@@ -22,11 +22,7 @@ export const EditUserBtn=()=>{
                     <use xlinkHref={sprite + '#icon-edit'}/>
                  </SvgEdit>
             </ContainerSvg>
-
-
-  
-
-
+            
             {/* <ModalEditUser isOpenModalEditUser={isOpenModalEditUser} setModalEditUser={setModalEditUser}/> */}
         </Container>
     )
