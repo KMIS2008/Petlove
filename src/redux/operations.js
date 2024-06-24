@@ -42,6 +42,15 @@ export const fetchnoticesByKeyword = createAsyncThunk('notices/keywordNotice', a
     }
 })
 
+export const addNotices = createAsyncThunk('notices/favorites/add', async(id, thunkAPI)=>{
+    try {
+        const response = await axios.post(`${Notices_URL}/favorites/add/${id}`);
+        return response.data;
+    } catch (e){
+        return thunkAPI.rejectWithValue(e.message)
+    }
+})
+
 export const fetchFriends = createAsyncThunk('friends', async (_, thunkAPI) => {
     try {
         const response = await axios.get(`${Friends_URL}`);

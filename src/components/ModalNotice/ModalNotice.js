@@ -3,12 +3,15 @@ import { useEffect } from "react";
 import {Container, SvgButton, ContainerImg, Svg, Img, Title, ContainerPopulate, Rating,ContainerList, TitleTable, Text,
         Comment, ContainerButton, ButtonAdd, ButtonContact } from './ModalNotice.styled';
 import sprite from '../../images/sprite.svg';
+import {addNotices} from '../../redux/operations';
+import { useDispatch } from "react-redux";
 
 
 Modal.setAppElement('#modal');
 
-export const ModalNotice = ({ isOpenModalNotice, setIsOpenModalNotice, notice }) => {
-    const {imgURL ,title, popularity, comment, name, birthday, species, sex}=notice;
+export const ModalNotice = ({ isOpenModalNotice, setIsOpenModalNotice, notice, setFevorite }) => {
+    const {imgURL ,title, popularity, comment, name, birthday, species, sex, category, _id}=notice;
+    const dispatch=useDispatch();
 
     const customStyles = {
       overlay: {
@@ -42,6 +45,15 @@ export const ModalNotice = ({ isOpenModalNotice, setIsOpenModalNotice, notice })
       };
     }, [isOpenModalNotice]);
 
+    const handleAddFavorite = (id) => {
+      if (id) {
+          dispatch(addNotices(id));
+          setFevorite(true)
+      } else {
+          console.error('Invalid ID');
+      }
+  };
+
       return (
         <>
         <Modal   
@@ -66,7 +78,7 @@ export const ModalNotice = ({ isOpenModalNotice, setIsOpenModalNotice, notice })
            <ContainerImg>
             <Img src={imgURL} alt={title} />
 
-            <Svg>Sell</Svg>            
+            <Svg>{category}</Svg>            
            </ContainerImg>
      
            <Title>{title}</Title>
@@ -100,7 +112,7 @@ export const ModalNotice = ({ isOpenModalNotice, setIsOpenModalNotice, notice })
               <Comment>{comment}</Comment>
 
               <ContainerButton>
-                <ButtonAdd type="button"> Add to
+                <ButtonAdd type="button" onClick={() => handleAddFavorite(_id)}> Add to
                      <svg width={16} height={16}>
                          <use xlinkHref={sprite + '#icon-heart-3'} />
                      </svg>  

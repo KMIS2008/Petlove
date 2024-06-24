@@ -1,9 +1,10 @@
-import {fetchnotices, fetchnoticesByKeyword} from './operations';
+import {fetchnotices, fetchnoticesByKeyword, addNotices} from './operations';
 import { createSlice} from '@reduxjs/toolkit';
 
 
 const allNotices ={
     notices:[],
+    isFavorite: [],
     totalPages: null,
     isLoading: false,
     error: false, 
@@ -27,6 +28,16 @@ const handlReject =(state, action)=>{
 const noticesSlice = createSlice({
     name:'notices',
     initialState: allNotices,
+
+    // reducers: {
+    //     addFavorite(state, action) {
+    //       const newItem = action.payload;
+    //       state.isFavorite.push(newItem);
+    //     },
+    //     removeFavorite(state, action) {
+    //       state.isFavorite = state.isFavorite.filter((item) => item._id !== action.payload._id);
+    //     },
+    //   },
        
        extraReducers:
        builder=>{
@@ -36,7 +47,14 @@ const noticesSlice = createSlice({
         .addCase(fetchnoticesByKeyword.pending, handlPending)
         .addCase(fetchnoticesByKeyword.fulfilled, handlFulfilled)
         .addCase(fetchnoticesByKeyword.rejected, handlReject)
+        .addCase(addNotices.pending, handlPending)
+        .addCase(addNotices.fulfilled, (state) => {
+            state.isLoading = false;
+            state.error = null;
+          })
+          .addCase(addNotices.rejected, handlReject)
        }
 })
 
 export const noticesReducer = noticesSlice.reducer;
+// export const { addFavorite, removeFavorite } = noticesSlice.actions;

@@ -113,6 +113,8 @@ gap: 10px;
 border-radius: 30px;
 background-color: #FFF4DF;
 
+background-color: ${(props) => (props.$isDefaultFavorite ? '#FBE7C1' : '#FFF4DF')};
+
 &:hover{
     background-color: #FBE7C1;
 }

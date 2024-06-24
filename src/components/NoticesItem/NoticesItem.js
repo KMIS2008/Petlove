@@ -5,12 +5,20 @@ import {Button,Title, Img, ContainerList, ContainerTitle, ContainerPopulate,
 import {ModalAttention} from '../ModalAttention/ModalAttention';
 import {ModalNotice} from '../ModalNotice/ModalNotice';
 import { useState } from 'react';
+import { useSelector,useDispatch } from 'react-redux';
+import {selectIsLoggedIn} from '../../redux/auth/selects';
+import {addNotices} from '../../redux/operations';
+
  
 export const NoticesItem=({notice})=>{
+    const dispatch=useDispatch();
 
-    const {imgURL ,title, popularity, comment, name, birthday, species, category, sex}=notice;
+    const isLoggedIn = useSelector(selectIsLoggedIn);
+
+    const {imgURL ,title, popularity, comment, name, birthday, species, category, sex, _id}=notice;
     const [isOpenModalAttention, setIsOpenModalAttention ] =useState(false);
     const [isOpenModalNotice, setIsOpenModalNotice ] =useState(false);
+    const [isFavorite, setFevorite]=useState(false);
 
     const openModalAttention=()=>{
         setIsOpenModalAttention(true);
@@ -18,6 +26,31 @@ export const NoticesItem=({notice})=>{
 
     const openModalNotice=()=>{
         setIsOpenModalNotice(true);
+    }
+
+    const handleAction = () => {
+        if (isLoggedIn) {
+            openModalNotice();
+        } else {
+            openModalAttention();
+        }
+    }
+
+    const handleAddFavorite = (id) => {
+        if (id) {
+            dispatch(addNotices(id));
+            setFevorite(true);
+        } else {
+            console.error('Invalid ID');
+        }
+    };
+
+    const handleActionFavorite = (id) => {
+        if (isLoggedIn) {
+            handleAddFavorite(id);
+        } else {
+            openModalAttention();
+        }
     }
 
     return(
@@ -61,9 +94,9 @@ export const NoticesItem=({notice})=>{
            <Comment>{comment}</Comment>
            <ContainerButton>
             
-               <Button type='button' onClick={openModalAttention}>Learn more</Button>
+               <Button type='button' onClick={handleAction}>Learn more</Button>
                
-               <ButtonSVG onClick={openModalNotice}>
+               <ButtonSVG $isDefaultFavorite={isFavorite} onClick={()=>handleActionFavorite(_id)}>
                    <svg width={18} height={18}>
                       <use xlinkHref={sprite + '#icon-heart'} />
                    </svg>                
@@ -72,7 +105,7 @@ export const NoticesItem=({notice})=>{
            </ContainerButton>
 
            <ModalAttention isOpenModalAttention={isOpenModalAttention} setIsOpenModalAttention={setIsOpenModalAttention}/>
-           <ModalNotice notice={notice} isOpenModalNotice={isOpenModalNotice} setIsOpenModalNotice={setIsOpenModalNotice}/>
+           <ModalNotice notice={notice} setFevorite={setFevorite} isOpenModalNotice={isOpenModalNotice} setIsOpenModalNotice={setIsOpenModalNotice}/>
         
         </ContainerItem>
     )
