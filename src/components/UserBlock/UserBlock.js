@@ -8,9 +8,13 @@ export const UserBlock=()=>{
 
     const user = useSelector((state) => state.auth.user);
     const avatarUrl = user.avatar || defaultAvatar;
-    const userName = user.name;
-    const userEmail = user.email;
-    const userPhone = user.phone;
+    const userName = user.name || 'Name';
+    const userEmail = user.email ||'name@gmail.com';
+    const userPhone = user.phone || '+380';
+
+    const isDefaultName = userName === 'Name';
+    const isDefaultEmail = userEmail === 'name@gmail.com';
+    const isDefaultPhone = userPhone === '+380';
 
     return(
         <div>
@@ -26,9 +30,9 @@ export const UserBlock=()=>{
             <UserTitle>My information</UserTitle>
 
             <UserInfo>
-                <User>{userName}</User>
-                <User>{userEmail}</User>
-                <User>{userPhone}</User>
+                <User $isDefault={isDefaultName}>{userName}</User>
+                <User $isDefault={isDefaultEmail}>{userEmail}</User>
+                <User $isDefault={isDefaultPhone}>{userPhone}</User>
             </UserInfo>
         </div>
 

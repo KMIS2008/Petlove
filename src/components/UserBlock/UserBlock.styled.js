@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const UserInfo = styled.div`
+margin-bottom: 40px;
     display: flex;
     flex-direction: column;
 
@@ -38,8 +39,9 @@ height: 42px;
 padding: 12px;
 gap: 10px;
 border-radius: 30px;
-border: 1px solid #F6B83D;
-
+border: ${(props) => (props.$isDefault ? '1px solid #26262626' : '1px solid #F6B83D')};
+/* border: 1px solid #F6B83D; */
+/* border: 1px solid #26262626 */
 `;
 
 export const UserUpload = styled.p`
