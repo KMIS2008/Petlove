@@ -8,6 +8,8 @@ import { createSelector } from "@reduxjs/toolkit";
   export const selectorTotalPages=state=>state.news.totalPages;
   export const selectorTotPages=state=>state.notices.totalPages;
   export const selectorNotices=state=>state.notices.notices;
+  export const selectorNoticesId=state=>state.notices.noticeId;
+  export const selectorFavorite=state=>state.notices.isFavorite;
   export const selectorFriends=state=>state.friends.friends;
 
 

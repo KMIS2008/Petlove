@@ -3,14 +3,14 @@ import { useEffect } from "react";
 import {Container, SvgButton, ContainerImg, Svg, Img, Title, ContainerPopulate, Rating,ContainerList, TitleTable, Text,
         Comment, ContainerButton, ButtonAdd, ButtonContact } from './ModalNotice.styled';
 import sprite from '../../images/sprite.svg';
-import {addNotices} from '../../redux/operations';
+import {addNotices, removeNotices} from '../../redux/operations';
 import { useDispatch } from "react-redux";
 
 
 Modal.setAppElement('#modal');
 
-export const ModalNotice = ({ isOpenModalNotice, setIsOpenModalNotice, notice, setFevorite }) => {
-    const {imgURL ,title, popularity, comment, name, birthday, species, sex, category, _id}=notice;
+export const ModalNotice = ({ isOpenModalNotice, setIsOpenModalNotice, notice, setFavorite, isFavorite }) => {
+    const {imgURL ,title, popularity, comment, name, birthday, species, sex, category, _id, user}=notice;
     const dispatch=useDispatch();
 
     const customStyles = {
@@ -45,12 +45,15 @@ export const ModalNotice = ({ isOpenModalNotice, setIsOpenModalNotice, notice, s
       };
     }, [isOpenModalNotice]);
 
-    const handleAddFavorite = (id) => {
-      if (id) {
-          dispatch(addNotices(id));
-          setFevorite(true)
+
+
+    const handleAddFavorite = (_id) => {
+      if (!isFavorite) {
+          dispatch(addNotices(_id));
+          setFavorite(true)
       } else {
-          console.error('Invalid ID');
+        dispatch(removeNotices(_id));
+        setFavorite(false)
       }
   };
 
@@ -117,7 +120,9 @@ export const ModalNotice = ({ isOpenModalNotice, setIsOpenModalNotice, notice, s
                          <use xlinkHref={sprite + '#icon-heart-3'} />
                      </svg>  
                 </ButtonAdd>
-                <ButtonContact type="button">Contact</ButtonContact>
+                {user?.phone && (
+                  <ButtonContact as="a" href={`tel:${user.phone}`}>Contact</ButtonContact>
+                )}
               </ContainerButton>
     
   </Container>

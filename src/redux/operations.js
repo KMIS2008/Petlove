@@ -42,10 +42,33 @@ export const fetchnoticesByKeyword = createAsyncThunk('notices/keywordNotice', a
     }
 })
 
-export const addNotices = createAsyncThunk('notices/favorites/add', async(id, thunkAPI)=>{
+export const fetchNoticesId = createAsyncThunk('notices/id', async(_id, thunkAPI)=>{
     try {
-        const response = await axios.post(`${Notices_URL}/favorites/add/${id}`);
+        const response = await axios.get(`${Notices_URL}/${_id}`);
+         console.log(response.data)
+         return response.data;
+       
+    } catch (e){
+        return thunkAPI.rejectWithValue(e.message)
+    }
+})
+
+export const addNotices = createAsyncThunk('notices/favorites/add', async(_id, thunkAPI)=>{
+    try {
+        const response = await axios.post(`${Notices_URL}/favorites/add/${_id}`);
+    
         return response.data;
+    } catch (e){
+        return thunkAPI.rejectWithValue(e.message)
+    }
+})
+
+export const removeNotices = createAsyncThunk('notices/favorites/remove', async(_id, thunkAPI)=>{
+    try {
+        const response = await axios.delete(`${Notices_URL}/favorites/remove/${_id}`);
+   
+        return response.data;
+        
     } catch (e){
         return thunkAPI.rejectWithValue(e.message)
     }
@@ -59,6 +82,8 @@ export const fetchFriends = createAsyncThunk('friends', async (_, thunkAPI) => {
         return thunkAPI.rejectWithValue(e.message);
     }
 });
+
+
 
 
 // axios.defaults.baseURL = 'https://connections-api.herokuapp.com';

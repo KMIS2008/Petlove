@@ -1,9 +1,10 @@
-import {fetchnotices, fetchnoticesByKeyword, addNotices} from './operations';
+import {fetchnotices, fetchnoticesByKeyword, addNotices, removeNotices, fetchNoticesId} from './operations';
 import { createSlice} from '@reduxjs/toolkit';
 
 
 const allNotices ={
     notices:[],
+    noticeId:[],
     isFavorite: [],
     totalPages: null,
     isLoading: false,
@@ -47,14 +48,35 @@ const noticesSlice = createSlice({
         .addCase(fetchnoticesByKeyword.pending, handlPending)
         .addCase(fetchnoticesByKeyword.fulfilled, handlFulfilled)
         .addCase(fetchnoticesByKeyword.rejected, handlReject)
+        .addCase(fetchNoticesId.pending, handlPending)
+        .addCase(fetchNoticesId.fulfilled, (state,action) => {
+            state.noticeId = action.payload;
+            state.isLoading = false;
+            state.error = null;
+        })
+        .addCase(fetchNoticesId.rejected, handlReject)
         .addCase(addNotices.pending, handlPending)
-        .addCase(addNotices.fulfilled, (state) => {
+        .addCase(addNotices.fulfilled, (state,action) => {
+            const newItem = action.payload;
+            console.log('addNotices.fulfilled', newItem);
+            if (!state.isFavorite.includes(newItem)) {
+                state.isFavorite.push(newItem);
+            }
+            state.isLoading = false;
+            state.error = null;
+           
+          })
+        .addCase(addNotices.rejected, handlReject)
+        .addCase(removeNotices.pending, handlPending)
+        .addCase(removeNotices.fulfilled, (state, action) => {
+            const removeItem = action.payload;
+            console.log('removeNotices.fulfilled', removeItem);
+            state.isFavorite = state.isFavorite.filter((id) => id !== removeItem);
             state.isLoading = false;
             state.error = null;
           })
-          .addCase(addNotices.rejected, handlReject)
+        .addCase(removeNotices.rejected, handlReject)
        }
 })
 
 export const noticesReducer = noticesSlice.reducer;
-// export const { addFavorite, removeFavorite } = noticesSlice.actions;

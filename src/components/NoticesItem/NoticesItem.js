@@ -7,18 +7,25 @@ import {ModalNotice} from '../ModalNotice/ModalNotice';
 import { useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import {selectIsLoggedIn} from '../../redux/auth/selects';
-import {addNotices} from '../../redux/operations';
+import {selectorFavorite, selectorNoticesId} from '../../redux/selects';
+import {addNotices, removeNotices, fetchNoticesId} from '../../redux/operations';
 
  
 export const NoticesItem=({notice})=>{
     const dispatch=useDispatch();
 
     const isLoggedIn = useSelector(selectIsLoggedIn);
-
+    
+    const favorites = useSelector(selectorFavorite);
+    const noticeId=useSelector(selectorNoticesId);
+   
     const {imgURL ,title, popularity, comment, name, birthday, species, category, sex, _id}=notice;
     const [isOpenModalAttention, setIsOpenModalAttention ] =useState(false);
     const [isOpenModalNotice, setIsOpenModalNotice ] =useState(false);
-    const [isFavorite, setFevorite]=useState(false);
+    const [isFavorite, setFavorite]=useState(false);
+
+    // const isFavorite = favorites.includes(_id);
+    // const isFavorite = favorites.some((item) => item ===_id);
 
     const openModalAttention=()=>{
         setIsOpenModalAttention(true);
@@ -28,30 +35,33 @@ export const NoticesItem=({notice})=>{
         setIsOpenModalNotice(true);
     }
 
-    const handleAction = () => {
+    const handleAction = (_id) => {
         if (isLoggedIn) {
             openModalNotice();
+            dispatch(fetchNoticesId(_id))
         } else {
             openModalAttention();
         }
     }
 
-    const handleAddFavorite = (id) => {
-        if (id) {
-            dispatch(addNotices(id));
-            setFevorite(true);
-        } else {
-            console.error('Invalid ID');
-        }
+    const handleToggetFavorite = (_id) => {
+        if (!isFavorite) {
+            dispatch(addNotices(_id)); 
+            setFavorite(true)
+           console.log( favorites)
+        } else
+     {      dispatch(removeNotices(_id));
+            setFavorite(false)
+            console.log( favorites)}
     };
 
-    const handleActionFavorite = (id) => {
+    const handleActionFavorite = (_id) => {
         if (isLoggedIn) {
-            handleAddFavorite(id);
+            handleToggetFavorite(_id);
         } else {
             openModalAttention();
         }
-    }
+    };
 
     return(
         <ContainerItem>
@@ -94,9 +104,9 @@ export const NoticesItem=({notice})=>{
            <Comment>{comment}</Comment>
            <ContainerButton>
             
-               <Button type='button' onClick={handleAction}>Learn more</Button>
+               <Button type='button' onClick={()=>handleAction(_id)}>Learn more</Button>
                
-               <ButtonSVG $isDefaultFavorite={isFavorite} onClick={()=>handleActionFavorite(_id)}>
+               <ButtonSVG $isDefaultFavorite={isFavorite} onClick={() => handleActionFavorite(_id)}>
                    <svg width={18} height={18}>
                       <use xlinkHref={sprite + '#icon-heart'} />
                    </svg>                
@@ -105,7 +115,7 @@ export const NoticesItem=({notice})=>{
            </ContainerButton>
 
            <ModalAttention isOpenModalAttention={isOpenModalAttention} setIsOpenModalAttention={setIsOpenModalAttention}/>
-           <ModalNotice notice={notice} setFevorite={setFevorite} isOpenModalNotice={isOpenModalNotice} setIsOpenModalNotice={setIsOpenModalNotice}/>
+           <ModalNotice notice={noticeId}  setFavorite={setFavorite} isFavorite={isFavorite} isOpenModalNotice={isOpenModalNotice} setIsOpenModalNotice={setIsOpenModalNotice}/>
         
         </ContainerItem>
     )

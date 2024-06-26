@@ -135,9 +135,11 @@ color:${p => p.theme.colors.white};
 }
 `
 
-export const ButtonContact= styled.button`
-display: block;
+export const ButtonContact= styled.a`
+display: flex;
 margin: auto;
+align-items: center;
+justify-content: center;
 background-color: ${p => p.theme.colors.rose};
 border-radius: 30px;
 width: 135px;
@@ -154,5 +156,4 @@ color:${p => p.theme.colors.yellow};
 &:hover{
     background-color: #FBE7C1;
 }
-
 `
