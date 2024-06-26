@@ -5,6 +5,7 @@ import {contactReduser} from './contactSlice';
 import {noticesReducer} from './noticesSlice';
 import { authReducer } from "./auth/authSlice";
 import {friendReducer} from './friendsSlice';
+import {userReducer} from './userSlice';
 import storage from 'redux-persist/lib/storage';
 
 import {
@@ -30,9 +31,11 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     news: newsReducer,
     notices: noticesReducer,
-    contact: contactReduser,
     filter: filterReduser,
     friends: friendReducer,
+    user: userReducer,
+    
+     contact: contactReduser,
   },
   
   middleware: getDefaultMiddleware =>

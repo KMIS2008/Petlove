@@ -4,6 +4,7 @@ axios.defaults.baseURL = "https://petlove.b.goit.study/api";
 const NEWS_URL= '/news';
 const Notices_URL='/notices';
 const Friends_URL='/friends';
+const User_URL='/users/current';
 
 export const fetchnews = createAsyncThunk('news/allNews', async(pageNumber, thunkAPI)=>{
     try {
@@ -77,6 +78,15 @@ export const removeNotices = createAsyncThunk('notices/favorites/remove', async(
 export const fetchFriends = createAsyncThunk('friends', async (_, thunkAPI) => {
     try {
         const response = await axios.get(`${Friends_URL}`);
+        return response.data;
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e.message);
+    }
+});
+
+export const addPet = createAsyncThunk('pets', async ({title,name,species,sex,birthday,imgURL}, thunkAPI) => {
+    try {
+        const response = await axios.post(`${User_URL}/pets/add`, {title,name,species,sex,birthday,imgURL});
         return response.data;
     } catch (e) {
         return thunkAPI.rejectWithValue(e.message);

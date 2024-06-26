@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
@@ -9,11 +9,13 @@ import Select from 'react-select';
 import { NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import sprite from '../../images/sprite.svg';
+import {addPet} from '../../redux/operations';
 
 import { Title, TitleSpan, ContainerForm, ButtonSubmit, 
     RadioGroup, SvgIcon, Error, ContainerInput, InputWrapper, 
     Input, ButtonLoad, ButtonLoadSpan,SuccessMessage, 
     WrapperSelect, SvgCalendar, WrapperButton, Button } from './AddPetForm .styled.js';
+import { useDispatch } from 'react-redux';
 
 const SignupSchema = Yup.object().shape({
     title: Yup.string().required('Required'),
@@ -23,7 +25,7 @@ const SignupSchema = Yup.object().shape({
     birthday: Yup.string()
                  .matches(/^\d{4}-\d{2}-\d{2}$/,'Enter a valid Birthday')
                  .required('Required'),
-    imgUrl: Yup.string()
+    imgURL: Yup.string()
               .matches(/^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,'Enter a valid Url')
               .required('Required'),
 });
@@ -65,14 +67,26 @@ export const AddPetForm =()=>{
         }),
     
       };
+
+      const defaultValues = {
+        title: '',
+        name: '',
+        species: '',
+        sex: '',
+        birthday: '',
+        imgURL: '',
+      };
     
-        // const navigator = useNavigate(); 
+        const navigator = useNavigate(); 
+        const dispatch=useDispatch();
+
         const [selectedSex, setSelectedSex] = useState('');
         const [speciesOptions, setSpeciesOptions] = useState([]);
     
         const { register, handleSubmit, setValue, formState: { errors, touchedFields }, reset } = useForm({
             resolver: yupResolver(SignupSchema),
             mode: 'onBlur',
+            defaultValues
           });
     
         // const {
@@ -86,24 +100,25 @@ export const AddPetForm =()=>{
     
       
         const onSubmit = async (data, e) => {
-            // const {female, male, multiple, imgUrl, name,  birthday, species} = data;
+
             e.preventDefault();
             try {
-                // await dispatch(logIn({ email, password }));
-                // navigator('/profile');
+                await dispatch(addPet(data));
                 reset();
+                navigator('/profile');
             } catch (errors) {
-                // navigator('/profile');
-    
+                
                 NotificationManager.error('Error message', 'Click me!', 5000, () => {
-                  alert('callback');
+                 alert('callback');
+                 navigator('/profile'); 
+                 
                 });
             }
         };
 
     
         const handleBack=()=>{
-           // navigator('/profile');
+           navigator('/profile');
         }
     
         const handleSexChange = (value) => {
@@ -132,10 +147,11 @@ export const AddPetForm =()=>{
           }, []);
     
           const isspeciesOptions = speciesOptions.map(option => ({
-            value: nanoid(),
+            key: nanoid(),
+            value: `${option}`,
             label: `${option}`
           }));
-
+          
     return(
         <>
 
@@ -173,13 +189,13 @@ export const AddPetForm =()=>{
 
                  <ContainerInput>
                      <InputWrapper>
-                       <Input id="imgUrl" 
+                       <Input id="imgURL" 
                               placeholder="Enter URL"
                             //   $isValid={!errors.imgUrl}
                             $isError={!!errors.imgUrl}
                             $isSuccess={!errors.imgUrl && touchedFields.imgUrl}
 
-                              {...register('imgUrl', {
+                              {...register('imgURL', {
                                 required: 'Required',
                                 pattern: {
                                     value: /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
@@ -224,7 +240,7 @@ export const AddPetForm =()=>{
                 <ContainerInput>
                 <WrapperSelect>
                   <Input id="birthday" 
-                         placeholder="00.00.0000" 
+                         placeholder="0000-00-00" 
                          $isError={!!errors.birthday}
                          $isSuccess={!errors.birthday && touchedFields.birthday}
 
