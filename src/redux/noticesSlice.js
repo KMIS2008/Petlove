@@ -58,7 +58,7 @@ const noticesSlice = createSlice({
         .addCase(addNotices.pending, handlPending)
         .addCase(addNotices.fulfilled, (state,action) => {
             const newItem = action.payload;
-            console.log('addNotices.fulfilled', newItem);
+            
             if (!state.isFavorite.includes(newItem)) {
                 state.isFavorite.push(newItem);
             }
@@ -70,7 +70,7 @@ const noticesSlice = createSlice({
         .addCase(removeNotices.pending, handlPending)
         .addCase(removeNotices.fulfilled, (state, action) => {
             const removeItem = action.payload;
-            console.log('removeNotices.fulfilled', removeItem);
+         
             state.isFavorite = state.isFavorite.filter((id) => id !== removeItem);
             state.isLoading = false;
             state.error = null;

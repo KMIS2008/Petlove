@@ -1,17 +1,24 @@
 import sprite from '../../images/sprite.svg';
 import {Container, Img, ContainerInfo, ContainerTitle, Title, DeleteButton, ContainerTable, TitleTable,
-    TextTable,
-} from './PetsItem.styled';
+        TextTable,} from './PetsItem.styled';
+import {removePet} from '../../redux/operations';
+import { useDispatch } from 'react-redux';
+
 
 export const PetsItem =({pet})=>{
-    const {imgURL, title, name, birthday, sex, species }=pet;
+    const {imgURL, title, name, birthday, sex, species, _id }=pet;
+    const dispatch=useDispatch();
+    const handleDelete=(_id)=>{
+        dispatch(removePet(_id))
+    }
+
     return(
         <Container>
             <Img src={imgURL} alt={title}/>
             <ContainerInfo>
                 <ContainerTitle>
                     <Title>{title}</Title>
-                    <DeleteButton type='button'>
+                    <DeleteButton type='button' onClick={()=>handleDelete(_id)}>
                         <svg width={16} height={16}>
                             <use xlinkHref={sprite + '#icon-trash-2'}/>
                         </svg>

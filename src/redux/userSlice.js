@@ -1,4 +1,4 @@
-import {addPet, fetchUserFull} from './operations';
+import {addPet, fetchUserFull, removePet} from './operations';
 import { createSlice} from '@reduxjs/toolkit';
 
 
@@ -32,6 +32,20 @@ const userSlice = createSlice({
         builder.addCase(addPet.pending, handlPending)
         .addCase(addPet.fulfilled, handlFulfilled)
         .addCase(addPet.rejected, handlReject)
+        .addCase(removePet.pending, handlPending)
+        .addCase(removePet.fulfilled, (state, action)=>{
+            const removeItem = action.payload.pets.id;
+            state.pets = state.pets.filter((id) => id !== removeItem);
+            state.userFull= action.payload;
+            state.isLoading = false;
+            state.error = null;
+         }
+
+            
+         
+            
+        )
+        .addCase(removePet.rejected, handlReject)
         .addCase(fetchUserFull.pending, handlPending)
         .addCase(fetchUserFull.fulfilled, (state, action)=>{
             state.userFull= action.payload;
