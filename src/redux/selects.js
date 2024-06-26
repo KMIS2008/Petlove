@@ -11,6 +11,8 @@ import { createSelector } from "@reduxjs/toolkit";
   export const selectorNoticesId=state=>state.notices.noticeId;
   export const selectorFavorite=state=>state.notices.isFavorite;
   export const selectorFriends=state=>state.friends.friends;
+  export const selectorPets=state=>state.user.pets;
+  export const selectorUserFull=state=>state.user.userFull;
 
 
   export const selectVisibleContacts = createSelector(

@@ -84,9 +84,27 @@ export const fetchFriends = createAsyncThunk('friends', async (_, thunkAPI) => {
     }
 });
 
-export const addPet = createAsyncThunk('pets', async ({title,name,species,sex,birthday,imgURL}, thunkAPI) => {
+export const addPet = createAsyncThunk('pets/add', async ({title,name,species,sex,birthday,imgURL}, thunkAPI) => {
     try {
         const response = await axios.post(`${User_URL}/pets/add`, {title,name,species,sex,birthday,imgURL});
+        return response.data;
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e.message);
+    }
+});
+
+export const removePet = createAsyncThunk('pets/remove', async (id, thunkAPI) => {
+    try {
+        const response = await axios.delete(`${User_URL}/pets/remove/${id}`);
+        return response.data;
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e.message);
+    }
+});
+
+export const fetchUserFull = createAsyncThunk('user/full', async (_, thunkAPI) => {
+    try {
+        const response = await axios.get(`${User_URL}/full`);
         return response.data;
     } catch (e) {
         return thunkAPI.rejectWithValue(e.message);

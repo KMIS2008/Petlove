@@ -108,11 +108,7 @@ export const AddPetForm =()=>{
                 navigator('/profile');
             } catch (errors) {
                 
-                NotificationManager.error('Error message', 'Click me!', 5000, () => {
-                 alert('callback');
-                 navigator('/profile'); 
-                 
-                });
+              NotificationManager.errors(errors.message || 'An error occurred', 'Error', 5000);
             }
         };
 
