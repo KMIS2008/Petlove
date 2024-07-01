@@ -22,7 +22,6 @@ height: 94px;
     width: 110px;
     height: 110px;
     }
-
 `;
 
 

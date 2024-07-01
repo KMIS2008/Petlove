@@ -1,14 +1,56 @@
 import Modal from "react-modal";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import sprite from '../../images/sprite.svg';
-import {Container, SvgButton, Title} from './ModalEditUser.styled';
+import {Container, SvgButton, Title, UserAvatar, ContainerInput,
+       InputWrapper, Input, ButtonLoad, ButtonLoadSpan, SuccessMessage, Error,
+       Button
+} from './ModalEditUser.styled';
+import defaultAvatar from '../../images/user.png';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { NotificationManager} from 'react-notifications';
 
 Modal.setAppElement('#modal');
 
+const SignupSchema = Yup.object().shape({
+    name: Yup.string().required('Required'),
+    avatar : Yup.string()
+                 .matches(/^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,'Enter a valid Avatar')
+                 .required('Required'),
+    phone : Yup.string()
+                 .matches(/^\+38\d{10}$/,'Enter a valid Phone')
+                 .required('Required'),
+    email: Yup.string()
+              .matches(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/ ,'Enter a valid email')
+              .required('Required'),
+});
+
 export const ModalEditUser=({isModalEditUser, setModalEditUser})=>{
+
+  const[isAvatar, setAvatar]=useState(false);
+  const navigator = useNavigate(); 
+  const dispatch=useDispatch();
+
+  const handleLoadingAvatar=()=>{
+    setAvatar(true)
+  }
+
+    const {
+        register, 
+        handleSubmit,
+        //  setValue, 
+         formState: { errors, touchedFields }, 
+         reset, watch
+        } = useForm({
+        resolver: yupResolver(SignupSchema),
+        mode: 'onBlur',
+      });
+
+    const avatar = watch('avatar');
+    const name =watch('name');
 
     const customStyles = {
         overlay: {
@@ -23,8 +65,8 @@ export const ModalEditUser=({isModalEditUser, setModalEditUser})=>{
           marginRight: "-50%",
           transform: "translate(-50%, -50%)",
           padding: "20px",
-          maxWidth: "335px",
-          maxHeight: "473px",
+          // maxWidth: "335px",
+          // maxHeight: "473px",
           borderRadius: "30px",
           backgroundColor: "#FFFFFF",
         },
@@ -41,6 +83,20 @@ export const ModalEditUser=({isModalEditUser, setModalEditUser})=>{
           document.body.classList.remove('no-scroll');
         };
       }, [isModalEditUser]);
+
+      const onSubmit = async (data, e) => {
+
+        e.preventDefault();
+        try {
+            await dispatch();
+            // await dispatch(addPet(data));
+            reset();
+            navigator('/profile');
+        } catch (errors) {
+            
+          NotificationManager.errors(errors.message || 'An error occurred', 'Error', 5000);
+        }
+    };
     return(
         <>
 
@@ -65,6 +121,91 @@ export const ModalEditUser=({isModalEditUser, setModalEditUser})=>{
                  </SvgButton>
 
                  <Title>Edit information</Title>
+
+                 <form onSubmit={handleSubmit(onSubmit)}>
+                   
+                       {!isAvatar  ? 
+                            <UserAvatar src={defaultAvatar} alt={name} />              
+                                :
+                            <UserAvatar src={avatar} alt={name} />}
+
+                <ContainerInput>
+                     <InputWrapper>
+                       <Input id="avatar" 
+                              placeholder="Enter URL"
+                            $isError={!!errors.avatar}
+                            $isSuccess={!errors.avatar && touchedFields.avatar}
+
+                              {...register('avatar', {
+                                required: 'Required',
+                                pattern: {
+                                    value: /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
+                                    message: 'Enter a valid avatar',
+                                },
+                            })} />
+                       {errors.avatar && <Error>{errors.avatar.message}</Error>} 
+                       {!errors.avatar && touchedFields.avatar && <SuccessMessage>Avatar is secure</SuccessMessage>}                    
+                     </InputWrapper>
+
+                     
+                     <ButtonLoad type='button' onClick={handleLoadingAvatar}>
+                              <ButtonLoadSpan> Upload  photo</ButtonLoadSpan>
+                              <svg width={18} height={18}>
+                                  <use xlinkHref={sprite + '#icon-upload-cloud'}/>
+                              </svg>
+                       </ButtonLoad>
+                 </ContainerInput>
+
+                 <Input id="name" 
+                            placeholder="Name"
+                            $isError={!!errors.name}
+                            $isSuccess={!errors.name && touchedFields.name}
+
+                              {...register('name', {
+                                required: 'Required',
+                            })} />
+                       {errors.name && <Error>{errors.name.message}</Error>} 
+                       {!errors.name && touchedFields.name && <SuccessMessage>Name is secure</SuccessMessage>} 
+
+                  <Input
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    {...register('email', {
+                        required: 'Required',
+                        pattern: {
+                            value: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+                            message: 'Enter a valid Email',
+                        },
+                    })}
+                    $isError={!!errors.email}
+                    $isSuccess={!errors.email && touchedFields.email}
+                />
+                {errors.email && <Error>{errors.email.message}</Error>}
+                {!errors.email && touchedFields.email && <SuccessMessage>Email is secure</SuccessMessage>}
+
+                <Input
+                    type="phone"
+                    id="phone"
+                    placeholder="Phone"
+                    {...register('phone', {
+                        required: 'Required',
+                        pattern: {
+                            value: /^\+38\d{10}$/,
+                            message: 'Enter a valid Phone',
+                        },
+                    })}
+                    $isError={!!errors.phone}
+                    $isSuccess={!errors.phone && touchedFields.phone}
+                />
+                {errors.phone && <Error>{errors.phone.message}</Error>}
+                {!errors.phone && touchedFields.phone && <SuccessMessage>Phone is secure</SuccessMessage>}
+
+                <Button type='submit'>Submit</Button>
+       
+
+
+                 </form>
 
 
             </Container>
