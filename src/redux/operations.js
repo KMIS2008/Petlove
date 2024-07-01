@@ -46,7 +46,7 @@ export const fetchnoticesByKeyword = createAsyncThunk('notices/keywordNotice', a
 export const fetchNoticesId = createAsyncThunk('notices/id', async(_id, thunkAPI)=>{
     try {
         const response = await axios.get(`${Notices_URL}/${_id}`);
-         console.log(response.data)
+    
          return response.data;
        
     } catch (e){

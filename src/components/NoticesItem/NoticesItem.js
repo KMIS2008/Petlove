@@ -9,9 +9,13 @@ import { useSelector,useDispatch } from 'react-redux';
 import {selectIsLoggedIn} from '../../redux/auth/selects';
 import {selectorFavorite, selectorNoticesId} from '../../redux/selects';
 import {addNotices, removeNotices, fetchNoticesId} from '../../redux/operations';
+// import { useLocation } from 'react-router-dom';
 
  
-export const NoticesItem=({notice})=>{
+export const NoticesItem=({notice, trash})=>{
+    // const location = useLocation();
+    // const isProfilePage = location.pathname === '/profile'; 
+
     const dispatch=useDispatch();
 
     const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -22,7 +26,7 @@ export const NoticesItem=({notice})=>{
     const {imgURL ,title, popularity, comment, name, birthday, species, category, sex, _id}=notice;
     const [isOpenModalAttention, setIsOpenModalAttention ] =useState(false);
     const [isOpenModalNotice, setIsOpenModalNotice ] =useState(false);
-    const [isFavorite, setFavorite]=useState(false);
+    const [isFavorite, setFavorite]=useState(favorites.includes(_id));
 
     // const isFavorite = favorites.includes(_id);
     // const isFavorite = favorites.some((item) => item ===_id);
@@ -62,6 +66,12 @@ export const NoticesItem=({notice})=>{
             openModalAttention();
         }
     };
+
+    const handleDeleteFavorite = (_id) => {
+            dispatch(removeNotices(_id));
+            setFavorite(false);
+    };
+
 
     return(
         <ContainerItem>
@@ -105,17 +115,25 @@ export const NoticesItem=({notice})=>{
            <ContainerButton>
             
                <Button type='button' onClick={()=>handleAction(_id)}>Learn more</Button>
-               
-               <ButtonSVG $isDefaultFavorite={isFavorite} onClick={() => handleActionFavorite(_id)}>
+               {trash&&
+               <ButtonSVG onClick={() => handleDeleteFavorite(_id)}>
+                   <svg width={18} height={18}>
+                      <use xlinkHref={sprite + '#icon-trash-2'} />
+                   </svg>                
+               </ButtonSVG>}
+
+               {!trash&&<ButtonSVG $isDefaultFavorite={isFavorite} onClick={() => handleActionFavorite(_id)}>
                    <svg width={18} height={18}>
                       <use xlinkHref={sprite + '#icon-heart'} />
                    </svg>                
-               </ButtonSVG>
-
+               </ButtonSVG>}
+               
            </ContainerButton>
 
            <ModalAttention isOpenModalAttention={isOpenModalAttention} setIsOpenModalAttention={setIsOpenModalAttention}/>
-           <ModalNotice notice={noticeId}  setFavorite={setFavorite} isFavorite={isFavorite} isOpenModalNotice={isOpenModalNotice} setIsOpenModalNotice={setIsOpenModalNotice}/>
+           <ModalNotice notice={noticeId}  
+           setFavorite={setFavorite} isFavorite={isFavorite} 
+           isOpenModalNotice={isOpenModalNotice} setIsOpenModalNotice={setIsOpenModalNotice}/>
         
         </ContainerItem>
     )

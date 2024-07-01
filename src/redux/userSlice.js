@@ -39,12 +39,7 @@ const userSlice = createSlice({
             state.userFull= action.payload;
             state.isLoading = false;
             state.error = null;
-         }
-
-            
-         
-            
-        )
+         } )
         .addCase(removePet.rejected, handlReject)
         .addCase(fetchUserFull.pending, handlPending)
         .addCase(fetchUserFull.fulfilled, (state, action)=>{
