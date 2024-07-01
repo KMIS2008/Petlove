@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import sprite from '../../images/sprite.svg';
 import {Container, ContainerButton, ButtonUser, Svg, ContainerSvg, SvgEdit} from './EditUserBtn.styled';
+import {ModalEditUser} from '../ModalEditUser/ModalEditUser';
 
 
 export const EditUserBtn=()=>{
-    const [isOpenModalEditUser,setModalEditUser]=useState(false);
+    const [isModalEditUser,setModalEditUser]=useState(false);
 
     const handleModalEditUser =()=>{
         setModalEditUser(true)
@@ -23,7 +24,7 @@ export const EditUserBtn=()=>{
                  </SvgEdit>
             </ContainerSvg>
             
-            {/* <ModalEditUser isOpenModalEditUser={isOpenModalEditUser} setModalEditUser={setModalEditUser}/> */}
+            <ModalEditUser isModalEditUser={isModalEditUser} setModalEditUser={setModalEditUser}/>
         </Container>
     )
 }

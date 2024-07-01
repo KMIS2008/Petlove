@@ -22,6 +22,7 @@ export const NoticesItem=({notice, trash})=>{
     
     const favorites = useSelector(selectorFavorite);
     const noticeId=useSelector(selectorNoticesId);
+    // const isFavorite = favorites.some((item) => item._id === value._id);
    
     const {imgURL ,title, popularity, comment, name, birthday, species, category, sex, _id}=notice;
     const [isOpenModalAttention, setIsOpenModalAttention ] =useState(false);

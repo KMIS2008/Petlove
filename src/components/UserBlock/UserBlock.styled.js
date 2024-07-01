@@ -55,6 +55,7 @@ letter-spacing: -0.02em;
 text-align: center;
 
 color: #262626;
+cursor: pointer;
 
 @media (min-width: 768px) {
     font-size: 14px;

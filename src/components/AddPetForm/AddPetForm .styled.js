@@ -55,16 +55,17 @@ letter-spacing: -0.03em;
   margin-bottom: 8px;
 `;
 
-export const ButtonSubmit = styled.button` 
+export const Avatar = styled.svg` 
 display: block;
 margin: 0 auto;
 margin-bottom: 20px;
-border-radius: 50%;
-
-&:hover{
-   border: 3px solid #FBE7C1;
-}
 `
+export const AvatarNew = styled.img` 
+display: block;
+margin: 0 auto;
+margin-bottom: 20px;
+`
+
 export const ContainerInput = styled.div`
   display: flex;
   gap: 10px;

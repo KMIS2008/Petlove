@@ -11,7 +11,7 @@ import 'react-notifications/lib/notifications.css';
 import sprite from '../../images/sprite.svg';
 import {addPet} from '../../redux/operations';
 
-import { Title, TitleSpan, ContainerForm, ButtonSubmit, 
+import { Title, TitleSpan, ContainerForm, Avatar, AvatarNew,
     RadioGroup, SvgIcon, Error, ContainerInput, InputWrapper, 
     Input, ButtonLoad, ButtonLoadSpan,SuccessMessage, 
     WrapperSelect, SvgCalendar, WrapperButton, Button } from './AddPetForm .styled.js';
@@ -76,18 +76,23 @@ export const AddPetForm =()=>{
         birthday: '',
         imgURL: '',
       };
+
     
         const navigator = useNavigate(); 
         const dispatch=useDispatch();
 
         const [selectedSex, setSelectedSex] = useState('');
         const [speciesOptions, setSpeciesOptions] = useState([]);
+        const[isAvatar, setAvatar]=useState(false);
     
-        const { register, handleSubmit, setValue, formState: { errors, touchedFields }, reset } = useForm({
+        const { register, handleSubmit, setValue, formState: { errors, touchedFields }, reset, watch } = useForm({
             resolver: yupResolver(SignupSchema),
             mode: 'onBlur',
             defaultValues
           });
+
+          const imgURL = watch('imgURL');
+          const name =watch('name');
     
         // const {
         //     register,
@@ -130,6 +135,10 @@ export const AddPetForm =()=>{
             };
             return iconMap[sex];
           };
+
+          const handleLoadingAvatar=()=>{
+            setAvatar(true)
+          }
     
           useEffect(() => {
             // Simulate fetching species options from the backen
@@ -177,11 +186,13 @@ export const AddPetForm =()=>{
                 </RadioGroup>
       {errors.sex && <Error>{errors.sex.message}</Error>}
 
-                 <ButtonSubmit type='submit'>
-                           <svg width={68} height={68}>
+            
+               {!isAvatar  ? 
+                            <Avatar width={68} height={68}>
                                <use xlinkHref={sprite + '#icon-paw'}/>
-                            </svg>               
-                 </ButtonSubmit>
+                            </Avatar>               
+                      :
+                            <AvatarNew src={imgURL} alt={name} width={68} height={68}/>}
 
                  <ContainerInput>
                      <InputWrapper>
@@ -203,7 +214,7 @@ export const AddPetForm =()=>{
                      </InputWrapper>
 
 
-                       <ButtonLoad type='button'>
+                       <ButtonLoad type='button' onClick={handleLoadingAvatar}>
                               <ButtonLoadSpan> Upload  photo</ButtonLoadSpan>
                               <svg width={16} height={16}>
                                   <use xlinkHref={sprite + '#icon-upload-cloud'}/>
