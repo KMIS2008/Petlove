@@ -57,6 +57,7 @@ const noticesSlice = createSlice({
         .addCase(fetchNoticesId.rejected, handlReject)
         .addCase(addNotices.pending, handlPending)
         .addCase(addNotices.fulfilled, (state,action) => {
+            // state.isFavorite=action.payload;
             const newItem = action.payload;
             state.isFavorite.push(newItem);
             state.isLoading = false;

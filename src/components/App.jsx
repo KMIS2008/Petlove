@@ -18,7 +18,7 @@ const Login = lazy(()=> import ('Pages/Login/Login'));
 const News = lazy(()=> import ('Pages/News/News'));
 const Notices = lazy(()=> import ('Pages/Notices/Notices'));
 const AddPet = lazy(()=> import ('Pages/AddPet/AddPet'));
-const ContactsPage = lazy(()=> import ('Pages/ContactsPage/ContactsPage'));
+
 const ErrorPage = lazy(()=> import ('Pages/ErrorPage/ErrorPage'));
 const FriendPage = lazy(()=> import ('Pages/Friends/Friends'));
 const Profile = lazy(()=> import ('Pages/Profile/Profile'));

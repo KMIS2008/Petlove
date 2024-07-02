@@ -111,6 +111,15 @@ export const fetchUserFull = createAsyncThunk('user/full', async (_, thunkAPI) =
     }
 });
 
+export const fetchUserEdit = createAsyncThunk('user/edit', async (info, thunkAPI) => {
+    try {
+        const response = await axios.patch(`${User_URL}/edit`, info);
+        return response.data;
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e.message);
+    }
+});
+
 
 
 

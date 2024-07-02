@@ -10,12 +10,14 @@ import { NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import sprite from '../../images/sprite.svg';
 import {addPet} from '../../redux/operations';
-
 import { Title, TitleSpan, ContainerForm, Avatar, AvatarNew,
     RadioGroup, SvgIcon, Error, ContainerInput, InputWrapper, 
     Input, ButtonLoad, ButtonLoadSpan,SuccessMessage, 
     WrapperSelect, SvgCalendar, WrapperButton, Button } from './AddPetForm .styled.js';
 import { useDispatch } from 'react-redux';
+import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-datepicker';
+
 
 const SignupSchema = Yup.object().shape({
     title: Yup.string().required('Required'),
@@ -84,6 +86,7 @@ export const AddPetForm =()=>{
         const [selectedSex, setSelectedSex] = useState('');
         const [speciesOptions, setSpeciesOptions] = useState([]);
         const[isAvatar, setAvatar]=useState(false);
+        const [startDate, setStartDate] = useState(null);
     
         const { register, handleSubmit, setValue, formState: { errors, touchedFields }, reset, watch } = useForm({
             resolver: yupResolver(SignupSchema),
@@ -93,16 +96,6 @@ export const AddPetForm =()=>{
 
           const imgURL = watch('imgURL');
           const name =watch('name');
-    
-        // const {
-        //     register,
-        //     handleSubmit,
-        //     reset,
-        //     formState: { isSubmitting, errors, touchedFields },
-        //   } = useForm({
-        //       resolver: yupResolver(SignupSchema)
-        //   });
-    
       
         const onSubmit = async (data, e) => {
 
@@ -141,7 +134,6 @@ export const AddPetForm =()=>{
           }
     
           useEffect(() => {
-            // Simulate fetching species options from the backen
             
             const fetchSpeciesOptions = async () => {
               const response = await axios.get('/notices/species');
@@ -156,6 +148,12 @@ export const AddPetForm =()=>{
             value: `${option}`,
             label: `${option}`
           }));
+
+          const handleDateChange = (date) => {
+            setStartDate(date);
+            const formattedDate = date ? date.toISOString().split('T')[0] : '';
+            setValue('birthday', formattedDate);
+        };
           
     return(
         <>
@@ -246,20 +244,22 @@ export const AddPetForm =()=>{
 
                 <ContainerInput>
                 <WrapperSelect>
-                  <Input id="birthday" 
-                         placeholder="0000-00-00" 
-                         $isError={!!errors.birthday}
-                         $isSuccess={!errors.birthday && touchedFields.birthday}
-
-                         {...register('birthday',{
-                          required: 'Required',
-                        })} />
+                      <DatePicker
+                            selected={startDate}
+                            onChange={handleDateChange}
+                            dateFormat="yyyy-MM-dd"
+                            customInput={<Input
+                                placeholder="0000-00-00"
+                                $isError={!!errors.birthday}
+                                $isSuccess={!errors.birthday && touchedFields.birthday}
+                                {...register('birthday')} />}
+                        />
                       {errors.birthday && <Error>{errors.birthday.message}</Error>}
                       {!errors.birthday && touchedFields.birthday && <SuccessMessage>Birthday is secure</SuccessMessage>} 
 
-                    <SvgCalendar width={18} height={18}>
-                           <use xlinkHref={sprite + '#icon-calendar'}/> 
-                    </SvgCalendar>
+                      <SvgCalendar width={18} height={18} onClick={() => document.querySelector('.react-datepicker__input-container input').focus()}>
+                            <use xlinkHref={sprite + '#icon-calendar'} />
+                        </SvgCalendar>
                 </WrapperSelect>
 
                  <WrapperSelect>
@@ -272,10 +272,9 @@ export const AddPetForm =()=>{
                                onChange={value => setValue('species', value?.value || '')}
                         />
                   {errors.species && <Error>{errors.species.message}</Error>}
-</WrapperSelect>
+                 </WrapperSelect>
 
-
-                  </ContainerInput>
+                </ContainerInput>
 
                   <WrapperButton>
                     <Button type='button' 
@@ -286,5 +285,4 @@ export const AddPetForm =()=>{
             </ContainerForm> 
         
         </>
-    )
-}
+    )}

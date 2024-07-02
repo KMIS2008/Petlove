@@ -8,7 +8,8 @@ import { useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import {selectIsLoggedIn} from '../../redux/auth/selects';
 import {selectorFavorite, selectorNoticesId} from '../../redux/selects';
-import {addNotices, removeNotices, fetchNoticesId} from '../../redux/operations';
+import {addNotices, removeNotices, fetchNoticesId, fetchUserFull} from '../../redux/operations';
+
 // import { useLocation } from 'react-router-dom';
 
  
@@ -68,9 +69,14 @@ export const NoticesItem=({notice, trash})=>{
         }
     };
 
-    const handleDeleteFavorite = (_id) => {
-            dispatch(removeNotices(_id));
+    const handleDeleteFavorite = async (_id) => {
+        try {
+            await dispatch(removeNotices(_id));
             setFavorite(false);
+            await dispatch(fetchUserFull());
+        } catch (error) {
+            console.error("Error deleting favorite notice:", error);
+        }
     };
 
 

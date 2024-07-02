@@ -4,13 +4,17 @@ import defaultAvatar from '../../images/user.png';
 import { useSelector } from 'react-redux';
 import {UserInfo, User, UserAvatar, UserUpload, UserTitle} from './UserBlock.styled';
 
+import { selectorUserFull} from 'redux/selects';
+
+
 export const UserBlock=()=>{
 
-    const user = useSelector((state) => state.auth.user);
+    const user = useSelector(selectorUserFull);
     const avatarUrl = user.avatar || defaultAvatar;
     const userName = user.name || 'Name';
     const userEmail = user.email ||'name@gmail.com';
     const userPhone = user.phone || '+380';
+
 
     const isDefaultName = userName === 'Name';
     const isDefaultEmail = userEmail === 'name@gmail.com';

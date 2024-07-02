@@ -127,7 +127,7 @@ margin-top: 20px;
 width: 100%;
 height: 42px;
 
-padding: 12px 108px;
+padding: 12px ;
 gap: 10px;
 border-radius: 30px;
 color: #262626;
@@ -137,7 +137,15 @@ color: #262626;
   color: ${p => p.theme.colors.white};
 }
 
-@media (min-width: 768px) {
-    margin-top: 50px;
+    &::before {
+      content: 'Go to profile';
     }
+
+@media (min-width: 769px) {
+    margin-top: 50px;
+    &::before {
+      content: 'Save';
+    }
+  }
+
 `;

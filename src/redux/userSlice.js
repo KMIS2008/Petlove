@@ -1,4 +1,4 @@
-import {addPet, fetchUserFull, removePet} from './operations';
+import {addPet, fetchUserFull, removePet, fetchUserEdit} from './operations';
 import { createSlice} from '@reduxjs/toolkit';
 
 
@@ -48,6 +48,10 @@ const userSlice = createSlice({
             state.error = null;
          })
         .addCase(fetchUserFull.rejected, handlReject)
+        .addCase(fetchUserEdit.fulfilled, (state, action) => {
+            state.userFull = action.payload;
+            state.token = action.payload.token;
+            state.isLoggedIn = true;})
        }
 })
 

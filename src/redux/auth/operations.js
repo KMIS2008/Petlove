@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 
 axios.defaults.baseURL = "https://petlove.b.goit.study/api";
+const User_URL='/users/current';
 
 const setAuthHeader = token => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -66,6 +67,15 @@ const setAuthHeader = token => {
       }
     }
   );
+
+  export const fetchUserEdit = createAsyncThunk('user/edit', async (info, thunkAPI) => {
+    try {
+        const response = await axios.patch(`${User_URL}/edit`, info);
+        return response.data;
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e.message);
+    }
+});
 
 // axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 

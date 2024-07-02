@@ -1,5 +1,6 @@
 import Modal from "react-modal";
 import { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -9,9 +10,13 @@ import {Container, SvgButton, Title, UserAvatar, ContainerInput,
        Button
 } from './ModalEditUser.styled';
 import defaultAvatar from '../../images/user.png';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { NotificationManager} from 'react-notifications';
+// import {fetchUserEdit} from '../../redux/auth/operations';
+// import {selectUser} from '../../redux/auth/selects'
+import { selectorUserFull} from 'redux/selects';
+import {fetchUserEdit } from '../../redux/operations';
+
 
 Modal.setAppElement('#modal');
 
@@ -31,22 +36,29 @@ const SignupSchema = Yup.object().shape({
 export const ModalEditUser=({isModalEditUser, setModalEditUser})=>{
 
   const[isAvatar, setAvatar]=useState(false);
-  const navigator = useNavigate(); 
   const dispatch=useDispatch();
 
   const handleLoadingAvatar=()=>{
     setAvatar(true)
   }
 
+    const user = useSelector(selectorUserFull);
+
+    const defaultValues = {
+      name: user.name || 'Name',
+      email: user.email ||'name@gmail.com',
+      phone: user.phone || '+380',
+      avatar: user.avatar ,
+    };
     const {
         register, 
         handleSubmit,
-        //  setValue, 
          formState: { errors, touchedFields }, 
-         reset, watch
+         watch
         } = useForm({
         resolver: yupResolver(SignupSchema),
         mode: 'onBlur',
+        defaultValues
       });
 
     const avatar = watch('avatar');
@@ -65,8 +77,6 @@ export const ModalEditUser=({isModalEditUser, setModalEditUser})=>{
           marginRight: "-50%",
           transform: "translate(-50%, -50%)",
           padding: "20px",
-          // maxWidth: "335px",
-          // maxHeight: "473px",
           borderRadius: "30px",
           backgroundColor: "#FFFFFF",
         },
@@ -84,14 +94,28 @@ export const ModalEditUser=({isModalEditUser, setModalEditUser})=>{
         };
       }, [isModalEditUser]);
 
+
       const onSubmit = async (data, e) => {
 
         e.preventDefault();
         try {
-            await dispatch();
-            // await dispatch(addPet(data));
-            reset();
-            navigator('/profile');
+          let info={}
+
+          if(data.name!==user.name){
+            info.name=data.name
+          }
+          if(data.email!==user.email){
+            info.email=data.email
+          }
+          if(data.phone!==user.phone){
+            info.phone=data.phone
+          }
+          if(data.avatar!==user.avatar){
+            info.avatar=data.avatar
+          }
+            await dispatch(fetchUserEdit(info));
+        
+            setModalEditUser(false);
         } catch (errors) {
             
           NotificationManager.errors(errors.message || 'An error occurred', 'Error', 5000);
@@ -201,12 +225,9 @@ export const ModalEditUser=({isModalEditUser, setModalEditUser})=>{
                 {errors.phone && <Error>{errors.phone.message}</Error>}
                 {!errors.phone && touchedFields.phone && <SuccessMessage>Phone is secure</SuccessMessage>}
 
-                <Button type='submit'>Submit</Button>
+                <Button type='submit'></Button>
        
-
-
-                 </form>
-
+              </form>
 
             </Container>
   
