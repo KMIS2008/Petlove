@@ -8,18 +8,22 @@ import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import axios from 'axios';
 import sprite from '../../images/sprite.svg';
+import { useDispatch } from 'react-redux';
+import {getNoticesFilter} from '../../redux/operations'
 
 axios.defaults.baseURL = "https://petlove.b.goit.study/api";
 
 
 export const NoticesFilters=({fetch})=>{
-     // const dispatch = useDispatch();
+     const dispatch = useDispatch();
     const [iscategories, setCategories] = useState([]);
     const [isgenders, setGenders] = useState([]);
     const [ispetTypes, setPetTypes] = useState([]);
     const [islocations, setLocations] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState(null);
     const [selectedSort, setSelectedSort] = useState(null);
+    // const [isPageNumber, setIsPageNumber] = useState(1);
+
 
     // const getFilter = () => {
     //   return {
@@ -43,11 +47,6 @@ export const NoticesFilters=({fetch})=>{
   //   setGenders(e.target.value);
   // };
 
-  const handleResetClick = (resetForm) => {
-    resetForm();
-    setSelectedLocation(null);
-    setSelectedSort(null); 
-};
          
       useEffect(() => {
         const fetchData = async () => {
@@ -64,6 +63,17 @@ export const NoticesFilters=({fetch})=>{
     
         fetchData();
       }, []);
+
+      // useEffect(() => {
+      //   dispatch(fetch(filterValues));
+      // }, [fetch, filterValues]);
+    
+      // const handleFilterChange = (name, value) => {
+      //   setFilterValues(prevValues => ({
+      //     ...prevValues,
+      //     [name]: value
+      //   }));
+      // };
 
       const locationOptions = islocations.map(location => ({
         value: location._id,
@@ -139,6 +149,12 @@ export const NoticesFilters=({fetch})=>{
         );
       };
 
+      const handleResetClick = (resetForm) => {
+        resetForm();
+        setSelectedLocation(null);
+        setSelectedSort(null);
+      };
+
       return(
         <Formik       
          initialValues={{
@@ -149,14 +165,17 @@ export const NoticesFilters=({fetch})=>{
            location: '',
            sortBy: '',
       }} 
+      
 
       onSubmit={(values, actions) => {       
-        // dispatch(addReservation(values))     
-        //  fetch(values);
+        dispatch(fetch(values))     
+    
          actions.resetForm();}
       }>
 
-{({ resetForm, setFieldValue }) => (
+{({ resetForm, setFieldValue, values }) => (
+
+  
         <Form>
           <Container>
         

@@ -120,6 +120,49 @@ export const fetchUserEdit = createAsyncThunk('user/edit', async (info, thunkAPI
     }
 });
 
+export const getNoticesFilter = createAsyncThunk(
+  'notices/filter', async ({keyword, category, gender, species, locationId, byPopularity, page=1, limit=6}, thunkApi,) => {
+    const params = new URLSearchParams();
+    params.append('page', page.toString());
+    params.append('limit', limit.toString());
+
+    if (keyword) {
+        params.append('keyword', keyword);
+      }
+
+    if (category) {
+      params.append('category', category);
+    }
+    if (gender) {
+      params.append('gender', gender);
+    }
+    if (species) {
+      params.append('species', species);
+    }
+    if (locationId) {
+        params.append('locationId', locationId);
+      }
+    if (byPopularity) {
+        params.append('byPopularity', byPopularity);
+      }
+
+    // if (type) {
+    //   params.append(`${type}`, isSelected);
+    // }
+
+    try {
+      const response= await axios.get(`${Notices_URL}?${params.toString()}`);
+      return response.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue({
+        message: error.message,
+        code: error.response.status,
+      });
+    }
+  },
+);
+
+// const response = await axios.get(`${Notices_URL}?keyword=${keyword}&page=${pageNumber}&limit=6`);
 
 
 

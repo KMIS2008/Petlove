@@ -1,4 +1,4 @@
-import {fetchnotices, fetchnoticesByKeyword, addNotices, removeNotices, fetchNoticesId} from './operations';
+import {fetchnotices, fetchnoticesByKeyword, addNotices, removeNotices, fetchNoticesId, getNoticesFilter} from './operations';
 import { createSlice} from '@reduxjs/toolkit';
 
 
@@ -73,6 +73,9 @@ const noticesSlice = createSlice({
             state.error = null;
           })
         .addCase(removeNotices.rejected, handlReject)
+        .addCase(getNoticesFilter.pending, handlPending)
+        .addCase(getNoticesFilter.fulfilled, handlFulfilled)
+        .addCase(getNoticesFilter.rejected, handlReject)
        }
 })
 
