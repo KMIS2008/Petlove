@@ -9,7 +9,7 @@ import { nanoid } from 'nanoid';
 import axios from 'axios';
 import sprite from '../../images/sprite.svg';
 import { useDispatch } from 'react-redux';
-import {getNoticesFilter} from '../../redux/operations'
+// import {getNoticesFilter} from '../../redux/operations'
 
 axios.defaults.baseURL = "https://petlove.b.goit.study/api";
 
