@@ -10,12 +10,8 @@ import {selectIsLoggedIn} from '../../redux/auth/selects';
 import {selectorFavorite, selectorNoticesId} from '../../redux/selects';
 import {addNotices, removeNotices, fetchNoticesId, fetchUserFull} from '../../redux/operations';
 
-// import { useLocation } from 'react-router-dom';
-
  
 export const NoticesItem=({notice, trash})=>{
-    // const location = useLocation();
-    // const isProfilePage = location.pathname === '/profile'; 
 
     const dispatch=useDispatch();
 
@@ -23,15 +19,11 @@ export const NoticesItem=({notice, trash})=>{
     
     const favorites = useSelector(selectorFavorite);
     const noticeId=useSelector(selectorNoticesId);
-    // const isFavorite = favorites.some((item) => item._id === value._id);
    
     const {imgURL ,title, popularity, comment, name, birthday, species, category, sex, _id}=notice;
     const [isOpenModalAttention, setIsOpenModalAttention ] =useState(false);
     const [isOpenModalNotice, setIsOpenModalNotice ] =useState(false);
     const [isFavorite, setFavorite]=useState(favorites.includes(_id));
-
-    // const isFavorite = favorites.includes(_id);
-    // const isFavorite = favorites.some((item) => item ===_id);
 
     const openModalAttention=()=>{
         setIsOpenModalAttention(true);
@@ -78,7 +70,6 @@ export const NoticesItem=({notice, trash})=>{
             console.error("Error deleting favorite notice:", error);
         }
     };
-
 
     return(
         <ContainerItem>

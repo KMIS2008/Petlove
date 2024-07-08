@@ -31,9 +31,6 @@ export const BurgerMenu=({ onClose })=>{
  
             {!isLoggedIn && <AuthNav grid={true} isOpen={true} onClose= {onClose}/> } 
 
-
-         
         </BurgerMenuContainer>
-
     )
 }

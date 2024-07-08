@@ -5,13 +5,8 @@ padding: 20px;
 
 @media (min-width: 768px) {
     width: 100%; 
-    /* max-width: 342px;  */
     margin: 0 auto; 
 }
-
-/* @media (min-width: 1280px) {
-    max-width: 363px
-} */
 `
 export const Img = styled.img`
 border-radius: 16px;

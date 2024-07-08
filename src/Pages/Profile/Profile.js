@@ -10,6 +10,5 @@ export default function Profile(){
            <UserCard/>
            <MyNotices/>
         </Container>
-
     )
 }

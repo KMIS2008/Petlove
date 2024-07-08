@@ -179,38 +179,3 @@ color: #262626;
   color: ${p => p.theme.colors.white};
 }
 `;
-
-
-
-
-// export const Select = styled.select`
-//   margin-bottom: 5px;
-//   padding: 9px 20px;
-//   gap: 10px;
-//   width: 100%;
-//   border-radius: 30px;
-//   border: 1px solid #26262626 ;
-//   /* ${props => {
-//      if (props.$isError === true) {return '#08AA83'};
-//      if (props.$isError=== false) {return '#EF2447'};
-   
-
-//   }}; */
-//   outline: none;
-
-//   &::placeholder {
-//     color: #26262680; 
-//   }
-// `;
-
-// export const Option = styled.option`
-//    color: #26262699;
-//    border: 1px solid #26262626;
-//    color: ${props => (props.value === '' ? '#26262680' : '#26262699')}; 
-
-//    &:first-child {
-//     color: #26262680; 
-//   }
-// `;
-
-

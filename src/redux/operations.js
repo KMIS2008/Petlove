@@ -149,11 +149,6 @@ export const getNoticesFilter = createAsyncThunk( 'notices/filter',
         params.append('byPrice', price);
       }
 
-
-    // if (type) {
-    //   params.append(`${type}`, isSelected);
-    // }
-
     try {
       const response= await axios.get(`${Notices_URL}?${params.toString()}`);
       return response.data;
@@ -165,70 +160,3 @@ export const getNoticesFilter = createAsyncThunk( 'notices/filter',
     }
   },
 );
-
-// const response = await axios.get(`${Notices_URL}?keyword=${keyword}&page=${pageNumber}&limit=6`);
-
-// export const getNoticesFilter = createAsyncThunk( 'notices/filter',
-//   async (
-//     { p = 1, l = 6, category, species, name, type, isSelected },
-//     thunkApi,
-//   ) => {
-//     const params = new URLSearchParams();
-//     params.append('page', p.toString());
-//     params.append('limit', l.toString());
-
-//     if (category) {
-//       params.append('category', category);
-//     }
-//     if (species) {
-//       params.append('species', species);
-//     }
-//     if (name) {
-//       params.append('keyword', name);
-//     }
-//     if (type) {
-//       params.append(`${type}`, isSelected);
-//     }
-
-//     try {
-//       const { data } = await $instants.get(`/notices?${params.toString()}`);
-//       return data;
-//     } catch (error: ErrorType | any) {
-//       return thunkApi.rejectWithValue({
-//         message: error.message,
-//         code: error.response.status,
-//       });
-//     }
-//   },
-// );
-
-// axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
-
-export const fetchContacts = createAsyncThunk("contacts/fetchAll", async (_, thunkAPI)=>{
-    try {
-          const response = await axios.get("/contacts");
-          return response.data;  
-    } catch (e) {
-        return thunkAPI.rejectWithValue(e.message)
-    }
-
-})
-
-
-export const addContact = createAsyncThunk("contacts/addContact", async ({ name, number }, thunkAPI)=>{
-    try {
-        const response = await axios.post("/contacts", { name, number });
-        return response.data;
-    } catch (e) {
-        return thunkAPI.rejectWithValue(e.message)
-    }
-})
-
-export const deleteContact = createAsyncThunk("contacts/deleteContact", async(contactId, thunkAPI)=>{
-    try {
-        const response = await axios.delete(`/contacts/${contactId}`);
-        return response.data;
-    } catch (e) {
-        return thunkAPI.rejectWithValue(e.message)
-    }
-})

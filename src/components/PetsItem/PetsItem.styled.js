@@ -23,7 +23,6 @@ gap: 16px;
 
 border-radius: 20px;
 border: 1px solid #2626261A;
-
 `
 
 export const Img= styled.img`

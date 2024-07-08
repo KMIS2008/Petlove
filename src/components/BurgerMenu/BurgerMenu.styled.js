@@ -25,7 +25,6 @@ export const BurgerMenuContainer = styled.div`
 
     padding: 396px 0 28px 0;
     width: 374px;
-  
 }
 `;
 

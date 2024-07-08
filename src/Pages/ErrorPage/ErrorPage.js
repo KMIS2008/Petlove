@@ -46,7 +46,6 @@ export default function ErrorPage(){
                 ${catErrorRemove} 1x,
                       `}/>
         </picture>
-   
                 4
             </Title>
             <Text>Ooops! This page not found :(</Text>

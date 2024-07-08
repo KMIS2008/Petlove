@@ -1,7 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {newsReducer} from './newsSlice';
-import {filterReduser} from './filterSlice';
-import {contactReduser} from './contactSlice';
 import {noticesReducer} from './noticesSlice';
 import { authReducer } from "./auth/authSlice";
 import {friendReducer} from './friendsSlice';
@@ -31,11 +29,8 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     news: newsReducer,
     notices: noticesReducer,
-    filter: filterReduser,
     friends: friendReducer,
     user: userReducer,
-    
-     contact: contactReduser,
   },
   
   middleware: getDefaultMiddleware =>

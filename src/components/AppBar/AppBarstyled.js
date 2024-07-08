@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
-/* position: relative; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,12 +11,10 @@ export const Header = styled.header`
 
   @media (min-width: 768px) {
     padding: 16px 32px;
-
   }
 
   @media (min-width: 1280px) {
     padding: 16px 64px;
-
 }
 `
 

@@ -12,8 +12,6 @@ import {Container, SvgButton, Title, UserAvatar, ContainerInput,
 import defaultAvatar from '../../images/user.png';
 import { useDispatch } from "react-redux";
 import { NotificationManager} from 'react-notifications';
-// import {fetchUserEdit} from '../../redux/auth/operations';
-// import {selectUser} from '../../redux/auth/selects'
 import { selectorUserFull} from 'redux/selects';
 import {fetchUserEdit } from '../../redux/operations';
 
@@ -226,11 +224,8 @@ export const ModalEditUser=({isModalEditUser, setModalEditUser})=>{
                 {!errors.phone && touchedFields.phone && <SuccessMessage>Phone is secure</SuccessMessage>}
 
                 <Button type='submit'></Button>
-       
               </form>
-
             </Container>
-  
         </Modal>
         </>
     )

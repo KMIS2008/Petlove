@@ -15,7 +15,6 @@ export const MyNotices=()=>{
     const favorites =userFull.noticesFavorites;
     const viewed=userFull.noticesViewed;
 
-
     const handleFavoritList=()=>{
         setIsFavoritePets(true);
         setVeiwed(false);
@@ -28,7 +27,6 @@ export const MyNotices=()=>{
         setVeiwed(true);
         dispatch(fetchUserFull())
     }
-
 
     return(
         <>

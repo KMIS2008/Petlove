@@ -44,9 +44,7 @@ export const PetsItem =({pet})=>{
                    </div>
          
                </ContainerTable>
-
             </ContainerInfo>
-        
         </Container>
     )
 }

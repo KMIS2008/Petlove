@@ -21,13 +21,6 @@ export const SearchField =({fetch})=>{
       handleResetClick();
   };
 
-//   useEffect(() => {
-//       if (searchValue) {
-//           dispatch(fetchNewsByKeyword({ keyword: searchValue, pageNumber:1 }));
-//       }
-//   }, [dispatch, searchValue]);
-
-
     return(
         <Container onClick = {handleSubmit}>
            <Input placeholder="Search"

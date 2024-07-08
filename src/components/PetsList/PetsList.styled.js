@@ -9,7 +9,5 @@ list-style: none;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
-    
 }
-
 `

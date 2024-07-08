@@ -15,7 +15,6 @@ color: #2B2B2A;
 @media (min-width: 768px) {
     font-size: 18px;
 }
-
 `
 
 export const Button = styled.button`

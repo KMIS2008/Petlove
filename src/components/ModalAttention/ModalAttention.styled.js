@@ -38,7 +38,6 @@ line-height: 1;
 letter-spacing: -0.03em;
 text-align: center;
 color: ${p => p.theme.colors.yellow};
-/* margin-bottom: ${p=>p.theme.spacing(2)}; */
 `
 
 export const Text = styled.p`

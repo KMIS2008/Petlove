@@ -62,8 +62,6 @@ export const ModalApproveAction=({isOpenModalApproveAction, setOpenModalApproveA
           maxHeight: isSmallScreen ? "270px" : "364px",
           borderRadius: "30px",
           backgroundColor: "#FFFFFF",
-        
-    
         },
       });
     };
@@ -88,10 +86,8 @@ export const ModalApproveAction=({isOpenModalApproveAction, setOpenModalApproveA
         };
       }, [isOpenModalApproveAction]);
 
-
     return(
         <>
-
 <Modal   
           isOpen={isOpenModalApproveAction}
           onRequestClose={() => {

@@ -20,7 +20,6 @@ export const Logo=()=>{
               <use xlinkHref={sprite + '#icon-logo-1'}/>
             </Svg> }
             </NavLink> 
-        
        </nav>
     )
 }

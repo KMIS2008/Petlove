@@ -72,7 +72,6 @@ return (
           style={{ width: '100%', height: 'auto', }}
         />
            </picture>
-        
     </div>
 )
 }

@@ -21,11 +21,10 @@ export default function Notices(){
     }, [dispatch, isPageNumber])
     return(
         <>
-        <Title name="Find your favorite pet"/>
-        <NoticesFilters notices={notices}/>
-        <NoticesList notices={notices}/>
-        <Pagination handleChangeNewPage={handleChangeNewPage} currentPage={isPageNumber}/>
-
+          <Title name="Find your favorite pet"/>
+          <NoticesFilters notices={notices}/>
+          <NoticesList notices={notices}/>
+          <Pagination handleChangeNewPage={handleChangeNewPage} currentPage={isPageNumber}/>
         </>
     )
 }

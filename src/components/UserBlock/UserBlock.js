@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import defaultAvatar from '../../images/user.png';
-// import { EditUserBtn } from '../EditUserBtn/EditUserBtn';
 import { useSelector } from 'react-redux';
 import {UserInfo, User, UserAvatar, UserUpload, UserTitle} from './UserBlock.styled';
 
@@ -14,7 +13,6 @@ export const UserBlock=()=>{
     const userName = user.name || 'Name';
     const userEmail = user.email ||'name@gmail.com';
     const userPhone = user.phone || '+380';
-
 
     const isDefaultName = userName === 'Name';
     const isDefaultEmail = userEmail === 'name@gmail.com';
@@ -45,6 +43,5 @@ export const UserBlock=()=>{
                 <User $isDefault={isDefaultPhone}>{userPhone}</User>
             </UserInfo>
         </div>
-
     )
 }

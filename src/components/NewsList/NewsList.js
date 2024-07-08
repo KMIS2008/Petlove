@@ -6,12 +6,10 @@ export const NewsList =({news})=>{
         <>
           <List>
            {news?.map(iterm =>(
-               
                   <NewsItem key={iterm._id} value ={iterm} />
            )
            )}            
           </List>
-
         </>
     )
 }

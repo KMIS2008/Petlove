@@ -37,7 +37,7 @@ export const AddPetForm =()=>{
     const customStyles = {
         placeholder: (provided) => ({
           ...provided,
-          color: '#26262680', // Колір для placeholder
+          color: '#26262680', 
         }),
         control: (provided, state) => ({
           ...provided,

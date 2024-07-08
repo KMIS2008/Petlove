@@ -25,7 +25,6 @@ font-weight: 700;
 line-height: 1,29;
 color: #262626;
 
-
 &:hover{
     background-color: ${p => p.theme.colors.yellow};
     color:   ${p => p.theme.colors.white};
@@ -38,7 +37,6 @@ width: 40px;
 height: 40px;
 border-radius: 50%;
 cursor: pointer;
-/* fill: currentColor; */
 border: 1px solid #2626260D;
 text-align: center;
 font-size: 20px;

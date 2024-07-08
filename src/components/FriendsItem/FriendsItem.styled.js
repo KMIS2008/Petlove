@@ -45,7 +45,6 @@ font-size: 16px;
 font-weight: 700;
 line-height: 1,25;
 letter-spacing: -0.04em;
-
 `
 
 export const Text = styled.p`

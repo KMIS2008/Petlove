@@ -24,7 +24,6 @@ height: 94px;
     }
 `;
 
-
 export const User = styled.p`
 margin-bottom: 10px;
     font-family: Manrope;
@@ -39,8 +38,6 @@ padding: 12px;
 gap: 10px;
 border-radius: 30px;
 border: ${(props) => (props.$isDefault ? '1px solid #26262626' : '1px solid #F6B83D')};
-/* border: 1px solid #F6B83D; */
-/* border: 1px solid #26262626 */
 `;
 
 export const UserUpload = styled.p`

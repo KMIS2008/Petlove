@@ -27,9 +27,7 @@ export default function AddPet (){
                       imgMobile2={DogAddMobile2} 
                       imgMobile3={DogAddMobile3}
                       />
-
             <AddPetForm/>
-             
         </Container>
     )
 }

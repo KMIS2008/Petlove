@@ -104,19 +104,10 @@ export const NoticesFilters=({notices})=>{
         fetchData();
       }, []);
 
-    
-      // const handleFilterChange = (name, value) => {
-      //   setFilterValues(prevValues => ({
-      //     ...prevValues,
-      //     [name]: value
-      //   }));
-      // };
-
       const locationOptions = islocations.map(location => ({
         value: location._id,
         label: `${location.stateEn}, ${location.cityEn}, ${location.countyEn}`
       }));
-
 
       const customStyles = {
         control: (provided, state) => ({
@@ -215,7 +206,6 @@ export const NoticesFilters=({notices})=>{
 
 {({ resetForm, setFieldValue, values }) => (
 
-  
         <Form>
           <Container>
         

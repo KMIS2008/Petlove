@@ -40,6 +40,5 @@ export default function Registr ({imgDesctop1, imgDesctop2, imgDesctop3,
         </Container>
 
         </ContainerLogin>
-  
     )
 }

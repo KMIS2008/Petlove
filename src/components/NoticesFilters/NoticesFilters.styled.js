@@ -8,7 +8,6 @@ border-radius: 30px;
 background-color: #FFF4DF;
 `
 
-
 export const ContainerTabletSelect = styled.div`
 @media (min-width: 768px) {
     display: flex;
@@ -27,7 +26,6 @@ export const ContainerSelect = styled.div`
 display: flex;
 gap: ${p=>p.theme.spacing(2)};
 margin-bottom: ${p=>p.theme.spacing(4)};
-/* width: 100%; */
 
 flex-basis: 55%; 
 

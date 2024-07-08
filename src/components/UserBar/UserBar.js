@@ -26,11 +26,9 @@ export const UserBar=()=>{
 
     return(
         <Container>
-
             <Link to="/profile">
                 <img src={avatarUrl} alt="User Avatar" />
             </Link>
-            
             {!isMobile && user && <p>{userName}</p>}
         </Container>
     )

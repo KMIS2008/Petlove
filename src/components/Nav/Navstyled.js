@@ -15,11 +15,6 @@ text-align: lcenter;
 
 border-radius: 30px;
 
-/* border: 1px solid ${props => (props.$isStyle ? '#262626' : '#FFFFFF')}; 
-color: ${props => (props.$isStyle ? '#262626' : '#FFFFFF')};  */
-
-/* border: 1px solid '#FFFFFF'; 
-color: '#FFFFFF';  */
 
 border: 1px solid ${props => (props.$isHome ? '#FFFFFF' : '#262626')}; 
 color: ${props => (props.$isHome ? '#FFFFFF' : '#262626')}; 
@@ -36,5 +31,4 @@ export const Container = styled.div`
 display: ${({ $grid }) => ($grid ? 'grid' : 'row')};
   grid-template-columns: ${({ $grid }) => ($grid ? ' 1fr' : 'none')};
   gap: ${({ $grid }) => ($grid ? '16px' : '0')};
-
 `

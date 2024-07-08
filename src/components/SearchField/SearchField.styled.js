@@ -4,7 +4,6 @@ export const Container = styled.div`
 position: relative;
 @media (min-width: 768px) {
     width: 230px;
-    
   }
 `
 export const Input = styled.input`
@@ -42,8 +41,6 @@ color: rgba(38, 38, 38, 0.5);
   @media (min-width: 1280px) {
    margin-bottom:0;
   }
-
-  
 `
 
 export const Svg = styled.svg`

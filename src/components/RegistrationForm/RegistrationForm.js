@@ -141,7 +141,6 @@ export const RegistrationForm = () => {
                 </ButtonEye>
             </Container>
 
-
             <Button type="submit" disabled={isSubmitting}>Registration</Button>
             {error && <Error>{error}</Error>}
         </Form>

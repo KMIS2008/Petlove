@@ -28,6 +28,5 @@ export const Button = styled.button`
 
   &:hover {
     background-color: ${p=>p.theme.colors.rose};
-  
   }
 `;

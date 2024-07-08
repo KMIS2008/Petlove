@@ -24,7 +24,6 @@ export const PetBlock = ({imgDesctop1, imgDesctop2, imgDesctop3,
             />
             <source
              media="(min-width: 375px)"
-            //  sizes="(min-width: 375px) 100vw, 335px"
              srcSet={`
                ${imgMobile1} 1x,
                ${imgMobile2} 2x,
@@ -33,7 +32,6 @@ export const PetBlock = ({imgDesctop1, imgDesctop2, imgDesctop3,
             />
             <source
              media="(min-width: 320px)"
-            //  sizes="(min-width: 320px) 100vw, 320px"
              srcSet={`
                ${imgMobile1} 1x,
                ${imgMobile2} 2x,

@@ -10,7 +10,6 @@ export const FriendsItem =({friend})=>{
     const currentDayIndex = new Date().getDay();
     const todayWorkDay = workDays ? workDays[currentDayIndex] : null;
 
-
     return (
         <Contaiter>
                 <ListTodayWorkDay>
@@ -28,7 +27,6 @@ export const FriendsItem =({friend})=>{
                       <img width={80} height={80}  src= {imageUrl} alt={title}/>
 
                       <div>
-                   
                           <Title>
                              {title}
                           </Title>
@@ -38,11 +36,9 @@ export const FriendsItem =({friend})=>{
                           {address && <Text>Adress: <TextSpan> {address}</TextSpan> </Text>}
 
                           {phone && <Text>Phone: <TextSpan> {phone}</TextSpan> </Text>}
-
                       </div>
 
                 </ContainerFriend>
-
 
         </Contaiter>
     )

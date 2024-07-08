@@ -55,7 +55,6 @@ line-height: 1,25;
 
 text-align: center;
 color: #2B2B2A;
-
 `
 export const ContainerPopulate = styled.div`
 display: flex;

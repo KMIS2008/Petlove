@@ -14,7 +14,6 @@ export const ModalAttention = ({ isOpenModalAttention, setIsOpenModalAttention }
     const customStyles = {
       overlay: {
         backgroundColor: "rgba(38, 38, 38, 0.3)",
-       
       },
       content: {
         top: "50%",
@@ -80,7 +79,6 @@ export const ModalAttention = ({ isOpenModalAttention, setIsOpenModalAttention }
   </Container>
   
         </Modal>
-        
         </>
       );
     }; 

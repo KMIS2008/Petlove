@@ -61,6 +61,5 @@ export const ButtonRegistration = styled.button`
 
   &:hover {
     background-color: #FBE7C1;
-; 
   }
 `;
