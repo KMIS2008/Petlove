@@ -7,17 +7,13 @@ export const LogOutBtn=({isOpen = false, onClose = () => {}})=>{
     const [isOpenModalApproveAction, setOpenModalApproveAction] = useState(false);
 
     const handleOpen =()=>{
-      // console.log('Opening modal...');
-      setOpenModalApproveAction (true)
-          if(isOpen){
-          onClose()
-      }
+         setOpenModalApproveAction (true)
     }
 
     return(
         <>
         <ButtonLogout type="button" onClick={handleOpen}>Logout</ButtonLogout>
-        <ModalApproveAction isOpenModalApproveAction={isOpenModalApproveAction} setOpenModalApproveAction={setOpenModalApproveAction}/>
+        <ModalApproveAction isOpenModalApproveAction={isOpenModalApproveAction} isOpen ={isOpen} onClose={onClose} setOpenModalApproveAction={setOpenModalApproveAction}/>
         </>
     )
 }

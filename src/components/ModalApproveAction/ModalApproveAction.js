@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 Modal.setAppElement('#modal');
 
-export const ModalApproveAction=({isOpenModalApproveAction, setOpenModalApproveAction})=>{
+export const ModalApproveAction=({isOpenModalApproveAction, setOpenModalApproveAction, isOpen = false, onClose = () => {}})=>{
 
   const dispatch = useDispatch();
   const navigator = useNavigate(); 
@@ -18,11 +18,15 @@ export const ModalApproveAction=({isOpenModalApproveAction, setOpenModalApproveA
   const handlLogout =()=>{
         dispatch(logOut())
         navigator('/home')
+        if(isOpen){
+          onClose()
+       }
     }
 
     const [modalStyles, setModalStyles] = useState({
       overlay: {
         backgroundColor: "rgba(38, 38, 38, 0.3)",
+        zIndex: 1000,
       },
       content: {
         top: "50%",
@@ -44,6 +48,7 @@ export const ModalApproveAction=({isOpenModalApproveAction, setOpenModalApproveA
       setModalStyles({
         overlay: {
           backgroundColor: "rgba(38, 38, 38, 0.3)",
+          zIndex: 1100,
         },
         content: {
           top: "50%",
@@ -57,15 +62,17 @@ export const ModalApproveAction=({isOpenModalApproveAction, setOpenModalApproveA
           maxHeight: isSmallScreen ? "270px" : "364px",
           borderRadius: "30px",
           backgroundColor: "#FFFFFF",
+        
+    
         },
       });
     };
   
     useEffect(() => {
-      updateModalStyles(); // Initial check
-      window.addEventListener('resize', updateModalStyles); // Add event listener for resize
+      updateModalStyles();
+      window.addEventListener('resize', updateModalStyles); 
       return () => {
-        window.removeEventListener('resize', updateModalStyles); // Clean up listener on unmount
+        window.removeEventListener('resize', updateModalStyles); 
       };
     }, []);
 
@@ -81,9 +88,6 @@ export const ModalApproveAction=({isOpenModalApproveAction, setOpenModalApproveA
         };
       }, [isOpenModalApproveAction]);
 
-      useEffect(() => {
-        console.log(`Modal is now ${isOpenModalApproveAction ? 'open' : 'closed'}`);
-      }, [isOpenModalApproveAction]);
 
     return(
         <>

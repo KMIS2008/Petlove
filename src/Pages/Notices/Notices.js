@@ -1,6 +1,6 @@
 import { Title } from "components/Title/Title";
 import { Pagination } from "components/Pagination/Pagination";
-import {fetchnotices, fetchnoticesByKeyword} from '../../redux/operations';
+import {fetchnotices} from '../../redux/operations';
 import {NoticesList} from '../../components/NoticesList/NoticesList';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +22,7 @@ export default function Notices(){
     return(
         <>
         <Title name="Find your favorite pet"/>
-        <NoticesFilters fetch={fetchnoticesByKeyword}/>
+        <NoticesFilters notices={notices}/>
         <NoticesList notices={notices}/>
         <Pagination handleChangeNewPage={handleChangeNewPage} currentPage={isPageNumber}/>
 

@@ -202,3 +202,25 @@ export const RadioButton = styled(Field)`
     color: ${(p) => p.theme.colors.white};
   }
 `;
+
+export const Button = styled.button`
+width: 123px;
+height: 42px;
+border-radius: 30px;
+
+color: #262626;
+
+font-family: Manrope;
+font-size: 14px;
+font-weight: 500;
+line-height: 1,5;
+letter-spacing: -0.03em;
+background-color: #FFFFFF;
+border: 1px solid #F6B83D;
+
+&:hover{
+    background-color: #F6B83D;
+    color: #FFFFFF;
+}
+
+`

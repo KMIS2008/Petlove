@@ -19,7 +19,7 @@ export const BurgerMenuContainer = styled.div`
 
   background-color: ${props => (props.$isHome ? '#FFFFFF' : '#F6B83D')}; 
   
-  z-index: 1000;
+  z-index: 1;
 
   @media (min-width: 768px) {
 

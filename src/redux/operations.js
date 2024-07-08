@@ -120,16 +120,16 @@ export const fetchUserEdit = createAsyncThunk('user/edit', async (info, thunkAPI
     }
 });
 
-export const getNoticesFilter = createAsyncThunk(
-  'notices/filter', async ({keyword, category, gender, species, locationId, byPopularity, page=1, limit=6}, thunkApi,) => {
+export const getNoticesFilter = createAsyncThunk( 'notices/filter', 
+    async ({page=1, limit=6, name, category, gender, species, location, popularity, price}, thunkApi,) => {
+        
     const params = new URLSearchParams();
     params.append('page', page.toString());
     params.append('limit', limit.toString());
 
-    if (keyword) {
-        params.append('keyword', keyword);
-      }
-
+    if (name) {
+      params.append('keyword', name);
+    }
     if (category) {
       params.append('category', category);
     }
@@ -139,12 +139,16 @@ export const getNoticesFilter = createAsyncThunk(
     if (species) {
       params.append('species', species);
     }
-    if (locationId) {
-        params.append('locationId', locationId);
+    if (location) {
+        params.append('locationId', location);
       }
-    if (byPopularity) {
-        params.append('byPopularity', byPopularity);
+    if (popularity) {
+        params.append('byPopularity', popularity);
       }
+    if (price) {
+        params.append('byPrice', price);
+      }
+
 
     // if (type) {
     //   params.append(`${type}`, isSelected);
@@ -164,7 +168,39 @@ export const getNoticesFilter = createAsyncThunk(
 
 // const response = await axios.get(`${Notices_URL}?keyword=${keyword}&page=${pageNumber}&limit=6`);
 
+// export const getNoticesFilter = createAsyncThunk( 'notices/filter',
+//   async (
+//     { p = 1, l = 6, category, species, name, type, isSelected },
+//     thunkApi,
+//   ) => {
+//     const params = new URLSearchParams();
+//     params.append('page', p.toString());
+//     params.append('limit', l.toString());
 
+//     if (category) {
+//       params.append('category', category);
+//     }
+//     if (species) {
+//       params.append('species', species);
+//     }
+//     if (name) {
+//       params.append('keyword', name);
+//     }
+//     if (type) {
+//       params.append(`${type}`, isSelected);
+//     }
+
+//     try {
+//       const { data } = await $instants.get(`/notices?${params.toString()}`);
+//       return data;
+//     } catch (error: ErrorType | any) {
+//       return thunkApi.rejectWithValue({
+//         message: error.message,
+//         code: error.response.status,
+//       });
+//     }
+//   },
+// );
 
 // axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 

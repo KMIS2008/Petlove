@@ -1,53 +1,93 @@
 import {Container,ContainerTabletSelect, ContainerSelect, CustomSelect, CustomSelectType,
-        Option, ContainerSvg, Svg, SvgReset, Reset, Straight,
-        RadioGroup, RadioButtonLabel, RadioButton} from './NoticesFilters.styled';
+        Option, ContainerSvg, Svg, SvgReset, Straight, Reset,
+        RadioGroup, RadioButtonLabel, RadioButton, Button} from './NoticesFilters.styled';
 import { SearchField } from "components/SearchField/SearchField";
 import Select from 'react-select';
 import { Formik, Form} from 'formik';
-import { useEffect, useState } from 'react';
+import { useEffect, useState} from 'react';
 import { nanoid } from 'nanoid';
 import axios from 'axios';
 import sprite from '../../images/sprite.svg';
 import { useDispatch } from 'react-redux';
-// import {getNoticesFilter} from '../../redux/operations'
+import {getNoticesFilter} from '../../redux/operations'
 
 axios.defaults.baseURL = "https://petlove.b.goit.study/api";
 
 
-export const NoticesFilters=({fetch})=>{
+export const NoticesFilters=({notices})=>{
      const dispatch = useDispatch();
     const [iscategories, setCategories] = useState([]);
     const [isgenders, setGenders] = useState([]);
     const [ispetTypes, setPetTypes] = useState([]);
     const [islocations, setLocations] = useState([]);
+
     const [selectedLocation, setSelectedLocation] = useState(null);
     const [selectedSort, setSelectedSort] = useState(null);
-    // const [isPageNumber, setIsPageNumber] = useState(1);
+    const [selectCategories, setSelectCategories] = useState(null);
+    const [selectGenders, setSelectGenders] = useState(null);
+    const [selectPetTypes, setSelectPetTypes] = useState(null);
 
+    const [hasInput, setHasInput] = useState(false);
 
-    // const getFilter = () => {
-    //   return {
-    //     categories: iscategories,
-    //     genders: isgenders,
-    //     petTypes: ispetTypes,
-    //     locations: islocations,
-    //   };
-    // };
+    const getFilter = () => {
+      return {
+          category: selectCategories,
+          gender: selectGenders,
+          species: selectPetTypes,
+          location: selectedLocation,
+          price: selectedSort === 'highprice' ? false : (selectedSort === 'lowprice' ? true : undefined),
+          popularity: selectedSort === 'popularity' ? false : (selectedSort === 'unpopularity' ? true : undefined),
+      };
+  };
 
-  //   const handlCategories = (e)=>{
-  //     setCategories(e.target.value)
-  //     return dispatch(addFilter({...getFilter(), categories: e.target.value}))
-  // }
+  const handleCategoriesChange = (e, setFieldValue) => {
+    const value = e.target.value;
+    setFieldValue('category', value);
+    setSelectCategories(value);
+    setHasInput(e.target.value.trim().length > 0)
+    return dispatch(getNoticesFilter({...getFilter(), category: e.target.value}))
+  };
 
-  // const handleCategoriesChange = (e) => {
-  //   setCategories(e.target.value);
-  // };
+  const handleGendersChange = (e, setFieldValue) => {
+    const value = e.target.value;
+    setFieldValue('gender', value);
+    setSelectGenders(value);
+    setHasInput(e.target.value.trim().length > 0)
+    return dispatch(getNoticesFilter({...getFilter(), gender: e.target.value}))
+  };
 
-  // const handleGendersChange = (e) => {
-  //   setGenders(e.target.value);
-  // };
+  const handleTypesChange = (e, setFieldValue) => {
+    const value = e.target.value;
+    setFieldValue('byTypes', value);
+    setSelectPetTypes(value);
+    setHasInput(e.target.value.trim().length > 0)
+    return dispatch(getNoticesFilter({...getFilter(), species: e.target.value}))
+  };
 
-         
+  const handleSortByPopularity = () => {
+    setSelectedSort('popularity');
+    setHasInput(true);
+    dispatch(getNoticesFilter({ ...getFilter(), popularity: false }));
+  };
+
+  const handleSortByUnpopularity = () => {
+    setSelectedSort('unpopularity');
+    setHasInput(true);
+    dispatch(getNoticesFilter({ ...getFilter(), popularity: true }));
+  };
+
+  const handleSortByExpensive = () => {
+    setSelectedSort('highprice');
+    setHasInput(true);
+    dispatch(getNoticesFilter({ ...getFilter(), price: false }));
+  };
+
+  const handleSortByCheap = () => {
+    setSelectedSort('lowprice');
+    setHasInput(true);
+    dispatch(getNoticesFilter({ ...getFilter(), price: true }));
+  };
+
       useEffect(() => {
         const fetchData = async () => {
           const categoriesResponse = await axios.get('/notices/categories');
@@ -64,9 +104,6 @@ export const NoticesFilters=({fetch})=>{
         fetchData();
       }, []);
 
-      // useEffect(() => {
-      //   dispatch(fetch(filterValues));
-      // }, [fetch, filterValues]);
     
       // const handleFilterChange = (name, value) => {
       //   setFilterValues(prevValues => ({
@@ -153,6 +190,11 @@ export const NoticesFilters=({fetch})=>{
         resetForm();
         setSelectedLocation(null);
         setSelectedSort(null);
+        setSelectCategories(null);
+        setSelectGenders(null);
+        setSelectPetTypes(null);
+        setHasInput(false);
+        dispatch(getNoticesFilter({}));
       };
 
       return(
@@ -165,12 +207,10 @@ export const NoticesFilters=({fetch})=>{
            location: '',
            sortBy: '',
       }} 
-      
 
       onSubmit={(values, actions) => {       
-        dispatch(fetch(values))     
-    
-         actions.resetForm();}
+        dispatch(getNoticesFilter(values))     
+        }
       }>
 
 {({ resetForm, setFieldValue, values }) => (
@@ -180,32 +220,44 @@ export const NoticesFilters=({fetch})=>{
           <Container>
         
             <ContainerTabletSelect>    
-                <SearchField name="search" fetch={fetch} setFieldValue={(value) => setFieldValue('search', value)}/> 
+                <SearchField name="search" fetch={getNoticesFilter} setFieldValue={(value) => setFieldValue('search', value)}/> 
              <ContainerSelect>
 
-              <CustomSelect as="select" id = "category" name="category" >
+              <CustomSelect as="select" id = "category" name="category" 
+                           onChange={(e) => handleCategoriesChange(e, setFieldValue)}
+                            >
+
                  <Option value="">Category</Option>
                   {iscategories.map(category => (
-                            <Option  key={nanoid()} value={category}>
+                            <Option  key={nanoid()} value={category}
+                            >
                                 {category}
                             </Option>
                         ))}
               </CustomSelect>
-              <CustomSelect as="select" name="gender" >
+              <CustomSelect as="select" name="gender" 
+                            onChange={(e) => handleGendersChange(e, setFieldValue)}
+                            >
+
                   <Option value="">By gender</Option>
                         {isgenders.map((gender) => (
-                             <Option key={nanoid()} value={gender}>
+                             <Option key={nanoid()} value={gender}
+                             >
                                  {gender}
                              </Option>
                          ))}
               </CustomSelect>
-
+            
           </ContainerSelect> 
        
-                   <CustomSelectType as="select" name="byTypes">
+                   <CustomSelectType as="select" name="byTypes"
+                                     onChange={(e) => handleTypesChange(e, setFieldValue)}
+                         >
+
                         <Option value="">By type</Option>
                         {ispetTypes.map((byType) => (
-                            <option key={nanoid()} value={byType}>
+                            <option key={nanoid()} value={byType}
+                            >
                                 {byType}
                             </option>
                              ))}
@@ -221,7 +273,9 @@ export const NoticesFilters=({fetch})=>{
                 options={locationOptions}
                 onChange={(option) => {
                   setSelectedLocation(option);
+                  setHasInput(true);
                   setFieldValue('location', option.value);
+                  return dispatch(getNoticesFilter({...getFilter(), location: option.value}))
                 }}
                   /> 
                   
@@ -245,21 +299,21 @@ export const NoticesFilters=({fetch})=>{
                             name="sort" 
                             value="popularity" 
                             id="popularity" 
-                            onChange={() => setSelectedSort('popularity')}
+                            onChange={handleSortByPopularity}
                             checked={selectedSort === 'popularity'}/>
                   <RadioButtonLabel htmlFor="popularity">
                     Popular
                     {selectedSort === 'popularity' && (
                   <Reset onClick={() => handleResetClick(resetForm)}>
                     <use xlinkHref={sprite + '#icon-x-1'} />
-                  </Reset>
-                )}</RadioButtonLabel>
+                  </Reset>)}
+                  </RadioButtonLabel>
 
                <RadioButton type="radio" 
                             name="sort" 
                             value="unpopularity" 
                             id="unpopularity" 
-                            onChange={() => setSelectedSort('unpopularity')}
+                            onChange={handleSortByUnpopularity}
                             checked={selectedSort === 'unpopularity'}/>
                   <RadioButtonLabel htmlFor="unpopularity">
                     Unpopular
@@ -274,7 +328,7 @@ export const NoticesFilters=({fetch})=>{
                              name="sort" 
                              value="lowprice" 
                              id="lowprice" 
-                             onChange={() => setSelectedSort('lowprice')}
+                             onChange={handleSortByCheap}
                              checked={selectedSort === 'lowprice'}/>
                   <RadioButtonLabel htmlFor="lowprice">
                     Cheap
@@ -289,7 +343,7 @@ export const NoticesFilters=({fetch})=>{
                              name="sort" 
                              value="highprice" 
                              id="highprice" 
-                             onChange={() => setSelectedSort('highprice')}
+                             onChange={handleSortByExpensive}
                              checked={selectedSort === 'highprice'}/>
                   <RadioButtonLabel htmlFor="highprice">
                     Expensive
@@ -302,14 +356,11 @@ export const NoticesFilters=({fetch})=>{
             </RadioGroup>
 
           </Container> 
+          {hasInput ? (<Button type='button' onClick={() => handleResetClick(resetForm)}>Reset</Button>) : null}
           </Form>
       )}
         </Formik>
-)
-}
-      
-//             <SearchField fetch={fetch}/>
-        
-//      <SearchField setFieldValue={(value) => setFieldValue('search', value)} />
+)}
+
                     
                     

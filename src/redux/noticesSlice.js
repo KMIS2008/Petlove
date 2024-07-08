@@ -29,16 +29,6 @@ const handlReject =(state, action)=>{
 const noticesSlice = createSlice({
     name:'notices',
     initialState: allNotices,
-
-    // reducers: {
-    //     addFavorite(state, action) {
-    //       const newItem = action.payload;
-    //       state.isFavorite.push(newItem);
-    //     },
-    //     removeFavorite(state, action) {
-    //       state.isFavorite = state.isFavorite.filter((item) => item._id !== action.payload._id);
-    //     },
-    //   },
        
        extraReducers:
        builder=>{
@@ -57,12 +47,10 @@ const noticesSlice = createSlice({
         .addCase(fetchNoticesId.rejected, handlReject)
         .addCase(addNotices.pending, handlPending)
         .addCase(addNotices.fulfilled, (state,action) => {
-            // state.isFavorite=action.payload;
             const newItem = action.payload;
             state.isFavorite.push(newItem);
             state.isLoading = false;
             state.error = null;
-           
           })
         .addCase(addNotices.rejected, handlReject)
         .addCase(removeNotices.pending, handlPending)

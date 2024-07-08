@@ -1,4 +1,5 @@
 import { GlobalStyle } from './GlobalStyle';
+import { Audio } from 'react-loader-spinner'
 
 import {useEffect } from 'react';
 import { useDispatch} from 'react-redux';
@@ -36,20 +37,36 @@ const Profile = lazy(()=> import ('Pages/Profile/Profile'));
       }, [dispatch]);
     
       return isRefreshing ? (
-    <p>Оновлення користувача...</p>
+        <Audio
+        height="80"
+        width="80"
+        radius="9"
+        color="green"
+        ariaLabel="loading"
+        wrapperStyle
+        wrapperClass
+      />
   ) : (
 <div>
-<Suspense fallback={<div>Loading...</div>}>
+<Suspense fallback={       
+        <Audio
+        height="80"
+        width="80"
+        radius="9"
+        color="green"
+        ariaLabel="loading"
+        wrapperStyle
+        wrapperClass
+      />}>
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path = "/" element = {<AppLayout/>}>
               <Route path="home" element={<Home/>}/>
               <Route path="register" element = { <RestrictedRoute redirectTo="/login" component={<Reistr />} />}/>
               <Route path = "login" element ={<RestrictedRoute redirectTo="/profile" component={<Login/>} />}/>
-              {/* <Route path = "contacts" element ={ <PrivateRoute redirectTo="/login" component={<ContactsPage />} />}/> */}
               <Route path="news" element={<News/>}/>
-              <Route path="notices" element={<Notices/>}/>
-              <Route path="add-pet" element={<AddPet/>}/>
+              <Route path="notices" element= { <PrivateRoute redirectTo="/login" component={<Notices/>} />}/>
+              <Route path="add-pet" element={ <PrivateRoute redirectTo="/login" component={<AddPet/>} />}/>
               <Route path="friends" element={<FriendPage/>}/>
               <Route path="profile" element={ <PrivateRoute redirectTo="/login" component={<Profile/>} />}/>
               <Route path="*" element={<ErrorPage/>} />
@@ -60,6 +77,5 @@ const Profile = lazy(()=> import ('Pages/Profile/Profile'));
      <GlobalStyle/>
 </div>
   )
-
     };
     

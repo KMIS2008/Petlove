@@ -10,8 +10,8 @@ export const UserBar=()=>{
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
     const user = useSelector((state) => state.auth.user);
-    const avatarUrl = user.avatar || defaultAvatar;
-    const userName = user.name;
+    const avatarUrl = defaultAvatar ||user.avatar;
+    const userName = user ? user.name : '';
 
     useEffect(() => {
         const handleResize = () => {
@@ -31,7 +31,7 @@ export const UserBar=()=>{
                 <img src={avatarUrl} alt="User Avatar" />
             </Link>
             
-           {!isMobile&&<p>{userName}</p>}
+            {!isMobile && user && <p>{userName}</p>}
         </Container>
     )
 }
