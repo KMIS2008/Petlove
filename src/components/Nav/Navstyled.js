@@ -14,7 +14,7 @@ letter-spacing: -0.03em;
 text-align: lcenter;
 
 border-radius: 30px;
-
+cursor: pointer;
 
 border: 1px solid ${props => (props.$isHome ? '#FFFFFF' : '#262626')}; 
 color: ${props => (props.$isHome ? '#FFFFFF' : '#262626')}; 

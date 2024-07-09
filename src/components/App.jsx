@@ -62,10 +62,10 @@ const Profile = lazy(()=> import ('Pages/Profile/Profile'));
             <Route path="/" element={<Main />} />
             <Route path = "/" element = {<AppLayout/>}>
               <Route path="home" element={<Home/>}/>
-              <Route path="register" element = { <RestrictedRoute redirectTo="/login" component={<Reistr />} />}/>
+              <Route path="register" element = { <RestrictedRoute redirectTo="/profile" component={<Reistr />} />}/>
               <Route path = "login" element ={<RestrictedRoute redirectTo="/profile" component={<Login/>} />}/>
               <Route path="news" element={<News/>}/>
-              <Route path="notices" element= { <PrivateRoute redirectTo="/login" component={<Notices/>} />}/>
+              <Route path="notices" element= { <Notices/>} />
               <Route path="add-pet" element={ <PrivateRoute redirectTo="/login" component={<AddPet/>} />}/>
               <Route path="friends" element={<FriendPage/>}/>
               <Route path="profile" element={ <PrivateRoute redirectTo="/login" component={<Profile/>} />}/>

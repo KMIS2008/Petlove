@@ -30,6 +30,7 @@ font-size: 14px;
 font-weight: 500;
 line-height: 1,25;
 letter-spacing: -0.03em;
+cursor: pointer;
 
 color: #FFFFFF;
 

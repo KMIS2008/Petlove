@@ -34,41 +34,39 @@ const SignupSchema = Yup.object().shape({
 
 
 export const AddPetForm =()=>{
-    const customStyles = {
-        placeholder: (provided) => ({
-          ...provided,
-          color: '#26262680', 
-        }),
-        control: (provided, state) => ({
-          ...provided,
-          borderRadius: '30px',
-    
-          border: state.isFocused ? '1px solid #08AA83' : '1px solid #26262626',
-          boxShadow: state.isFocused ? '0 0 0 1px #08AA83' : 'none',
-          '&:hover': {
-            border: '1px solid #08AA83',
-          },
-        }),
-    
-        option: (provided, state) => ({
-          ...provided,
-        
-          borderRadius: '15px',
-          border: 'none',
-          padding: '0 12px',
-          fontFamily: 'Manrope',
-          fontSize: '14px',
-          fontWeight: '500',
-          lineHeight: '1.29',
-          letterSpacing: '-0.03em',
-          color: state.isSelected ? '#fff' : '#26262699',
-          backgroundColor: state.isSelected ? '#262626' : '#fff',
-          '&:hover': {
-            color: '#262626',
-          },
-        }),
-    
-      };
+  const customStyles = {
+    placeholder: (provided) => ({
+      ...provided,
+      color: '#26262680', 
+    }),
+    control: (provided, state) => ({
+      ...provided,
+      borderRadius: '30px',
+      height: state.isMulti ? '52px' : '42px', 
+      border: state.isFocused ? '1px solid #F6B83D' : '1px solid #26262626',
+      boxShadow: state.isFocused ? '0 0 0 1px #F6B83D' : 'none',
+      '&:hover': {
+        border: '1px solid #F6B83D',
+      },
+    }),
+
+    option: (provided, state) => ({
+      ...provided,
+      borderRadius: '15px',
+      border: 'none',
+      padding: '0 12px',
+      fontFamily: 'Manrope',
+      fontSize: '14px',
+      fontWeight: '500',
+      lineHeight: '1.29',
+      letterSpacing: '-0.03em',
+      color: state.isSelected ? '#fff' : '#26262699',
+      backgroundColor: state.isSelected ? '#262626' : '#fff',
+      '&:hover': {
+        color: '#262626',
+      },
+    }),
+  };
 
       const defaultValues = {
         title: '',
@@ -183,7 +181,6 @@ export const AddPetForm =()=>{
                     </SvgIcon>
                 </RadioGroup>
       {errors.sex && <Error>{errors.sex.message}</Error>}
-
             
                {!isAvatar  ? 
                             <Avatar width={68} height={68}>
@@ -196,7 +193,6 @@ export const AddPetForm =()=>{
                      <InputWrapper>
                        <Input id="imgURL" 
                               placeholder="Enter URL"
-                            //   $isValid={!errors.imgUrl}
                             $isError={!!errors.imgUrl}
                             $isSuccess={!errors.imgUrl && touchedFields.imgUrl}
 
@@ -210,7 +206,6 @@ export const AddPetForm =()=>{
                        {errors.imgUrl && <Error>{errors.imgUrl.message}</Error>} 
                        {!errors.imgUrl && touchedFields.imgUrl && <SuccessMessage>imgUrl is secure</SuccessMessage>}                    
                      </InputWrapper>
-
 
                        <ButtonLoad type='button' onClick={handleLoadingAvatar}>
                               <ButtonLoadSpan> Upload  photo</ButtonLoadSpan>

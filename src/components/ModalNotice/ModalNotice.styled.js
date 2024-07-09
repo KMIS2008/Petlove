@@ -128,6 +128,7 @@ line-height: 1,25;
 letter-spacing: -0.03em;
 text-align: center;
 color:${p => p.theme.colors.white};
+cursor: pointer;
 
 &:hover{
     background-color: #F9B020;

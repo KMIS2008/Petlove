@@ -17,6 +17,7 @@ position:absolute;
 right: 0; top: 0;
 border: none;
 margin-left: auto;
+cursor: pointer;
 `
 
 export const Title = styled.h5`
@@ -86,6 +87,7 @@ border-radius: 30px;
 border:none;
 
 background-color: #FFF4DF;
+cursor: pointer;
 
 &:hover{
     background-color: #FBE7C1;
@@ -131,6 +133,7 @@ padding: 12px ;
 gap: 10px;
 border-radius: 30px;
 color: #262626;
+cursor: pointer;
 
 &:hover {
   background-color: ${p => p.theme.colors.yellow};

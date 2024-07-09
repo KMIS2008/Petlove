@@ -19,6 +19,7 @@ font-weight: 500;
 line-height: 1,5;
 letter-spacing: -0.03em;
 background-color: #FFFFFF;
+cursor: pointer;
 
 &:hover{
     background-color: #F6B83D;

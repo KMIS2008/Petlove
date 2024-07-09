@@ -27,4 +27,5 @@ align-items: center;
 export const Svg = styled.svg`
 width: 32px;
 height: 32px;
+cursor: pointer;
 `;

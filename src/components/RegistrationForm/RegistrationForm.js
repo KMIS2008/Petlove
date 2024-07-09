@@ -1,12 +1,14 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiEyeOff, FiEye, FiCheck, FiX } from 'react-icons/fi';
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { registr } from 'redux/auth/operations';
 import { Form, Input, ButtonEye, Container, Error, Button, InputContainer,
          ValidationIcon, SuccessMessage } from './RegistrationForm. styled.js';
+import { useNavigate } from 'react-router-dom';
+import {selectToken} from '../../redux/auth/selects.js';
 
 const SignupSchema = Yup.object().shape({
     name: Yup.string()
@@ -32,6 +34,9 @@ export const RegistrationForm = () => {
       });
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const token = useSelector(selectToken);
+
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [visibility, setVisibility] = useState(false);
     const [error, setError] = useState('');
@@ -41,7 +46,6 @@ export const RegistrationForm = () => {
         e.preventDefault();
         try {
             await dispatch(registr({ name, email, password}));
-
             reset();
         } catch (error) {
             setError('Invalid email or password. Try again');
@@ -52,6 +56,13 @@ export const RegistrationForm = () => {
         evt.preventDefault();
         setIsPasswordVisible(prevState => !prevState);
     };
+
+    useEffect(() => {
+        if (token) {
+          navigate('/profile');
+        }
+      }, [token, navigate]);
+    
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>

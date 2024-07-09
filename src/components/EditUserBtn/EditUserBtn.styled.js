@@ -28,6 +28,8 @@ line-height: 1,29;
 letter-spacing: -0.02em;
 color: ${p=>p.theme.colors.white};
 text-align: left;
+
+cursor: pointer;
 `
 
 export const Svg = styled.svg`
@@ -36,6 +38,7 @@ top: 25%;
 right:14px;
 width: 18px;
 height: 18px;
+cursor: pointer;
 `
 
 export const ContainerSvg = styled.div`
@@ -54,4 +57,5 @@ export const SvgEdit = styled.svg`
 margin: auto;
 width: 18px;
 height: 18px;
+cursor: pointer;
 `

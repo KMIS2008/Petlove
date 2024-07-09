@@ -11,6 +11,7 @@ position:absolute;
 right: 0; top: 0;
 border: none;
 margin-left: auto;
+cursor: pointer;
 `
 
 export const Img = styled.img`
@@ -44,6 +45,7 @@ height: 42px;
 padding: 12px 44px;
 border-radius: 30px;
 background: #2626260D;
+cursor: pointer;
 
 &:hover{
     background: ${p => p.theme.colors.yellow};

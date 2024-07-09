@@ -34,11 +34,13 @@ export const RadioGroup = styled.div`
   gap: ${p=>p.theme.spacing(2)};
   margin-bottom: 16px;
   margin-top: 20px;
+  cursor: pointer;
 `;
 
 export const SvgIcon = styled.svg`
   width: 32px;
   height: 32px;
+  cursor: pointer;
   cursor: pointer;
 `;
 
@@ -78,8 +80,9 @@ width: 100%;
 `;
 
 export const Input = styled.input`
-width: 100%;
-  margin-bottom: 5px;
+  width: 100%;
+  height: 42px;
+  margin-bottom: 20px;
   padding: 9px 20px;
   gap: 10px;
   border-radius: 30px;
@@ -93,25 +96,33 @@ width: 100%;
   &:hover {
     border: 1px solid ${p => p.theme.colors.yellow};
   }
-`;
 
+  @media (min-width: 768px) {
+  height: 52px;
+ }
+`;
 
 export const ButtonLoad = styled.button` 
 display: flex;
 justify-content: center;
 align-items: center;
 width: 50%;
-height: 36px;
+height: 42px;
 padding: 10px;
 gap: 5px;
 border-radius: 30px;
 border:none;
+cursor: pointer;
 
 background-color: #FFF4DF;
 
 &:hover{
     background-color: #FBE7C1;
 }
+
+@media (min-width: 768px) {
+  height: 52px;
+ }
 `
 export const ButtonLoadSpan = styled.span` 
 font-family: Manrope;
@@ -136,13 +147,13 @@ export const SuccessMessage = styled.p`
 export const WrapperSelect = styled.div`
 position: relative;
  width: 100%;
+
 `;
 
 export const SvgCalendar = styled.svg`
 position: absolute;
 top: 25%;
-right: 10px;
-
+right: 20px;
 `;
 
 export const WrapperButton = styled.div`
@@ -165,9 +176,15 @@ font-weight: 700;
 line-height: 1,29;
 letter-spacing: -0.03em;
 color: #262626;
+cursor: pointer;
 
 &:hover {
   background-color: ${p => p.theme.colors.yellow};
   color: ${p => p.theme.colors.white};
+}
+
+@media (min-width: 768px) {
+  width: 170px;
+  height: 48px;
 }
 `;

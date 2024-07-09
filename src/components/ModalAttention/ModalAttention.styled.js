@@ -11,6 +11,7 @@ position:absolute;
 right: 0; top: 0;
 border: none;
 margin-left: auto;
+cursor: pointer;
 `
 
 export const ContainerSvg = styled.div`

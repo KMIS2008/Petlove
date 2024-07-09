@@ -98,6 +98,7 @@ line-height: 1,29px;
 letter-spacing: -0.03em;
 text-align: center;
 color: ${p=>p.theme.colors.white};
+cursor: pointer;
 `
 
 export const ButtonSVG = styled.button`
@@ -109,6 +110,7 @@ border-radius: 30px;
 background-color: #FFF4DF;
 
 background-color: ${(props) => (props.$isDefaultFavorite ? '#FBE7C1' : '#FFF4DF')};
+cursor: pointer;
 
 &:hover{
     background-color: #FBE7C1;

@@ -1,5 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 axios.defaults.baseURL = "https://petlove.b.goit.study/api";
 const User_URL='/users/current';
@@ -20,6 +22,15 @@ const setAuthHeader = token => {
         setAuthHeader(res.data.token);
         return res.data;
       } catch (error) {
+        toast.error(`Error: ${error.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000, 
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
         return thunkAPI.rejectWithValue(error.message);
       }
     }
@@ -34,6 +45,15 @@ const setAuthHeader = token => {
   
         return res.data;
       } catch (error) {
+        toast.error(`Error: ${error.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000, 
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
         return thunkAPI.rejectWithValue(error.message);
       }
     }
@@ -44,6 +64,15 @@ const setAuthHeader = token => {
       await axios.post('/users/signout');
       clearAuthHeader();
     } catch (error) {
+      toast.error(`Error: ${error.message}`, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000, 
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
       return thunkAPI.rejectWithValue(error.message);
     }
   });
@@ -63,6 +92,15 @@ const setAuthHeader = token => {
         const res = await axios.get('/users/current');
         return res.data;
       } catch (error) {
+        toast.error(`Error: ${error.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000, 
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
         return thunkAPI.rejectWithValue(error.message);
       }
     }
@@ -73,6 +111,15 @@ const setAuthHeader = token => {
         const response = await axios.patch(`${User_URL}/edit`, info);
         return response.data;
     } catch (e) {
+              toast.error(`Error: ${e.message}`, {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000, 
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         return thunkAPI.rejectWithValue(e.message);
     }
 });
